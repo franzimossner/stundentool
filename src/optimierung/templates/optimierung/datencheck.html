@@ -1,4 +1,3 @@
-{%load render_table from django_tables2%}
 <html>
     <head>
         <title> Datencheck </title>
@@ -9,7 +8,22 @@
         </div>
         <div>
           <p> Hier findet der Datencheck statt </p>
-          <p> Über einen Knopf soll ein Skript im Ordner gestartet werden, das die erstellte Datenbank durchgeht udn auf Widerspüche prüft. Gegebenfalls soll in einem Kästchen eine Fehlermeldung ausgegeben werden. </p>
+          <p> Über einen Knopf soll ein Skript im Ordner gestartet werden, das die erstellte Datenbank durchgeht und auf Widerspüche prüft. Gegebenfalls soll in einem Kästchen eine Fehlermeldung ausgegeben werden. </p>
+        </div>
+        <div>
+          <br />
+          <br /> <br />
+          <br />
+          {% for message in messages %}
+          <br />
+          <br />
+            <p> <b> {{ message }} </b> </p>
+          <br />
+          <br />
+          {% endfor %}
+          <br />
+          <br /><br />
+          <br />
         </div>
         <div>
           <p> Waren die Daten in Ordnung? Dann gehts hier zu den Parametereinstellungen </p>

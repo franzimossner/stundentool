@@ -2,7 +2,7 @@ from django.shortcuts import render
 #from .models import
 from django.utils import timezone
 #from .tables import TeacherTable, CurrTable, MainTeacherTable, RoomTable, ParallelTable, KlassenTable
-from .models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung
+from .models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit
 
 
 # Create your views here.
@@ -66,25 +66,26 @@ def hoursperday_page(request):
     return render(request, 'datainput/hoursperday_page.html', {'klassen':klassen, 'tage':tage})
 
 def guidelines_page(request):
-    klassen =  Schulklasse.objects.order_by('Name')
-    return render(request, 'datainput/guidelines_page.html', {'klassen':klassen})
+    # klassen =  Schulklasse.objects.order_by('Name')
+    # return render(request, 'datainput/guidelines_page.html', {'klassen':klassen})
 
-    rooms = Raum.objects.order_by('Name')
+    klassen = Schulklasse.objects.order_by('Name')
     tage = Tag.objects.order_by('Tag')
     stunden = Stunde.objects.order_by('Stunde')
-    roomToSlot = []
-    for raum in rooms:
-        stundenListe = []
+    klasseToVorgabe = []
+    for klasse in klassen:
+        vorgabenListe = []
         for stunde in stunden:
-            tagBelegungsListe = []
+            tagVorgabenListe = []
             for tag in tage:
-                tagBelegungsListe.append(raum.Nichtfrei.filter(Stunde=stunde, Tag=tag).exists())
-            stundenListe.append((stunde, tagBelegungsListe))
-        roomToSlot.append((raum, stundenListe))
+                tagVorgabenListe.append(VorgabeEinheit.Zeitslot.filter(Stunde=stunde, Tag=tag).exists())
+            vorgabenListe.append((klasse, tagVorgabenListe))
+        klasseToVorgabe.append((klasse, vorgabenListe))
+        # [("Klasse 1", [("Stunde 1", [??????])])]
         # [("raum 1", [("stunde 1", [True, False, True])])]
     return render(request, 'datainput/room_page.html', {
-        'rooms': rooms,
+        'klassen': klassen,
         'tage': tage,
         'stunden': stunden,
-        'roomToSlot': roomToSlot,
+        'klasseToVorgabe': klasseToVorgabe,
     })
