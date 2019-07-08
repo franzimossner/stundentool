@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title> Übergeifende Fächer</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Übergreifende Fächer </a></h1>
+        </div>
+    <div>
+      <table>
+        <tr>
+          <th> Fach </th>
+          <th> Übergreifende Klassengruppe</th>
+        </tr>
+        {% for group in uebergreifend %}
+          <tr>
+            <td>
+                {{ group.fach.Name }}
+            </td>
+            <td>
+              {% for klasse in group.schulklasse.all %}
+                {{ klasse.Name }}
+              {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    </body>
+</html>

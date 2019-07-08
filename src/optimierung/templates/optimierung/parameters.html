@@ -1,0 +1,19 @@
+{%load render_table from django_tables2%}
+<html>
+    <head>
+        <title> Parameter </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Einstellung der Optimierungsparameter </a></h1>
+        </div>
+        <div>
+          <p> Hier können sie alle Parameter für die Optimierung einstellen </p>
+          <p> Dabei ist zu beachten, dass der Wert, den sie eingeben, in etwa dem entsprechen soll, wie wichtig ihnen die Beachtung des entsprechenden Punkts der Optimierung ist </p>
+        </div>
+        <div>
+          <p> Alle Parameter eingestellt? Dann gehts hier zur Optimierung </p>
+          <h2><a href="{% url 'optimierung' %}"> Optimierung </a></h2> 
+        </div>
+    </body>
+</html>

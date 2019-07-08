@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'datainput',
     'table',
+    'django_tables2',
+    'mainpage',
+    'optimierung',
+    'dataoutput',
 ]
 
 MIDDLEWARE = [

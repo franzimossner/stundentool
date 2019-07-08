@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Klassenlehrer</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Einstellungen für Klassenlehrer</a></h1>
+        </div>
+
+    <div>
+      <table>
+        <tr>
+          <th>Klasse</th>
+          <th>Klassenlehrer</th>
+          <th>Tandem-Lehrer</th>
+          <th>Partner-Lehrer</th>
+        </tr>
+        {% for klasse in klassen %}
+          <tr>
+            <td>{{ klasse.Name }}</td>
+            <td>{{ klasse.Klassenlehrer.Name }}</td>
+            <td>{{ klasse.HauptTandem.Name }}</td>
+            <td>
+              {% for lehrer in klasse.PartnerLehrer.all %}
+                {{ lehrer.Name }}
+              {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    </body>
+</html>

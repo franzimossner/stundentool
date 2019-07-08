@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title> Parallele Fächer</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Parallel Fächer </a></h1>
+        </div>
+    <div>
+      <table>
+        <tr>
+          <th>Paralle Fächergruppen</th>
+        </tr>
+        {% for fach in parallels %}
+          <tr>
+            <td>
+                {{ fach }} {{ fach.Parallel.Name }}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    </body>
+</html>

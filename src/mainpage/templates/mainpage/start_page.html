@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Optimierungstool Hauptseite</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Optimierungstool für das SFZ München Mitte 1</a></h1>
+        </div>
+        <p> Herzlich Willkommen im Optimierungstool für ihre Schule!</p>
+        <p> Dies ist die Startseite des Tools und von hier können sie alle Optionen steuern.</p>
+        <p> Für eine gelungene Optimierung beachten sie folgende Schritte:</p>
+        <p> Geben sie unter "Datenverwaltung" alle benötigten Input-Daten ein und überprüfen sie sie auf Fehler und Unstimmigkeiten</p>
+        <p> Führen sie vor einer Optimierung immer den Datencheck aus. Diesen können sie in der Seite "Optimierung" finden</p>
+        <div>
+            <h2><a href="{% url 'input_main' %}"> Datenverwaltung </a></h2>
+            <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
+            <p> Außerdem können sie alle weiteren Vorgaben an die Stundenpläne, Klassen oder das Personal hier verwalten</p>
+        </div>
+        <div>
+            <h2><a href="{% url 'optimierung_main' %}"> Optimierung</a></h2>
+            <p> Hier werden sie Schritt für Schritt durch einen vollen Optimierungsprozess geleitet</p>
+            <p> Außerdem befindet sich hier der Datencheck, um zu überprüfen, ob ihre Daten Widersprüche enthalten</p>
+        </div>
+        <div>
+            <h2><a href="{% url 'output_main' %}"> Ergebnisse</a></h2>
+            <p> In diesem Punkt können sie ihre bereits produzierten Ergebnisse ansehen und als Excel oder PDF Datei exportieren</p>
+        </div>
+    </body>
+</html>

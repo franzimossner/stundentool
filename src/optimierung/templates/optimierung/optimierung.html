@@ -1,0 +1,19 @@
+{%load render_table from django_tables2%}
+<html>
+    <head>
+        <title> Optimierungsprozess </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Optimierungsprozess </a></h1>
+        </div>
+        <div>
+          <p> Hier läuft die Optimierung </p>
+          <p> Eventuelle Fehlermeldungen während der Optimeirung sollen hier in einer Box angezeigt werden </p>
+        </div>
+        <div>
+          <p> Die Optimierung ist fertig? Dann gehts hier zu den Ergebnissen:</p>
+          <h2><a href="{% url 'output_main' %}"> Ergebnisse </a></h2>
+        </div>
+    </body>
+</html>

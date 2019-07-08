@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title> Stunden blocken für Lehrer</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Verwaltung von geblockten Stunden für Lehrer</a></h1>
+        </div>
+        {% for unavailable in unavailables%}
+    <div>
+        <h2><a href="">{{ unavailable.title }}</a></h2>
+        <p>{{ unavailable.text|linebreaksbr }}</p>
+    </div>
+        {% endfor %}
+
+    </body>
+</html>

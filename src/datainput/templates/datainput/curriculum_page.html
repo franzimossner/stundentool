@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Lehrpläne</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Lehrpläne der Klassen</a></h1>
+        </div>
+        <div>
+          <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
+          {% for klasse in klassen %}
+            {{klasse.Name}}
+            <table>
+              <tr>
+                <th>Fach</th>
+                <th>Wochenstunden</th>
+                <th>Tandemstunden</th>
+                <th>Blockstunden</th>
+                <th>in Gruppen geteilt</th>
+                <th>Vepflichtend?</th>
+              </tr>
+              {% for fach in klasse.Faecher.all %}
+                <tr>
+                  <td>{{ fach.Name }}</td>
+                  <td>{{ fach.Lehrfaecher.wochenstunden }}</td>
+                  <td>{{ fach.Lehrfaecher.tandemstunden }}</td>
+                  <td>{{ fach.blockstunden }}</td>
+                  <td>{{ fach.klassengruppen }}</td>
+                  <td>{{ fach.verpflichtend }}</td>
+                </tr>
+              {% endfor %}
+            </table> <br />
+            <br /> <br />
+            <br />
+          {% endfor %}
+        </div>
+    </body>
+</html>

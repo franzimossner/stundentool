@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Hauptseite Dateninput</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Startseite Dateninput</a></h1>
+        </div>
+        <p> Auf dieser Seite können sie sämtliche Datensätze für ihre Schule verwalten. Die Daten werden gespeichert und dann an das Optimierungstool übergeben. </p>
+        <p> Daten, die nicht hier enthalten sind, können bei der Optimierung nicht berücksichtigt werden. Bitte überprüfen sie ihre Daten vor dem Optimieren auf Korrektheit</p>
+        <div>
+            <h2><a href="{% url 'teacher_page' %}"> Lehrerverwaltung </a></h2>
+            <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
+            <p> BIS AUF DESIGN FERTIG </p>
+        </div>
+        <div>
+            <h2><a href="{% url 'room_page' %}"> Raumverwaltung </a></h2>
+            <p> Dieser Unterpunkt zeigt alle Spezialräume und deren Belegung an</p>
+            <p> PROBLEME BEIM ANZEIGEN VON MEHREREN TABELLEN. WIE SETZTE ICH DIE BELEGUNG KORREKT?</p>
+        </div>
+        <div>
+            <h2><a href="{% url 'curriculum_page' %}"> Lehrplanverwaltung </a></h2>
+            <p> Hier können die Lehrpläne der Klassen angepasst werden</p>
+            <p> NOCH KEINE AUSGESTALTUNG </p>
+        </div>
+        <div>
+            <h2><a href="{% url 'unavailable_page' %}"> Stunden für Lehrer blocken </a></h2>
+            <p> Dieser Unterpunkt erlaubt einzugeben, wann Lehrer nicht unterrichten können</p>
+            <p> NOCH KEINE AUSGESTALTUNG </p>
+        </div>
+        <div>
+            <h2><a href="{% url 'parallel_page' %}"> Parallele Fächer </a></h2>
+            <p> BIS AUF DESIGN FERTIG </p>
+        </div>
+        <div>
+            <h2><a href="{% url 'mainteacher_page' %}"> Klassleitungen, Tandems und Partnerlehrer verwalten</a></h2>
+            <p> BIS AUF DESIGN FERTIG </p>
+        </div>
+        <div>
+            <h2><a href="{% url 'hoursperday_page' %}"> Stundenzahl pro Tag</a></h2>
+            <p> IN TABELLE FÜR JEDE KLASSE UMWANDELN</p>
+        </div>
+        <div>
+            <h2><a href="{% url 'guidelines_page' %}"> Vorgaben an die Pläne bzgl Lehrer und Fächern</a></h2>
+            <p> NOCH NCHT AUSGESTALTET </p>
+        </div>
+        <div>
+            <p> Fertig mit Daten eintragen? Dann gehts hier zum Datenchek</p>
+            <h2><a href="{% url 'datencheck' %}"> Datencheck </a></h2>
+        </div>
+    </body>
+</html>

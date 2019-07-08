@@ -1,0 +1,19 @@
+{%load render_table from django_tables2%}
+<html>
+    <head>
+        <title> Datencheck </title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Datencheck</a></h1>
+        </div>
+        <div>
+          <p> Hier findet der Datencheck statt </p>
+          <p> Über einen Knopf soll ein Skript im Ordner gestartet werden, das die erstellte Datenbank durchgeht udn auf Widerspüche prüft. Gegebenfalls soll in einem Kästchen eine Fehlermeldung ausgegeben werden. </p>
+        </div>
+        <div>
+          <p> Waren die Daten in Ordnung? Dann gehts hier zu den Parametereinstellungen </p>
+          <p> <h2><a href="{% url 'parameters' %}"> Parameter </a></h2> </p>
+        </div>
+    </body>
+</html>

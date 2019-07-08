@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Vorgaben</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Feste Vorgaben an die Optimierung</a></h1>
+        </div>
+        <div>
+          <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
+          {% for klasse, vorgabenListe in klasseToVorgabe %}
+            {{ klasse.Name }}
+
+            <table>
+              <tr>
+                <th>Vorgaben</th>
+                {% for tag in tage %}
+                  <th>{{tag.Tag}}</th>
+                {% endfor %}
+              </tr>
+              {% for stunde, tagVorgabenListe in vorgabenListe %}
+                <tr>
+                  <th>{{stunde.Stunde}}</th>
+                  {% for tagVorgabe in tagVorgabenListe %}
+                    <td style="background-color: {% if tagVorgabe %}yellow{% endif %}"> Vorgabe </td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </table> <br />
+            <br /> <br />
+            <br />
+          {% endfor %}
+        </div>
+    </body>
+</html>

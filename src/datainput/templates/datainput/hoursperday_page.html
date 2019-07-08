@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Stunden pro Tag</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/"> Stundenzahl pro Tag</a></h1>
+        </div>
+
+    <div>
+      <table>
+        <tr>
+          <th> Klasse </th>
+          {% for tag in tage %}
+            <th> {{ tag.Tag }}</th>
+          {% endfor %}
+        </tr>
+        {% for klasse in klassen %}
+          <tr>
+            <td>{{ klasse.Name }}</td>
+            {% for tag in tage %}
+              <td>{{ klasse.stundenzahlen }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    </body>
+</html>
