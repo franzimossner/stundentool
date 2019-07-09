@@ -5,12 +5,12 @@ from django.utils import timezone
 class Schulklasse(models.Model):
     """ Eine normale Schulklasse
     Attribute: Name
-    Relationen: hat genau einen Lehrplan (one-to-one)
-                hat mehrere Partnerlehrer (many-to-many)
-                hat genau ein HauptTandem (many-to-one)
-                hat genau einen Klassenlehrer (one-to-one) (aber nicht jeder Lehrer ist Klassleitung??)
-                hat mehrere Übergreifungen mit anderen Schulkassen bei Fächern (many-to-many)
-                ist Teil von mehreren Lehreinheiten (Relation nicht von hier ausgehend, many-to-one)
+    Relationen: hat einen Haupttandemlehrer (many-to-one)
+                hat genau einen Klassenlehrer (one-to-one)
+                hat mehrere Lehrfächer mit deren Attributen (many-to-many)
+                hat (potentiell) mehrere Partnerlehrer (many-to-many)
+                hat pro Tag eine gewissen Zahl an Stunden zu absolvieren (many-to-many)
+    Der angezeigte Name im Tool ist der Name der Klasse
     """
     Name = models.CharField(max_length=20)
     HauptTandem = models.ForeignKey('Lehrer', on_delete=models.CASCADE, related_name='TandemKlassen')
@@ -24,14 +24,17 @@ class Schulklasse(models.Model):
 
 class Partner(models.Model):
     """ Eine Model Klasse, um die Beziehungen zwischen einer Schulklasse und ihren Partnerlehrern zu simulieren
+        Der angezeigte Name im Modell ist der Name des Partnerlehrers
     """
     schulklasse = models.ForeignKey('Schulklasse', on_delete=models.CASCADE)
     lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.lehrer
+
 class Uebergreifung(models.Model):
     """ Eine Model Klasse, um zu simulieren, dass bestimmte Fächer übergreifend statt finden müssen
-    TODOTODOTODOTO
-    Das stimmt so nicht???
+        Im Tool wird angezeigt, um welche Klasse und um welches Fach es sich handelt
     """
     schulklasse = models.ManyToManyField('Schulklasse')
     fach = models.ForeignKey('Schulfach', on_delete=models.CASCADE)
@@ -40,17 +43,18 @@ class Uebergreifung(models.Model):
         return "{0} übergreifend für {1}".format(self.fach, self.schulklasse.order_by('Name'))
 
 class Lehrer(models.Model):
-    """ Ein normaler Lehrer
+    """ Ein Lehrer der Schule
     Attribute: Name, Kurzname, Stundenzahl, Faecher
-    Relationen: hat mehere Slots, in denen er belegt(nicht verfügbar) ist (many-to-many)
-                kann mehrere Schulfächer unterrrichten (many-to-many)
-                ist Teil mehrerer VorgabeEinheiten (many-to-one) (Relation nicht von hier ausgehend)
-                ist Teil mehrerer Lehreinheiten (many-to-one) (Relation nicht von hier ausgehend)
-                kann PartnerLehrer, HauptTandem oder Klassenlehrer von Schulklassen sein (Relationen nicht von hier ausgehend)
+               TODO: Tandemfähig? Sportbefähigung?
+    Relationen: hat Fächer, die er unterrichten kann (many-to-many)
+                hat Slots, zu denen er auf nicht verfügbar geschaltet werden kann (many-to-many)
+    Im Tool wird ein Lehrer mit seinem vollen Namen angezeigt
     """
     Name = models.CharField(max_length=50)
     Kurzname = models.CharField(max_length=10)
     Stundenzahl = models.IntegerField(default=0)
+    #Sport = models.CharField(choices= [(1, 'Ja'), (0, 'Nein')], default=1, max_length=10)
+    Tandem = models.CharField(choices= [("1", "Ja"), ("0", "Nein")], default="1", max_length=10)
     Faecher = models.ManyToManyField('Schulfach', through ='Unterrricht', through_fields=('lehrer', 'fach'))
     NichtDa = models.ManyToManyField('Slot', through = 'LehrerBelegt', through_fields= ('lehrer', 'slot'))
 
@@ -58,7 +62,8 @@ class Lehrer(models.Model):
         return self.Name
 
 class RaumBelegt(models.Model):
-    """ Eine Model Klasse, um zu simulieren, wann ein Raum oder ein Lehrer belegt, also nicht verfügbar ist
+    """ Eine Model Klasse, um zu simulieren, wann ein Raum belegt, also nicht verfügbar ist
+        Im Tool wird angezeigt, welcher Raum und welche Zeit geblockt sind
     """
     raum = models.ForeignKey('Raum', on_delete=models.CASCADE)
     slot = models.ForeignKey('Slot', on_delete =models.CASCADE)
@@ -68,6 +73,7 @@ class RaumBelegt(models.Model):
 
 class LehrerBelegt(models.Model):
     """ Eine Model Klasse, um zu simulieren, wann ein Raum oder ein Lehrer belegt, also nicht verfügbar ist
+        Im Tool wird angezeigt, welcher Lehrer zu welcher Zeit nicht da ist
     """
     lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
     slot = models.ForeignKey('Slot', on_delete =models.CASCADE)
@@ -99,7 +105,7 @@ class Raum(models.Model):
         return self.Name
 
 class Nutzbar(models.Model):
-    """ Eine Model Klasse, um zu simulieren, wann ein Raum oder ein Lehrer belegt, also nicht verfügbar ist
+    """ Eine Model Klasse, um zu simulieren, welche fächer im gegeben Raum unterrichtet werden können
     """
     raum = models.ForeignKey('Raum', on_delete=models.CASCADE)
     schulfach = models.ForeignKey('Schulfach', on_delete =models.CASCADE)
@@ -108,10 +114,10 @@ class Nutzbar(models.Model):
         return "{0} nutzbar für {1}".format(self.raum, self.schulfach)
 
 class Slot(models.Model):
-    """ Ein Slot im Stundenplan
-    Attribute: timeslot
-    Relationen: ist Teil von mehreren Lehreinheiten und VorgabeEinheiten (beide Relationen gehen nicht von hier aus)
-                ist teil des Belegunsplans von Lehrern udn Räumen (berits dort als Relation engerichtet)
+    """ Ein Slot im Stundenplan, er beinhaltet potentiell mehrere Lehreinheiten
+    Attribute: -
+    Relationen: hat einen Tag zugewiesen (many-to-one)
+                hat eine Stunde zugewiesen (many-to-one)
 
     """
     Tag = models.ForeignKey('Tag', on_delete=models.CASCADE)
@@ -122,6 +128,7 @@ class Slot(models.Model):
 
 class Stunde(models.Model):
     Stunde = models.CharField(max_length=20)
+    Index = models.IntegerField()
 
     def __str__(self):
         return self.Stunde
@@ -130,12 +137,7 @@ class Stunde(models.Model):
 class Schulfach(models.Model):
     """ Ein Schulfach der Schule
     Attribute: Name
-    Relationen: hat eventuell mehrere parallel stattfindende Fächer (many-to-one)
-                hat mehrere Raumtypen, in dem es stattfinden kann (many-to-many)(Relation geht von Raum aus)
-                ist Teil mehrerer VorgabeEinheiten und Lehreinheiten (many-to-one) (Relationen gehen beide von sich aus)
-                ist Teil mehrerer Übergreifungen (many-to-one) (Relation geht von Schulklasse aus)
-                ist Teil mehrerer Lehrpläne (many-to-many) (Relation geht von Lehrplan aus)
-                kann von einem Lehrer unterrrichtet werden (many-to-many) (Relation geht von Lerhrer aus)
+    Relationen: hat eventuell mehrere parallel stattfindende Schulfächer
     """
     Name = models.CharField(max_length=50)
     Parallel = models.ForeignKey('Schulfach', blank=True, null=True, on_delete=models.CASCADE)
@@ -159,13 +161,12 @@ class Lehrfaecher(models.Model):
         return "Lehrplan: {0} mit {1}, Attribute {2}, {3}, {4}, {5}, {6}".format(self.schulklasse, self.schulfach, self.wochenstunden, self.tandemstunden, self.blockstunden, self.klassengruppen, self.blockstunden)
 
 class Lehreinheit(models.Model):
-    """ Eine Lehreinheit. Definition: Ist später Teil eines Stundenplan-slots, damit simuliert werden kann, wenn Fächerfür Slots geteilt sind
-    Attribute: ??
+    """ Eine Lehreinheit.
+    Attribute: -
     Relationen: hat genau ein Fach (many-to-one)
-                hat genau einen Lehrer (many-to-one)
-                hat genau eine Klasse (many-to-one)
+                hat genau einen Lehrerstundenplan und damit genau einen Lehrer (many-to-one)
+                hat genau einen Klassenstundenplan und damit genau eine Klasse (many-to-one)
                 findet in genau einem Slot statt (many-to-one)
-                ist Teil genau eines Stundenplans (many-to-one)
     """
     Schulfach = models.ForeignKey('Schulfach', on_delete=models.CASCADE)
     Lehrerstundenplan = models.ForeignKey('Lehrerstundenplan', on_delete=models.CASCADE)
@@ -177,10 +178,8 @@ class Lehreinheit(models.Model):
 
 class Klassenstundenplan(models.Model):
     """ Ein Stundenplan. Hier werden Ergebnisse gespeichert
-    Attribute: Klasse, Lehrer?
-    Relationen: hat mehrere Lehreinheiten als Teil (Relation is in Lehreinheit)
-
-    Wie mache ich das hier?
+    Attribute: -
+    Relationen: hat eine Schulklasse (many-to-one)
     """
     Schulklasse = models.ForeignKey('Schulklasse', on_delete=models.CASCADE)
 
@@ -189,10 +188,8 @@ class Klassenstundenplan(models.Model):
 
 class Lehrerstundenplan(models.Model):
     """ Ein Stundenplan. Hier werden Ergebnisse gespeichert
-    Attribute: Klasse, Lehrer?
-    Relationen: hat mehrere Lehreinheiten als Teil (Relation is in Lehreinheit)
-
-    Wie mache ich das hier?
+    Attribute: -
+    Relationen: hat einen Lehrer (many-to-one)
     """
     Lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
 
@@ -201,11 +198,11 @@ class Lehrerstundenplan(models.Model):
 
 class VorgabeEinheit(models.Model):
     """ Eine Zeiteinheit für die Vorgaben
-    Attribute: ?
-    Relationen: ist Teil einer Gesamt-Vorgabe (many-to-one)
-                hat maximal einen slot (many-to-one)
+    Attribute:
+    Relationen: hat maximal einen slot (many-to-one)
                 hat maximal einen Lehrer (many-to-one)
                 hat maximal ein Schulfach (many-to-one)
+                hat maximal eine Klasse (many-to-one)
     """
     Zeitslot = models.ForeignKey('Slot', on_delete=models.CASCADE)
     Lehrperson = models.ForeignKey('Lehrer', blank=True, null=True, on_delete=models.CASCADE)
@@ -217,6 +214,7 @@ class VorgabeEinheit(models.Model):
 
 class Tag(models.Model):
     Tag = models.CharField(max_length=20)
+    Index = models.IntegerField()
 
     def __str__(self):
         return self.Tag

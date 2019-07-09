@@ -9,7 +9,7 @@
         <div>
           <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
           {% for klasse in klassen %}
-            {{klasse.Name}}
+            <p> <b> Klasse {{klasse.Name}} </b> </p>
             <table>
               <tr>
                 <th>Fach</th>
@@ -19,11 +19,12 @@
                 <th>in Gruppen geteilt</th>
                 <th>Vepflichtend?</th>
               </tr>
-              {% for fach in klasse.Faecher.all %}
+              {% for fach in klasse.Faecher_set %}
+                {{ fach }}
                 <tr>
                   <td>{{ fach.Name }}</td>
-                  <td>{{ fach.Lehrfaecher.wochenstunden }}</td>
-                  <td>{{ fach.Lehrfaecher.tandemstunden }}</td>
+                  <td>{{ fach.wochenstunden }}</td>
+                  <td>{{ fach.tandemstunden }}</td>
                   <td>{{ fach.blockstunden }}</td>
                   <td>{{ fach.klassengruppen }}</td>
                   <td>{{ fach.verpflichtend }}</td>

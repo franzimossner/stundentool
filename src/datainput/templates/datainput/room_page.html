@@ -10,8 +10,12 @@
         <div>
           <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
           {% for raum, stundenListe in roomToSlot %}
-            <p> <b> {{raum.Name}} </b> <p/>
-            <p>{{raum.Beschreibung}}</p>
+            <p> <b> {{ raum.Name }} </b> <p/>
+            <p>{{ raum.Beschreibung }}</p>
+            <p> Fächer, die hier unterrichtet werden können:
+            {% for fach in raum.faecher.all %}
+              {{ fach.Name }}
+            {% endfor %} </p>
 
             <table>
               <tr>

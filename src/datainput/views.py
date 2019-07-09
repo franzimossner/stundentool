@@ -11,8 +11,8 @@ def input_main(request):
 #
 def room_page(request):
     rooms = Raum.objects.order_by('Name')
-    tage = Tag.objects.order_by('Tag')
-    stunden = Stunde.objects.order_by('Stunde')
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
     roomToSlot = []
     for raum in rooms:
         stundenListe = []
@@ -45,24 +45,46 @@ def mainteacher_page(request):
 
 def parallel_page(request):
     faecher = Schulfach.objects.order_by('Name')
-    parallels =[]
+    parallels = []
+
     for fach in faecher:
-        if fach.Parallel != None:
-            parallels.append(fach)
+        parallelfaecher =dict()
+        parallelfaecher[fach]=[]
+        for parfach in faecher:
+            if parfach.Parallel == fach:
+                parallelfaecher[fach].append(parfach)
+        parallels.append((fach, parallelfaecher[fach]))
 
     return render(request,'datainput/parallel_page.html', {'parallels': parallels})
 
 def uebergreifend_page(request):
     uebergreifend = Uebergreifung.objects.order_by('fach')
     return render(request,'datainput/uebergreifend_page.html', {'uebergreifend':uebergreifend})
-#
-# def unavailable_page(request):
-#     unavailables = Teacherunavailable.objects.order_by('title')
-#     return render(request, 'datainput/unavailable_page.html', {'unavailables':unavailables})
-#
+
+def unavailable_page(request):
+    # lehrers = Lehrer.objects.order_by('Name')
+    # return render(request, 'datainput/unavailable_page.html', {'lehrers':lehrers})
+
+    lehrers = Lehrer.objects.order_by('Name')
+    tage = Tag.objects.order_by('Tag')
+    stunden = Stunde.objects.order_by('Stunde')
+    stundenListe = []
+    for stunde in stunden:
+        tagBelegungsListe = []
+        for tag in tage:
+            tagNichtda = lehrers.filter(NichtDa_Stunde = stunde, NichtDa_Tag = tag)
+            tagBelegungsListe.append(tagNichtda)
+        stundenListe.append((stunde, tagBelegungsListe))
+    return render(request, 'datainput/room_page.html', {
+        'lehrers': lehrers,
+        'tage': tage,
+        'stunden': stunden,
+        'stundenListe': stundenListe,
+    })
+
 def hoursperday_page(request):
     klassen =  Schulklasse.objects.order_by('Name')
-    tage = Tag.objects.order_by('Tag')
+    tage = Tag.objects.order_by('Index')
     return render(request, 'datainput/hoursperday_page.html', {'klassen':klassen, 'tage':tage})
 
 def guidelines_page(request):
@@ -70,15 +92,17 @@ def guidelines_page(request):
     # return render(request, 'datainput/guidelines_page.html', {'klassen':klassen})
 
     klassen = Schulklasse.objects.order_by('Name')
-    tage = Tag.objects.order_by('Tag')
-    stunden = Stunde.objects.order_by('Stunde')
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    vorgaben = VorgabeEinheit.objects.order_by('Schulklasse')
     klasseToVorgabe = []
     for klasse in klassen:
         vorgabenListe = []
         for stunde in stunden:
             tagVorgabenListe = []
             for tag in tage:
-                tagVorgabenListe.append(VorgabeEinheit.Zeitslot.filter(Stunde=stunde, Tag=tag).exists())
+                # Hier in der Zeile ist ein Fehler
+                tagVorgabenListe.append(vorgaben.filter(Zeitslot_Stunde=stunde, Zeitslot_Tag=tag, Schulklasse=klasse).exists())
             vorgabenListe.append((klasse, tagVorgabenListe))
         klasseToVorgabe.append((klasse, vorgabenListe))
         # [("Klasse 1", [("Stunde 1", [??????])])]

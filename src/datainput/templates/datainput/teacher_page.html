@@ -13,6 +13,7 @@
           <th>Kürzel</th>
           <th>Stundenzahl</th>
           <th>Fächer</th>
+          <th>Tandem</th>
         </tr>
         {% for lehrer in lehrers %}
           <tr>
@@ -21,9 +22,10 @@
             <td>{{ lehrer.Stundenzahl }}</td>
             <td>
               {% for fach in lehrer.Faecher.all %}
-                {{ fach.Name }}, 
+                {{ fach.Name }},
               {% endfor %}
             </td>
+            <td> {{ lehrer.Tandem }}</td>
           </tr>
         {% endfor %}
       </table>

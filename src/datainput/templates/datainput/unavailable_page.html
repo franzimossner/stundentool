@@ -1,17 +1,41 @@
 <html>
     <head>
-        <title> Stunden blocken für Lehrer</title>
+        <title> Stunden blocken</title>
     </head>
     <body>
         <div>
-            <h1><a href="/"> Verwaltung von geblockten Stunden für Lehrer</a></h1>
+            <h1><a href="/"> Verfügbarkeit von Lehrern </a></h1>
         </div>
-        {% for unavailable in unavailables%}
-    <div>
-        <h2><a href="">{{ unavailable.title }}</a></h2>
-        <p>{{ unavailable.text|linebreaksbr }}</p>
-    </div>
-        {% endfor %}
+        <div>
+          <!-- {% for raum, stundenListe in roomToSlot %}
+            <p> <b> {{ raum.Name }} </b> <p/>
+            <p>{{ raum.Beschreibung }}</p>
+            {% for fach in raum.faecher.all %}
+              <p>{{ fach.Name }}</p>
+            {% endfor %} -->
 
+            <table>
+              <tr>
+                <th>Stunden</th>
+                {% for tag in tage %}
+                  <th>{{tag.Tag}}</th>
+                {% endfor %}
+              </tr>
+              {% for stunde, tagBelegungsListe in stundenListe %}
+                <tr>
+                  <th>{{stunde.Stunde}}</th>
+                  {% for tagBelegung in tagBelegungsListe %}
+                    {% for lehrer in tagBelegung %}
+                      <td> {{ lehrer.Name }} </td>
+                    <!-- <td style="background-color: {% if tagBelegung %}red{% else %}green{% endif %}"> </td> -->
+                    {% endfor %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </table> <br />
+            <br /> <br />
+            <br />
+          <!-- {% endfor %} -->
+        </div>
     </body>
 </html>
