@@ -124,7 +124,7 @@ class Slot(models.Model):
     Stunde = models.ForeignKey('Stunde', on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Slot ({0},{1})".format(self.Tag, self.Stunde)
+        return "{0}, {1}".format(self.Tag, self.Stunde)
 
 class Stunde(models.Model):
     Stunde = models.CharField(max_length=20)
@@ -227,92 +227,3 @@ class StundenzahlproTag(models.Model):
 
     def __str__(self):
         return "Klasse {0} hat {1} Stunden am {2}".format(self.schulklasse,self.Stundenzahl, self.tag)
-
-
-
-# Code aus dem alten model
-
-# class Belegung(models.Model):
-#     Zeitslots = ["Mo1", "Mo2", "Mo3", "Mo4", "Mo5", "Mo6"]
-#     belegt = models.BooleanField(Zeitslots, default=False)
-#     wert = models.CharField(max_length=20, default=20)
-#
-#     def __str__(self):
-#         return self.wert
-#
-# class Room(models.Model):
-#     Zeitslots = ["Mo1", "Mo2", "Mo3", "Mo4", "Mo5", "Mo6"]
-#     # , Mo7, Mo8, Di1, Di2, Di3, Di4, Di5, Di6, Di7, Di8,
-#     #             Mi1, Mi2, Mi3, Mi4, Mi5, Mi6, Mi7, Mi8,
-#     #             Do1, Do2, Do3, Do4, Do5, Do6, Do7, Do8, Fr1, Fr2, Fr3, Fr4, Fr5, Fr6]
-#     Name = models.CharField(max_length=200)
-#     text = models.TextField()
-#     belegung = models.ForeignKey(Belegung, on_delete=models.CASCADE, default=True)
-#     #Hier eine funktion, die irgendwie zuordnet, wann ein Raum frei ist
-#     def __str__(self):
-#         return self.Name
-#
-# class Klasse(models.Model):
-#     Name = models.CharField(max_length=100)
-#     # ForeignKey zu allen Eigenschaften?
-#     def __str__(self):
-#         return self.Name
-#
-# class Teacher(models.Model):
-#     Name = models.CharField(max_length=100)
-#     Stunden = models.IntegerField(default= 0)
-#     Fächer = models.TextField()
-#     aktiv_seit = models.DateTimeField(blank=True, null=True)
-#
-#     def publish(self):
-#         self.aktiv_seit = timezone.localtime(timezone.now()).date()
-#         self.save()
-#     def __str__(self):
-#         return self.Name
-#
-# class Curriculum(models.Model):
-#     Klasse = models.CharField(max_length=100)
-#     Fach = models.TextField()
-#     Zahl = models.IntegerField(default= 0)
-#
-#     def __str__(self):
-#         return self.Klasse
-#
-# class ParallelSubject(models.Model):
-#     #title = models.CharField(max_length=100)
-#     Fach = models.TextField()
-#
-#     def __str__(self):
-#         return self.Fach
-#
-# class MainTeacher(models.Model):
-#     Klasse = models.CharField(max_length=100)
-#     Klassenleitung = models.TextField()
-#
-#     def __str__(self):
-#         return self.Klasse
-#
-# class Teacherunavailable(models.Model):
-#     title = models.CharField(max_length=100)
-#     text = models.TextField()
-#     published_date = models.DateTimeField(blank=True, null=True)
-#
-#     def publish(self):
-#         self.published_date = timezone.now()
-#         self.save()
-#     def __str__(self):
-#         return self.title
-#
-# class Hoursperday(models.Model):
-#     Klasse = models.CharField(max_length=100)
-#     Stundenzahl = models.TextField()
-#
-#     def __str__(self):
-#         return self.Klasse
-#
-# class Guideline(models.Model):
-#     Klasse = models.CharField(max_length=100, default = "Keine Klasse")
-#     text = models.TextField(default= "Keine Vorgaben")
-#
-#     def __str__(self):
-#         return self.Klasse

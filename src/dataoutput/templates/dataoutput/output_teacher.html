@@ -1,14 +1,27 @@
-{%load render_table from django_tables2%}
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/dataoutput.css' %}">
         <title> Ergebnisse Lehrer</title>
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/"> Ergebnisse für Lehrerstundenpläne</a></h1>
+            <br />
+            <br />
         </div>
         <div>
-          <p> Hier wird eine Tabelle sein, in der man Ergebnisse runterladen kann </p>
+            <p> Alle Lehrerstundenpläne exportieren: </p>
+            <h2><a href="/"> Download PDF/EXCEL für alle Lehrer </a></h2>
+            <br />
+            <br />
+        </div>
+        <div>
+          {% for lehrer, lehrerEinheiten in stundenliste %}
+            <h2><a href="{% url 'teacher_detail' lehrer=lehrer.Kurzname %}"> {{ lehrer.Name }} ( {{ lehrer.Kurzname }} ) </a></h2>
+            <p> Dieser Link soll zu den Stundenplänen des Lehrers führen. Dort soll man auch für einzelne Lehrer die Pläne herunterladen können </p>
+          {% endfor %}
         </div>
 
     </body>

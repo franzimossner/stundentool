@@ -1,18 +1,22 @@
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/optimierung.css' %}">
         <title> Datencheck </title>
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/"> Datencheck</a></h1>
+            <br />
+            <br />
         </div>
         <div>
           <p> Hier findet der Datencheck statt </p>
           <p> Über einen Knopf soll ein Skript im Ordner gestartet werden, das die erstellte Datenbank durchgeht und auf Widerspüche prüft. Gegebenfalls soll in einem Kästchen eine Fehlermeldung ausgegeben werden. </p>
         </div>
-        <div>
+        <div class="alert alert-secondary" role="alert">
           <br />
-          <br /> <br />
           <br />
           {% for message in messages %}
           <br />
@@ -22,7 +26,6 @@
           <br />
           {% endfor %}
           <br />
-          <br /><br />
           <br />
         </div>
         <div>

@@ -3,26 +3,17 @@
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="{% static 'css/dataoutput.css' %}">
-        <title> Ergebnisse Klassen</title>
+        <title> Plan für Klasse {{ plan.Name }}</title>
     </head>
     <body>
         <div class="page-header">
-            <h1><a href="/"> Ergebnisse für Klassenstundenpläne</a></h1>
+            <h1><a href="/"> Stundenpläne für Klasse {{ plan.Name }}</a></h1>
             <br />
             <br />
         </div>
         <div>
             <p> Alle Klassenstundenpläne exportieren: </p>
             <h2><a href="/"> Download PDF/EXCEL für alle Klassen </a></h2>
-            <br />
-            <br />
         </div>
-        <div>
-          {% for klasse, klassenEinheiten in stundenliste %}
-            <h2><a href="{% url 'class_detail' klasse=klasse.Name %}"> {{ klasse.Name }} </a></h2>
-            <p> Dieser Link soll zu den Stundenplänen der Klasse führen. Dort soll man auch für einzelne Klassen die Pläne herunterladen können </p>
-          {% endfor %}
-        </div>
-
     </body>
 </html>

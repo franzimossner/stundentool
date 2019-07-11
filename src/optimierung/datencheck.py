@@ -48,6 +48,21 @@ class datenpruefer(object):
         klassen = Schulklasse.objects.order_by('Name')
         raeume = Raum.objects.order_by('Name')
 
+        for raum in raeume:
+            Faecher = raum.faecher
+            stundenzahl = 0
+            for klasse in klassen:
+                for fach in Faecher:
+                    if fach in klasse.Faecher:
+                        # Hier möchte ich die wochenstunden vom gegeben Fach auf die bisherige zahl aufaddieren
+                        stundenzahl += fach.wochenstunden
+            # multipliziere zahl der tage mit der zahl der stunden insgesamt. An maximal so vielen slots kann der raum frei sein
+            raumfreizahl = Tag.objects.all().count() * Stunde.objects.all().count()
+            for belegt in RaumBelegt.filter(raum=raum):
+                raumfreizahl -= 1
+            if raumfreizahl < stundenzahl:
+                self.message.append("Raum" + raum + "hat nicht genug freie Slots, um alle Fächer unterzubringen, die benötigt werden")
+
         ''' Finde alle Fächer für einen Raum
             Finde diese Fächer in den Lehrplänen und addiere ihre Wochenstunden
             Finde die Summe aller freien Slots eines Raumes
@@ -61,3 +76,24 @@ class datenpruefer(object):
             - Der eingegebene Lehrer muss das eingegebene Fach auch unterrichten können
             - Das eingegebene Fach muss auch Teil des Lehrplans der Klasse sein
         """
+
+        vorgaben = VorgabeEinheit.objects.order_by('Klasse')
+
+        for vorgabe in vorgaben:
+            # greife auf Attribut Fach in der VorgabeEinheitzu
+            fach = vorgabe.Fach#
+            if fach not in vorgabe.Schulklasse.Faecher:
+                self.message.append("Das Fach " + fach + " ist nicht im Lehrplan der Klasse" + vorgabe.Schulklasse + " und kann deshalb nicht vorgegeben werden")
+            if vorgabe.Lehrperson != None:
+                lehrer = vorgabe.Lehrperson
+                if fach not in lehrer.Faecher:
+                    self.message.append("Das Fach " + fach + " kann nicht von" + lehrer.Name + " unterrichtet werden und kann deshalb nicht vorgegeben werden")
+                if vorgabe.Zeitslot in lehrer.NichtDa:
+                    self.message.append("Das Lehrer " + Lehrer + " ist zum Slot" + vorgabe.Zeitslot + " nicht da und kann deshalb nicht vorgegeben werden")    
+
+        ''' Finde alle vorgaben
+            Für jeder Vorgabe, finde das fach und ggf den Lehrer dazu
+            Prüfe ob das Fach im Lehrplan der Klasse aus der Vorgabe ist, wenn nein, message
+            Prüfe, ob der Lehrer das Fach unterrichten Kann, wenn nicht, message
+            Prüfe, ob der Lehrer zum Zeitslot nicht da ist, wenn ja, message
+        '''

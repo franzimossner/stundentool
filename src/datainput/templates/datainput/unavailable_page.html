@@ -1,12 +1,19 @@
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title> Stunden blocken</title>
     </head>
     <body>
-        <div>
+        <div class= "page-header">
             <h1><a href="/"> Verfügbarkeit von Lehrern </a></h1>
+            <br />
+            <br />
         </div>
         <div>
+          <br />
+          <br />
           <!-- {% for raum, stundenListe in roomToSlot %}
             <p> <b> {{ raum.Name }} </b> <p/>
             <p>{{ raum.Beschreibung }}</p>
@@ -14,7 +21,7 @@
               <p>{{ fach.Name }}</p>
             {% endfor %} -->
 
-            <table>
+            <table class= "table table-hover">
               <tr>
                 <th>Stunden</th>
                 {% for tag in tage %}

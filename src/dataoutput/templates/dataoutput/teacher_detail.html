@@ -1,0 +1,19 @@
+{% load static %}
+<html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/dataoutput.css' %}">
+        <title> Plan für {{ plan.Name }}</title>
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/"> Stundenpläne für {{ plan.Name }}</a></h1>
+            <br />
+            <br />
+        </div>
+        <div>
+            <p> Alle Pläne exportieren: </p>
+            <h2><a href="/"> Download PDF/EXCEL für den Lehrer </a></h2>
+        </div>
+    </body>
+</html>

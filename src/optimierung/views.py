@@ -8,8 +8,8 @@ def optimierung_main(request):
 
 def datencheck(request):
     messages = datenpruefer.machdencheck(datenpruefer)
-    if messages == []:
-         messages = ["Ihre Daten haben den Datencheck bestanden. Gehen sie nun weiter zum nächsten Schritt"]
+    if messages == []:    
+        messages = ["Ihre Daten haben den Datencheck bestanden. Gehen sie nun weiter zum nächsten Schritt"]
 
     return render(request, 'optimierung/datencheck.html', {'messages': messages})
 

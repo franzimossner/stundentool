@@ -1,16 +1,24 @@
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/mainpage.css' %}">
         <title>Optimierungstool Hauptseite</title>
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/"> Optimierungstool für das SFZ München Mitte 1</a></h1>
+            <br />
+            <br />
+            <p> Herzlich Willkommen im Optimierungstool für ihre Schule!</p>
+            <p> Dies ist die Startseite des Tools und von hier können sie alle Optionen steuern.</p>
+            <p> Für eine gelungene Optimierung beachten sie folgende Schritte:</p>
+            <p> Geben sie unter "Datenverwaltung" alle benötigten Input-Daten ein und überprüfen sie sie auf Fehler und Unstimmigkeiten</p>
+            <p> Führen sie vor einer Optimierung immer den Datencheck aus. Diesen können sie in der Seite "Optimierung" finden</p>
         </div>
-        <p> Herzlich Willkommen im Optimierungstool für ihre Schule!</p>
-        <p> Dies ist die Startseite des Tools und von hier können sie alle Optionen steuern.</p>
-        <p> Für eine gelungene Optimierung beachten sie folgende Schritte:</p>
-        <p> Geben sie unter "Datenverwaltung" alle benötigten Input-Daten ein und überprüfen sie sie auf Fehler und Unstimmigkeiten</p>
-        <p> Führen sie vor einer Optimierung immer den Datencheck aus. Diesen können sie in der Seite "Optimierung" finden</p>
+
+        <br />
+        <br />
         <div>
             <h2><a href="{% url 'input_main' %}"> Datenverwaltung </a></h2>
             <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>

@@ -1,12 +1,17 @@
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/dataoutput.css' %}">
         <title>Hauptseite Datenoutput</title>
     </head>
     <body>
-        <div>
+        <div class= "page-header">
             <h1><a href="/">Startseite Ergebnisse</a></h1>
+            <p> Hier können sie sämtliche Ergebnisse für Klassen und Lehrer, die sie mit der Optimierung produziert haben, einsehen</p>
         </div>
-        <p> Hier können sie sämtliche Ergebnisse für Klassen und Lehrer, die sie mit der Optimierung produziert haben, einsehen</p>
+        <br />
+        <br />
         <div>
             <h2><a href="{% url 'output_teacher' %}"> Stundenpläne für Lehrer </a></h2>
             <p> Export von Stundenplänen für die Lehrer</p>

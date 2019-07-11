@@ -1,17 +1,24 @@
+{% load static %}
 <html>
     <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title>Vorgaben</title>
     </head>
     <body>
-        <div>
+        <div class= "page-header">
             <h1><a href="/">Feste Vorgaben an die Optimierung</a></h1>
+            <br />
+            <br />
         </div>
         <div>
+          <br />
+          <br />
           <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
           {% for klasse, vorgabenListe in klasseToVorgabe %}
             {{ klasse.Name }}
 
-            <table>
+            <table class= "table table-hover">
               <tr>
                 <th>Vorgaben</th>
                 {% for tag in tage %}
