@@ -12,46 +12,52 @@
             <p> Daten, die nicht hier enthalten sind, können bei der Optimierung nicht berücksichtigt werden. Bitte überprüfen sie ihre Daten vor dem Optimieren auf Korrektheit</p>
         </div>
         <br />
-        <br /> 
-        <div>
-            <h2><a href="{% url 'teacher_page' %}"> Lehrerverwaltung </a></h2>
-            <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
-            <p> <b> FERTIG </b> </p>
+        <br />
+        <div class="container">
+            <button type="button" class="btn btn-light"> <h2> <a href="{% url 'teacher_page' %}"> Lehrerverwaltung </a> </h2> </button>
+                        <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'room_page' %}"> Raumverwaltung </a></h2></button>
+                        <p> Dieser Unterpunkt zeigt alle Spezialräume und deren Belegung an</p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'curriculum_page' %}"> Lehrpläne </a></h2> </button>
+                        <p> Hier können die Lehrpläne der Klassen angepasst werden</p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'unavailable_page' %}"> Verfügbarkeit von Lehrern </a></h2></button>
+                        <p> Hier können sie angeben, zu welchen Stunden welche Lehrer nicht für Unterrrichtzur Verfügung stehen </p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'parallel_page' %}"> Parallel stattfindende Fächer </a></h2> </button>
+                        <p> Hier kann eingestellt werden, welche Gruppen and Fächern gemeinsam unterrichtet werden müssen </p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'mainteacher_page' %}"> Klassenleitungen, Tandems und Partnerlehrer </a></h2> </button>
+                        <p> Für jede Klasse kann die Lererkonstellation eingestellt werden</p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'hoursperday_page' %}"> Stundenzahl pro Tag </a></h2> </button>
+                        <p> Hier kann festgelegt werden, wie viele Stunden pro Tag ein Klasse machen muss </p>
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'guidelines_page' %}"> Vorgaben an die Pläne </a></h2> </button>
+                        <p> Bereits voreingestellte Vorgaben an die Pläne können hier eingegeben werden</p>
+            <br />
+            <br />
         </div>
-        <div>
-            <h2><a href="{% url 'room_page' %}"> Raumverwaltung </a></h2>
-            <p> Dieser Unterpunkt zeigt alle Spezialräume und deren Belegung an</p>
-            <p> <b> FERTIG </b> </p>
+        <div class="container">
+            <br />
+            <br />
+            <b> Fertig mit Daten eintragen? Dann gehts hier zum Datencheck:     </b>
+            <button type="button" class="btn btn-warning"> <h2><a href="{% url 'datencheck' %}"> Datencheck </a></h2> </button>
         </div>
-        <div>
-            <h2><a href="{% url 'curriculum_page' %}"> Lehrplanverwaltung </a></h2>
-            <p> Hier können die Lehrpläne der Klassen angepasst werden</p>
-            <p> <b> INHALT DER TABELLEN WIRD NICHT ANGEZEIGT, TABELLEN SICHTBAR </b> </p>
-        </div>
-        <div>
-            <h2><a href="{% url 'unavailable_page' %}"> Stunden für Lehrer blocken </a></h2>
-            <p> Dieser Unterpunkt erlaubt einzugeben, wann Lehrer nicht unterrichten können</p>
-            <p> <b> TABELLE FUNKTIONIERT NICHT </b> </p>
-        </div>
-        <div>
-            <h2><a href="{% url 'parallel_page' %}"> Parallele Fächer </a></h2>
-            <p> <b> GRUPPEN NUR TEILWEISE RICHTIG ANGEZEIGT </b> </p>
-        </div>
-        <div>
-            <h2><a href="{% url 'mainteacher_page' %}"> Klassleitungen, Tandems und Partnerlehrer verwalten</a></h2>
-            <p> <b> FERTIG </b></p>
-        </div>
-        <div>
-            <h2><a href="{% url 'hoursperday_page' %}"> Stundenzahl pro Tag</a></h2>
-            <p> <b> INHALT DER TABELLE WIRD NICHT ANGEZEIGT </b><</p>
-        </div>
-        <div>
-            <h2><a href="{% url 'guidelines_page' %}"> Vorgaben an die Pläne bzgl Lehrer und Fächern</a></h2>
-            <p> <b> NOCH NCHT AUSGESTALTET </b> </p>
-        </div>
-        <div>
-            <p> Fertig mit Daten eintragen? Dann gehts hier zum Datenchek</p>
-            <h2><a href="{% url 'datencheck' %}"> Datencheck </a></h2>
-        </div>
+        <br />
+        <br />            <br />
+        <br />            <br />
+        <br />            <br />
+        <br />            <br />
+        <br />
     </body>
 </html>

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from datainput.models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit, Lehreinheit
+from datainput.models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit, Lehreinheit, OptimierungsErgebnis
 import xlwt
 #from django.http import HttpResponse, FileResponse
 #from reportlab.pdfgen import canvas
@@ -13,35 +13,53 @@ def output_main(request):
 
 def output_teacher(request):
     lehrers = Lehrer.objects.order_by('Name')
-    lehreinheiten = Lehreinheit.objects.order_by('Zeitslot')
-    stundenliste = []
-    for lehrer in lehrers:
-        lehrerEinheiten = []
-        for einheit in lehreinheiten:
-            if lehrer in einheit:
-                lehrerEinheiten.append(einheit)
-        stundenliste.append((lehrer, lehrerEinheiten))
-    return render(request, 'dataoutput/output_teacher.html', {'stundenliste': stundenliste})
+    return render(request, 'dataoutput/output_teacher.html', {'lehrers': lehrers})
 
 def output_classes(request):
     klassen = Schulklasse.objects.order_by('Name')
-    lehreinheiten = Lehreinheit.objects.order_by('Zeitslot')
-    stundenliste = []
-    for klasse in klassen:
-        klassenEinheiten = []
-        for einheit in lehreinheiten:
-            if klasse in einheit:
-                klassenEinheiten.append(einheit)
-        stundenliste.append((klasse, klassenEinheiten))
-    return render(request, 'dataoutput/output_classes.html', {'stundenliste': stundenliste})
+    return render(request, 'dataoutput/output_classes.html', {'klassen': klassen})
 
 def class_detail(request, klasse):
-    plan = get_object_or_404(Schulklasse, Name=klasse)
-    return render(request, 'dataoutput/class_detail.html', {'plan': plan })
+    klasse = get_object_or_404(Schulklasse, Name=klasse)
+    runs = OptimierungsErgebnis.objects.all()
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    runToStundenplan = []
+    for run in runs:
+        stundenplan = []
+        for stunde in stunden:
+            tagesplan = []
+            for tag in tage:
+                tagesplan.append(klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
+            stundenplan.append((stunde, tagesplan))
+        runToStundenplan.append((klasse, stundenplan, run))
+    return render(request, 'dataoutput/class_detail.html', {'runToStundenplan': runToStundenplan ,
+    'tage': tage ,
+    'stunden': stunden,
+    'klasse': klasse,
+    'runs': runs
+    })
 
 def teacher_detail(request, lehrer):
-    plan = get_object_or_404(Lehrer, Kurzname=lehrer)
-    return render(request, 'dataoutput/teacher_detail.html', {'plan': plan })
+    lehrer = get_object_or_404(Lehrer, Kurzname=lehrer)
+    runs = OptimierungsErgebnis.objects.all()
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    runToStundenplan = []
+    for run in runs:
+        stundenplan = []
+        for stunde in stunden:
+            tagesplan = []
+            for tag in tage:
+                tagesplan.append(lehrer.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
+            stundenplan.append((stunde, tagesplan))
+        runToStundenplan.append((lehrer, stundenplan, run))
+    return render(request, 'dataoutput/teacher_detail.html', {'runToStundenplan': runToStundenplan,
+    'lehrer':lehrer,
+    'tage': tage,
+    'stunden': stunden,
+    'runs' : runs
+    })
 
 ''' Ab hier Experimente zum Download von Klassenstundenplänen in Excel
 '''
@@ -89,7 +107,7 @@ def teacher_detail(request, lehrer):
 #     		ws.write(row_num, tag , (fach, lehrer), font_style)
 #     	wb.save(response)
 # 	return response
-#
+
 # def download_excel_data_eineklasse(request, klasse):
 # 	# content-type of response
 # 	response = HttpResponse(content_type='application/ms-excel')

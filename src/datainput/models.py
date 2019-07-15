@@ -22,6 +22,9 @@ class Schulklasse(models.Model):
     def __str__(self):
         return self.Name
 
+    def getStundenzahlen(self):
+        return self.stundenzahlprotag_set.order_by('tag__Index')
+
 class Partner(models.Model):
     """ Eine Model Klasse, um die Beziehungen zwischen einer Schulklasse und ihren Partnerlehrern zu simulieren
         Der angezeigte Name im Modell ist der Name des Partnerlehrers
@@ -169,12 +172,14 @@ class Lehreinheit(models.Model):
                 findet in genau einem Slot statt (many-to-one)
     """
     Schulfach = models.ForeignKey('Schulfach', on_delete=models.CASCADE)
-    Lehrerstundenplan = models.ForeignKey('Lehrerstundenplan', on_delete=models.CASCADE)
+    Lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
     Zeitslot = models.ForeignKey('Slot', on_delete=models.CASCADE)
-    Klassenstundenplan = models.ForeignKey('Klassenstundenplan', on_delete=models.CASCADE)
+    Klasse = models.ForeignKey('Schulklasse', on_delete=models.CASCADE)
+    run = models.ForeignKey('OptimierungsErgebnis', on_delete=models.CASCADE)
+
 
     def __str__(self):
-        return "LehrEinheit: {0}, {1}, {2}, {3}".format(self.Zeitslot, self.Lehrerstundenplan, self.Schulfach, self.Klassenstundenplan)
+        return "LehrEinheit: {0}, {1}, {2}, {3}".format(self.Zeitslot, self.Lehrer, self.Schulfach, self.Klasse)
 
 class Klassenstundenplan(models.Model):
     """ Ein Stundenplan. Hier werden Ergebnisse gespeichert
@@ -196,6 +201,12 @@ class Lehrerstundenplan(models.Model):
     def __str__(self):
         return self.Lehrer
 
+class OptimierungsErgebnis(models.Model):
+    Zeit = models.DateTimeField()
+
+    def __str__(self):
+        return "{0}".format(self.Zeit)
+
 class VorgabeEinheit(models.Model):
     """ Eine Zeiteinheit für die Vorgaben
     Attribute:
@@ -204,13 +215,16 @@ class VorgabeEinheit(models.Model):
                 hat maximal ein Schulfach (many-to-one)
                 hat maximal eine Klasse (many-to-one)
     """
+    class Meta:
+        unique_together = ['Schulklasse', 'Fach', 'Zeitslot']
+
     Zeitslot = models.ForeignKey('Slot', on_delete=models.CASCADE)
     Lehrperson = models.ForeignKey('Lehrer', blank=True, null=True, on_delete=models.CASCADE)
     Fach = models.ForeignKey('Schulfach', on_delete=models.CASCADE)
     Schulklasse = models.ForeignKey('Schulklasse', on_delete=models.CASCADE)
 
     def __str__(self):
-        return "VorgabeEinheit: {0}, {1}, {2}, {3}".format(self.Zeitslot, self.Lehrperson, self.Fach, self.Schulklasse)
+        return "{0}, {1}, {2}".format(self.Lehrperson, self.Fach, self.Schulklasse)
 
 class Tag(models.Model):
     Tag = models.CharField(max_length=20)

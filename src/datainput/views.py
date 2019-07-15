@@ -37,6 +37,7 @@ def teacher_page(request):
 
 def curriculum_page(request):
     klassen = Schulklasse.objects.order_by('Name')
+    print([k.lehrfaecher_set.all() for k in klassen])
     return render(request,'datainput/curriculum_page.html', {'klassen': klassen})
 
 def mainteacher_page(request):
@@ -48,12 +49,12 @@ def parallel_page(request):
     parallels = []
 
     for fach in faecher:
-        parallelfaecher =dict()
-        parallelfaecher[fach]=[]
+        parallelfaecher=[fach]
         for parfach in faecher:
             if parfach.Parallel == fach:
-                parallelfaecher[fach].append(parfach)
-        parallels.append((fach, parallelfaecher[fach]))
+                parallelfaecher.append(parfach)
+        if len(parallelfaecher) > 1:
+            parallels.append(parallelfaecher)
 
     return render(request,'datainput/parallel_page.html', {'parallels': parallels})
 
@@ -66,16 +67,16 @@ def unavailable_page(request):
     # return render(request, 'datainput/unavailable_page.html', {'lehrers':lehrers})
 
     lehrers = Lehrer.objects.order_by('Name')
-    tage = Tag.objects.order_by('Tag')
-    stunden = Stunde.objects.order_by('Stunde')
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
     stundenListe = []
     for stunde in stunden:
         tagBelegungsListe = []
         for tag in tage:
-            tagNichtda = lehrers.filter(NichtDa_Stunde = stunde, NichtDa_Tag = tag)
+            tagNichtda = lehrers.filter(NichtDa__Stunde = stunde, NichtDa__Tag = tag)
             tagBelegungsListe.append(tagNichtda)
         stundenListe.append((stunde, tagBelegungsListe))
-    return render(request, 'datainput/room_page.html', {
+    return render(request, 'datainput/unavailable_page.html', {
         'lehrers': lehrers,
         'tage': tage,
         'stunden': stunden,
@@ -102,12 +103,12 @@ def guidelines_page(request):
             tagVorgabenListe = []
             for tag in tage:
                 # Hier in der Zeile ist ein Fehler
-                tagVorgabenListe.append(vorgaben.filter(Zeitslot_Stunde=stunde, Zeitslot_Tag=tag, Schulklasse=klasse).exists())
-            vorgabenListe.append((klasse, tagVorgabenListe))
+                tagVorgabenListe.append(vorgaben.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, Schulklasse=klasse).first())
+            vorgabenListe.append((stunde, tagVorgabenListe))
         klasseToVorgabe.append((klasse, vorgabenListe))
         # [("Klasse 1", [("Stunde 1", [??????])])]
         # [("raum 1", [("stunde 1", [True, False, True])])]
-    return render(request, 'datainput/room_page.html', {
+    return render(request, 'datainput/guidelines_page.html', {
         'klassen': klassen,
         'tage': tage,
         'stunden': stunden,

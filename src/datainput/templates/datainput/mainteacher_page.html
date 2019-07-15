@@ -29,7 +29,7 @@
             <td>{{ klasse.HauptTandem.Name }}</td>
             <td>
               {% for lehrer in klasse.PartnerLehrer.all %}
-                {{ lehrer.Name }},
+                {{ lehrer.Name }} {% if not forloop.last %},{% endif %}
               {% endfor %}
             </td>
           </tr>

@@ -14,6 +14,7 @@ class datenpruefer(object):
     message = []
 
     def machdencheck(self):
+        print("machdencheck")
 
         # for each part of the input data initialize the check
         self.check_lehrplan(self)
@@ -33,13 +34,15 @@ class datenpruefer(object):
             stundenzahlen = 0
             for tag in tage:
                 # Hier möchte ich als zahl die stunden der Klasse an diesem Tag
-                stundenzahlen += klasse.Stundenzahlen.filter(Tag=tag)
+                stundenzahl = klasse.getStundenzahlen().filter(tag=tag).first()
+                if stundenzahl:
+                    stundenzahlen += stundenzahl.Stundenzahl
             lehrplanzahlen = 0
-            for fach in klasse.Faecher:
+            for fach in klasse.lehrfaecher_set.all():
                 # Hier möchte ich als zahl die wochenstunden des fachs für diese Klasse
                 lehrplanzahlen += fach.wochenstunden
-            if stunzahlen != lehrplanzahlen:
-                self.message.append("Die Klasse" + klasse.Name + "hat nicht die richtige Zahl an Stunden. Im Lehrplan stehen " + lehrplanzahlen + " Stunden, die Klasse hat aber " + stundenzahlen + " Stunden zur Vefügung")
+            if stundenzahlen != lehrplanzahlen:
+                self.message.append("Die Klasse {} hat nicht die richtige Zahl an Stunden. Im Lehrplan stehen {} Stunden, die Klasse hat aber {} Stunden zur Vefügung".format(klasse.Name, lehrplanzahlen, stundenzahlen))
 
     def check_raum(self):
         """ Hier wird geprüft
@@ -52,13 +55,12 @@ class datenpruefer(object):
             Faecher = raum.faecher
             stundenzahl = 0
             for klasse in klassen:
-                for fach in Faecher:
-                    if fach in klasse.Faecher:
-                        # Hier möchte ich die wochenstunden vom gegeben Fach auf die bisherige zahl aufaddieren
-                        stundenzahl += fach.wochenstunden
+                for fach in klasse.lehrfaecher_set.all():
+                    # Hier möchte ich als zahl die wochenstunden des fachs für diese Klasse
+                    stundenzahl += fach.wochenstunden
             # multipliziere zahl der tage mit der zahl der stunden insgesamt. An maximal so vielen slots kann der raum frei sein
             raumfreizahl = Tag.objects.all().count() * Stunde.objects.all().count()
-            for belegt in RaumBelegt.filter(raum=raum):
+            for belegt in RaumBelegt.objects.filter(raum=raum):
                 raumfreizahl -= 1
             if raumfreizahl < stundenzahl:
                 self.message.append("Raum" + raum + "hat nicht genug freie Slots, um alle Fächer unterzubringen, die benötigt werden")
@@ -77,19 +79,19 @@ class datenpruefer(object):
             - Das eingegebene Fach muss auch Teil des Lehrplans der Klasse sein
         """
 
-        vorgaben = VorgabeEinheit.objects.order_by('Klasse')
+        vorgaben = VorgabeEinheit.objects.all()
 
         for vorgabe in vorgaben:
             # greife auf Attribut Fach in der VorgabeEinheitzu
             fach = vorgabe.Fach#
-            if fach not in vorgabe.Schulklasse.Faecher:
-                self.message.append("Das Fach " + fach + " ist nicht im Lehrplan der Klasse" + vorgabe.Schulklasse + " und kann deshalb nicht vorgegeben werden")
+            if fach not in vorgabe.Schulklasse.Faecher.all():
+                self.message.append("Das Fach " + fach.Name + " ist nicht im Lehrplan der Klasse" + vorgabe.Schulklasse.Name + " und kann deshalb nicht vorgegeben werden")
             if vorgabe.Lehrperson != None:
                 lehrer = vorgabe.Lehrperson
-                if fach not in lehrer.Faecher:
-                    self.message.append("Das Fach " + fach + " kann nicht von" + lehrer.Name + " unterrichtet werden und kann deshalb nicht vorgegeben werden")
-                if vorgabe.Zeitslot in lehrer.NichtDa:
-                    self.message.append("Das Lehrer " + Lehrer + " ist zum Slot" + vorgabe.Zeitslot + " nicht da und kann deshalb nicht vorgegeben werden")    
+                if fach not in lehrer.Faecher.all():
+                    self.message.append("Das Fach " + fach.Name + " kann nicht von" + lehrer.Name + " unterrichtet werden und kann deshalb nicht vorgegeben werden")
+                if vorgabe.Zeitslot in lehrer.NichtDa.all():
+                    self.message.append("Das Lehrer " + Lehrer.Name + " ist zum Slot" + vorgabe.Zeitslot + " nicht da und kann deshalb nicht vorgegeben werden")
 
         ''' Finde alle vorgaben
             Für jeder Vorgabe, finde das fach und ggf den Lehrer dazu

@@ -26,10 +26,9 @@
                 <th>in Gruppen geteilt</th>
                 <th>Vepflichtend?</th>
               </tr>
-              {% for fach in klasse.Faecher_set %}
-                {{ fach }}
+              {% for fach in klasse.lehrfaecher_set.all %}
                 <tr>
-                  <td>{{ fach.Name }}</td>
+                  <td>{{ fach.schulfach.Name }}</td>
                   <td>{{ fach.wochenstunden }}</td>
                   <td>{{ fach.tandemstunden }}</td>
                   <td>{{ fach.blockstunden }}</td>

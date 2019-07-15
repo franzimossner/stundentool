@@ -25,8 +25,8 @@
         {% for klasse in klassen %}
           <tr>
             <td>{{ klasse.Name }}</td>
-            {% for tag in tage %}
-              <td>{{ klasse.stundenzahlen }}</td>
+            {% for stundenzahl in klasse.getStundenzahlen %}
+              <td>{{ stundenzahl.Stundenzahl }}</td>
             {% endfor %}
           </tr>
         {% endfor %}

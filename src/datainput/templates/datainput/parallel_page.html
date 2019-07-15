@@ -18,11 +18,11 @@
         <tr>
           <th>Paralle Fächergruppen</th>
         </tr>
-        {% for fach, fachliste in parallels %}
+        {% for fachliste in parallels %}
           <tr>
             <td>
             {% for parfach in fachliste %}
-                {{ fach.Name }} {{ parfach.Name }}
+                 {{ parfach.Name }} {% if not forloop.last %},{% endif %}
             {% endfor %}
             </td>
           </tr>

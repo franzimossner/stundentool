@@ -7,13 +7,44 @@
     </head>
     <body>
         <div class="page-header">
-            <h1><a href="/"> Stundenpläne für {{ plan.Name }}</a></h1>
+            <h1><a href="/"> Stundenpläne für {{ lehrer.Name }}</a></h1>
             <br />
             <br />
         </div>
         <div>
-            <p> Alle Pläne exportieren: </p>
-            <h2><a href="/"> Download PDF/EXCEL für den Lehrer </a></h2>
+          <br />
+          <br />
+
+            {% for lehrer, stundenplan, run in runToStundenplan %}
+              <h2> Ergebnis vom: {{ run.Zeit }} </h2>
+              <b> Diesen Plan exportieren:    </b>
+              <button type="button" class="btn btn-light"> <h2><a href="/"> Download PDF/EXCEL </a></h2> </button>
+              <br />
+              <br />
+
+              <table class= "table table-hover">
+                <tr>
+                  <th>Stunden</th>
+                  {% for tag in tage %}
+                    <th>{{tag.Tag}}</th>
+                  {% endfor %}
+                </tr>
+                {% for stunde, tagesplan in stundenplan %}
+                  <tr>
+                    <th> {{ stunde.Stunde }} </th>
+                    {% for lehreinheit in tagesplan %}
+                      <td> {{ lehreinheit.Schulfach.Name }}  {{ lehreinheit.Klasse.Name }}  </td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </table> <br />
+              <br /> <br />
+              <br />
+            {% endfor %}
+        </div>
+        <div>
+            <p> <b> Alle Lehrerstundenpläne exportieren: </b> </p>
+            <button type="button" class="btn btn-light"> <h2><a href="/"> Download PDF/EXCEL </a></h2> </button>
         </div>
     </body>
 </html>

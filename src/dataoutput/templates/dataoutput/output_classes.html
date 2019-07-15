@@ -11,16 +11,19 @@
             <br />
             <br />
         </div>
-        <div>
-            <p> Alle Klassenstundenpläne exportieren: </p>
-            <h2><a href="/"> Download PDF/EXCEL für alle Klassen </a></h2>
+        <div class="container">
+            <br />
+            <br />
+            <button type="button" class="btn btn-light"> <h2><a href="/"> Download PDF/EXCEL für alle Klassen </a></h2> </button>
             <br />
             <br />
         </div>
-        <div>
-          {% for klasse, klassenEinheiten in stundenliste %}
-            <h2><a href="{% url 'class_detail' klasse=klasse.Name %}"> {{ klasse.Name }} </a></h2>
-            <p> Dieser Link soll zu den Stundenplänen der Klasse führen. Dort soll man auch für einzelne Klassen die Pläne herunterladen können </p>
+        <div class="container">
+          <b> Betrachten oder exportieren sie einzelne Klassenstudenpläne für folgende Klassen: </b>
+          <br />
+          <br />
+          {% for klasse in klassen %}
+            <p> <button type="button" class="btn btn-light"> <h2><a href="{% url 'class_detail' klasse=klasse.Name %}"> Klasse {{ klasse.Name }} </a></h2> </button> </p>
           {% endfor %}
         </div>
 

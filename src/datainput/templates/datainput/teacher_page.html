@@ -30,7 +30,7 @@
             <td>{{ lehrer.Stundenzahl }}</td>
             <td>
               {% for fach in lehrer.Faecher.all %}
-                {{ fach.Name }},
+                {{ fach.Name }} {% if not forloop.last %},{% endif %}
               {% endfor %}
             </td>
             <td> {{ lehrer.Tandem }}</td>
