@@ -21,7 +21,7 @@ class writingTimetables(object):
         '''
 
         # Füge einen neuen run hinzu, bevor die Lehreinheiten gebaut werden, damit sie dem Run zugeprdnet werden können
-        sp = OptimierungsErgebnis.objects.create(Zeit=timezone.now())
+        sp = OptimierungsErgebnis.objects.create(Zeit=timezone.now(),Index=OptimierungsErgebnis.objects.count() + 1)
         sp.save()
 
         with open('optimierung/X_res.csv') as csvfile:

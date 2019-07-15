@@ -203,6 +203,7 @@ class Lehrerstundenplan(models.Model):
 
 class OptimierungsErgebnis(models.Model):
     Zeit = models.DateTimeField()
+    Index = models.IntegerField()
 
     def __str__(self):
         return "{0}".format(self.Zeit)
