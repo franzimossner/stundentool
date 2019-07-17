@@ -6,6 +6,27 @@
         <title> Plan für {{ plan.Name }}</title>
     </head>
     <body>
+      <!-- Side navigation -->
+        <div class="sidenav">
+          <a href="{% url 'start_page' %}"> Startseite </a>
+          <a href="{% url 'input_main' %}"> Datenverwaltung </a>
+            <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
+            <h5> <a href="{% url 'room_page' %}"> Räume </a></h5>
+            <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
+            <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
+            <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
+            <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
+            <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
+          <a href="{% url 'optimierung_main' %}"> Optimierung </a>
+            <h5> <a  href="{% url 'datencheck' %}"> Datencheck </a></h5>
+            <h5> <a  href="{% url 'parameters' %}"> Parameter </a></h5>
+            <h5> <a  href="{% url 'optimierung' %}"> Optimierung </a></h5>
+          <a href="{% url 'output_main' %}"> Ergebnisse </a>
+            <h5> <a  href="{% url 'output_teacher' %}"> Lehrer </a></h5>
+            <h5> <a  href="{% url 'output_classes' %}"> Klassen </a></h5>
+        </div>
+      <div class='main'>
         <div class="page-header">
             <h1><a href="/"> Stundenpläne für {{ lehrer.Name }}</a></h1>
             <br />
@@ -46,5 +67,13 @@
             <p> <b> Alle Lehrerstundenpläne exportieren: </b> </p>
             <button type="button" class="btn btn-light"> <h2><a href="/"> Download PDF/EXCEL </a></h2> </button>
         </div>
+      </div>
+      <br />
+      <br /> <br />
+      <br /><br />
+      <br /> <br />
+      <br /><br />
+      <br /> <br />
+      <br />
     </body>
 </html>

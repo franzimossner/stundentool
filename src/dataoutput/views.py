@@ -1,11 +1,24 @@
 from django.shortcuts import render, get_object_or_404
 from datainput.models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit, Lehreinheit, OptimierungsErgebnis
+
+# Fuer Excel export
 import xlwt
 import openpyxl
 from django.http import HttpResponse
-#from reportlab.pdfgen import canvas
+# Fuer PDF export
+import reportlab
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle,Paragraph
+from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 
-# Create your views here.
+
+''' Hier sind die Hauptviews zum Darstellen der dataoutput Seiten
+'''
+
 def output_main(request):
     return render(request, 'dataoutput/output_main.html',)
 
@@ -318,24 +331,64 @@ def download_excel_data_Allelehrer(request, run):
 
 ''' Ab hier Experimente zum Download von Klassenstundenplänen als PDF
 '''
-#
-# def write_pdf_alleKlassen(request):
-#     # Create a file-like buffer to receive PDF data.
-#     buffer = io.BytesIO()
-#
-#     # Create the PDF object, using the buffer as its "file."
-#     p = canvas.Canvas(buffer)
-#
-#     # Draw things on the PDF. Here's where the PDF generation happens.
-#     # See the ReportLab documentation for the full list of functionality.
-#
-#     ''' ???? '''
-#     p.drawString(100, 100, "Hello world.")
-#
-#     # Close the PDF object cleanly, and we're done.
-#     p.showPage()
-#     p.save()
-#
-#     # FileResponse sets the Content-Disposition header so that browsers
-#     # present the option to save the file.
-#     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+
+def download_pdf_data_Alleklassen(request, run):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment;   filename="alleKlassen_{0}.pdf" '.format(run)
+
+    # buffer
+    buffer = io.BytesIO()
+    # create pdf object
+    p = canvas.Canvas(buffer, pagesize=A4)
+    #width, height = A4
+    styles =getSampleStyleSheet()
+    styleBH = styles["Normal"]
+    styleBH.alignment = TA_CENTER
+
+    # Insert the content to the pdf, done with Reportlab documentation
+    klassen = Schulklasse.objects.order_by('Name')
+    lehrers = Lehrer.objects.order_by('Name')
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    Run = OptimierungsErgebnis.objects.get(Index=run)
+
+    for klasse in klassen:
+        data = dict(dict())
+        data[0][0]= ['Stunden']
+        for tag in tage:
+            data[0].append(str(tag.Tag).encode('utf-8'))
+        for stunde in stunden:
+            data[stunde.Index][0] = str(stunde.Stunde).encode('utf-8')
+            # for tag in tage:
+            #     data[stunde.Index] = dict()
+
+        dataunits = Lehreinheit.objects.filter(Klasse=klasse, run=Run)
+        for lehreinheit in dataunits:
+            row_num = lehreinheit.Zeitslot.Stunde.Index
+            tag = lehreinheit.Zeitslot.Tag.Index
+            TagName = lehreinheit.Zeitslot.Tag.Tag
+            lehrer = lehreinheit.Lehrer.Kurzname
+            klasse = lehreinheit.Klasse.Name
+            fach = lehreinheit.Schulfach.Name
+
+            fachname= str(fach).encode('utf-8')
+            lehrername = str(lehrer).encode('utf-8')
+            Fach  = Paragraph(fachname, styleBH)
+            Lehrperson = Paragraph(lehrername, styleBH)
+            #cellobject = "{0} ({1})".format(fach, lehrer)
+            data[row_num][tag] += [Fach, Lehrperson]
+
+        table = Table(data)
+        # table.wrapOn(p, width, height)
+        # table.wrapOn(p, width, height)
+        table.drawOn(p)
+        #p.Table(data)
+        #t.setStyle(tblStyle)
+        p.showPage()
+
+    p.save()
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+    return response
