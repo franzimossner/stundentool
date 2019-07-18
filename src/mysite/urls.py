@@ -24,7 +24,8 @@ urlpatterns = [
     path('', include('mainpage.urls')),
     path('', include('optimierung.urls')),
     path('', include('dataoutput.urls')),
-    #path('login/', auth_views.login, {'login': 'mainpage/login.html'}, name='login'),
+    path('login/', auth_views.login, name='login'),
+    path('accounts/', include('django.contrib.auth.urls')),
     #path('logout/', auth_views.logout, {'logout': 'mainpage/logged_out.html'}, name='logout'),
     #path('accounts/', include('django.contrib.auth.urls')),
 ]

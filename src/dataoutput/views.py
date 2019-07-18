@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from datainput.models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit, Lehreinheit, OptimierungsErgebnis
+from django.contrib.auth.decorators import login_required
 
 # Fuer Excel export
 import xlwt
@@ -18,24 +19,24 @@ from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 
 ''' Hier sind die Hauptviews zum Darstellen der dataoutput Seiten
 '''
-
+@login_required
 def output_main(request):
     return render(request, 'dataoutput/output_main.html',)
 
-
+@login_required
 def output_teacher(request):
     run = OptimierungsErgebnis.objects.order_by('-Index').first()
     lehrers = Lehrer.objects.order_by('Name')
     return render(request, 'dataoutput/output_teacher.html', {'lehrers': lehrers, 'run': run})
 
-
+@login_required
 def output_classes(request):
     # aktuell nur die neueste Version zum download für alle Klassen, muss noch in eine Tabelle umgewandelt werden
     run = OptimierungsErgebnis.objects.order_by('-Index').first()
     klassen = Schulklasse.objects.order_by('Name')
     return render(request, 'dataoutput/output_classes.html', {'klassen': klassen, 'run': run})
 
-
+@login_required
 def class_detail(request, klasse):
     klasse = get_object_or_404(Schulklasse, Name=klasse)
     runs = OptimierungsErgebnis.objects.all()
@@ -57,7 +58,7 @@ def class_detail(request, klasse):
     'runs': runs
     })
 
-
+@login_required
 def teacher_detail(request, lehrer):
     lehrer = get_object_or_404(Lehrer, Kurzname=lehrer)
     runs = OptimierungsErgebnis.objects.all()
@@ -84,7 +85,7 @@ def teacher_detail(request, lehrer):
 ''' Ab hier Code zum Download von Klassenstundenplänen in Excel
 '''
 
-
+@login_required
 def download_excel_data_Alleklassen(request, run):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
@@ -143,7 +144,7 @@ def download_excel_data_Alleklassen(request, run):
     wb.save(response)
     return response
 
-
+@login_required
 def download_excel_1klasse_1run(request, klasse, run):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
@@ -208,7 +209,7 @@ def download_excel_1klasse_1run(request, klasse, run):
 ''' Ab hier Code zum Download von Lehrerstundenplänen in Excel
 '''
 
-
+@login_required
 def download_excel_1lehrer_1run(request, lehrer, run):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
@@ -269,7 +270,7 @@ def download_excel_1lehrer_1run(request, lehrer, run):
     return response
 
 
-
+@login_required
 def download_excel_data_Allelehrer(request, run):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
@@ -332,63 +333,63 @@ def download_excel_data_Allelehrer(request, run):
 ''' Ab hier Experimente zum Download von Klassenstundenplänen als PDF
 '''
 
-
-def download_pdf_data_Alleklassen(request, run):
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment;   filename="alleKlassen_{0}.pdf" '.format(run)
-
-    # buffer
-    buffer = io.BytesIO()
-    # create pdf object
-    p = canvas.Canvas(buffer, pagesize=A4)
-    #width, height = A4
-    styles =getSampleStyleSheet()
-    styleBH = styles["Normal"]
-    styleBH.alignment = TA_CENTER
-
-    # Insert the content to the pdf, done with Reportlab documentation
-    klassen = Schulklasse.objects.order_by('Name')
-    lehrers = Lehrer.objects.order_by('Name')
-    tage = Tag.objects.order_by('Index')
-    stunden = Stunde.objects.order_by('Index')
-    Run = OptimierungsErgebnis.objects.get(Index=run)
-
-    for klasse in klassen:
-        data = dict(dict())
-        data[0][0]= ['Stunden']
-        for tag in tage:
-            data[0].append(str(tag.Tag).encode('utf-8'))
-        for stunde in stunden:
-            data[stunde.Index][0] = str(stunde.Stunde).encode('utf-8')
-            # for tag in tage:
-            #     data[stunde.Index] = dict()
-
-        dataunits = Lehreinheit.objects.filter(Klasse=klasse, run=Run)
-        for lehreinheit in dataunits:
-            row_num = lehreinheit.Zeitslot.Stunde.Index
-            tag = lehreinheit.Zeitslot.Tag.Index
-            TagName = lehreinheit.Zeitslot.Tag.Tag
-            lehrer = lehreinheit.Lehrer.Kurzname
-            klasse = lehreinheit.Klasse.Name
-            fach = lehreinheit.Schulfach.Name
-
-            fachname= str(fach).encode('utf-8')
-            lehrername = str(lehrer).encode('utf-8')
-            Fach  = Paragraph(fachname, styleBH)
-            Lehrperson = Paragraph(lehrername, styleBH)
-            #cellobject = "{0} ({1})".format(fach, lehrer)
-            data[row_num][tag] += [Fach, Lehrperson]
-
-        table = Table(data)
-        # table.wrapOn(p, width, height)
-        # table.wrapOn(p, width, height)
-        table.drawOn(p)
-        #p.Table(data)
-        #t.setStyle(tblStyle)
-        p.showPage()
-
-    p.save()
-    pdf = buffer.getvalue()
-    buffer.close()
-    response.write(pdf)
-    return response
+#
+# def download_pdf_data_Alleklassen(request, run):
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment;   filename="alleKlassen_{0}.pdf" '.format(run)
+#
+#     # buffer
+#     buffer = io.BytesIO()
+#     # create pdf object
+#     p = canvas.Canvas(buffer, pagesize=A4)
+#     #width, height = A4
+#     styles =getSampleStyleSheet()
+#     styleBH = styles["Normal"]
+#     styleBH.alignment = TA_CENTER
+#
+#     # Insert the content to the pdf, done with Reportlab documentation
+#     klassen = Schulklasse.objects.order_by('Name')
+#     lehrers = Lehrer.objects.order_by('Name')
+#     tage = Tag.objects.order_by('Index')
+#     stunden = Stunde.objects.order_by('Index')
+#     Run = OptimierungsErgebnis.objects.get(Index=run)
+#
+#     for klasse in klassen:
+#         data = dict(dict())
+#         data[0][0]= ['Stunden']
+#         for tag in tage:
+#             data[0].append(str(tag.Tag).encode('utf-8'))
+#         for stunde in stunden:
+#             data[stunde.Index][0] = str(stunde.Stunde).encode('utf-8')
+#             # for tag in tage:
+#             #     data[stunde.Index] = dict()
+#
+#         dataunits = Lehreinheit.objects.filter(Klasse=klasse, run=Run)
+#         for lehreinheit in dataunits:
+#             row_num = lehreinheit.Zeitslot.Stunde.Index
+#             tag = lehreinheit.Zeitslot.Tag.Index
+#             TagName = lehreinheit.Zeitslot.Tag.Tag
+#             lehrer = lehreinheit.Lehrer.Kurzname
+#             klasse = lehreinheit.Klasse.Name
+#             fach = lehreinheit.Schulfach.Name
+#
+#             fachname= str(fach).encode('utf-8')
+#             lehrername = str(lehrer).encode('utf-8')
+#             Fach  = Paragraph(fachname, styleBH)
+#             Lehrperson = Paragraph(lehrername, styleBH)
+#             #cellobject = "{0} ({1})".format(fach, lehrer)
+#             data[row_num][tag] += [Fach, Lehrperson]
+#
+#         table = Table(data)
+#         # table.wrapOn(p, width, height)
+#         # table.wrapOn(p, width, height)
+#         table.drawOn(p)
+#         #p.Table(data)
+#         #t.setStyle(tblStyle)
+#         p.showPage()
+#
+#     p.save()
+#     pdf = buffer.getvalue()
+#     buffer.close()
+#     response.write(pdf)
+#     return response

@@ -1,16 +1,5 @@
 h1 a, h2 a {
     color: #000000;
-    font-size: 20pt;
-}
-
-p, h3 a {
-    color: #000000;
-    font-size: 15pt;
-}
-
-
-h2:hover, a:hover{
-    color: #FFFFFF;
 }
 
 .page-header {
@@ -52,7 +41,7 @@ h2:hover, a:hover{
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
     color: #a7a7a7;
     display: block;
 }
@@ -60,7 +49,7 @@ h2:hover, a:hover{
 .sidenav h5 {
     padding: 5px 5px 6px 10px;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 15px;
     color: #a7a7a7;
     display: block;
     margin-left: 40px;

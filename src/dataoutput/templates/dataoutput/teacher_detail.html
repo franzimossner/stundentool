@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -39,7 +41,7 @@
             {% for lehrer, stundenplan, run in runToStundenplan %}
               <h2> Ergebnis vom: {{ run.Zeit }} </h2>
               <b> Diesen Plan exportieren:    </b>
-              <button type="button" class="btn btn-light"> <h2><a href="{% url 'download_excel_1lehrer_1run' lehrer=lehrer.Kurzname run=run.Index %}"> Download EXCEL </a></h2> </button>
+              <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'download_excel_1lehrer_1run' lehrer=lehrer.Kurzname run=run.Index %}"> Download EXCEL </a></h2> </button>
               <br />
               <br />
 
@@ -62,10 +64,6 @@
               <br /> <br />
               <br />
             {% endfor %}
-        </div>
-        <div>
-            <p> <b> Alle Lehrerstundenpläne exportieren: </b> </p>
-            <button type="button" class="btn btn-light"> <h2><a href="/"> Download PDF/EXCEL </a></h2> </button>
         </div>
       </div>
       <br />

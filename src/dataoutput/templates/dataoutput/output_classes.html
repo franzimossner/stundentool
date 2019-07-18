@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -35,14 +37,7 @@
         <div class="container">
             <br />
             <br />
-            <button type="button" class="btn btn-light"> <h2><a href="{% url 'download_excel_data_Alleklassen' run=run.Index %}"> Download Excel in der neuesten Version für alle Klassen </a></h2> </button>
-            <br />
-            <br />
-        </div>
-        <div class="container">
-            <br />
-            <br />
-            <button type="button" class="btn btn-light"> <h2><a href="{% url 'download_pdf_data_Alleklassen' run=run.Index %}"> Download PDF in der neuesten Version für alle Klassen </a></h2> </button>
+            <button type="button" class="btn btn-outline-secondary"> <h3><a href="{% url 'download_excel_data_Alleklassen' run=run.Index %}"> Download Excel in der neuesten Version für alle Klassen </a></h3> </button>
             <br />
             <br />
         </div>
@@ -51,7 +46,7 @@
           <br />
           <br />
           {% for klasse in klassen %}
-            <p> <button type="button" class="btn btn-light"> <h2><a href="{% url 'class_detail' klasse=klasse.Name %}"> Klasse {{ klasse.Name }} </a></h2> </button> </p>
+            <p> <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'class_detail' klasse=klasse.Name %}"> Klasse {{ klasse.Name }} </a></h2> </button> </p>
           {% endfor %}
         </div>
       </div>

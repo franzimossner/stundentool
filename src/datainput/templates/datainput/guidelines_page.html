@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -31,6 +33,11 @@
             <h1><a href="/">Feste Vorgaben an die Optimierung</a></h1>
             <br />
             <br />
+        </div>
+        <br />
+        <br />
+        <div>
+          <p> Vorgabe hinzuzufügen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/vorgabeeinheit/add/"> Vorgabe hinzufügen </a></h3></button> </p>
         </div>
         <div>
           <br />

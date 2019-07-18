@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -32,14 +34,91 @@
             <br />
             <br />
         </div>
-        <div>
-          <p> Hier können sie alle Parameter für die Optimierung einstellen </p>
-          <p> Dabei ist zu beachten, dass der Wert, den sie eingeben, in etwa dem entsprechen soll, wie wichtig ihnen die Beachtung des entsprechenden Punkts der Optimierung ist </p>
+        <div class="container">
+          <br />
+          <br />
+          <p> Hier können sie alle Parameter für die Optimierung einstellen: Die Parameter entscheiden darüber, welche Lösung zur optimalen wird, jenachdem wie stark bestimmte Teile der Zielfunktion gewichtet werden. Außerdem können sie hier einstellen, welchem Solver die Daten übertragen werden sollen. </p>
         </div>
-        <div>
-          <p> Alle Parameter eingestellt? Dann gehts hier zur Optimierung </p>
-          <h2><a href="{% url 'optimierung' %}"> Optimierung </a></h2>
+
+        <div class="container">
+          <p> Bitte geben sie unter dem entsprechenden Punkt für die Paramerter einen Wert ein, der symbolisieren soll, wie wichtig ihnen die Erfüllung dieser Soft Constraint ist: </p>
+          <br />
+          <br />
+        <form action="/lehrerinklasse/", method="post">
+            <label for="lehrerinklasse"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
+            <input id="lehrerinKlasse" type="text" parameter="lehrerinKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+            <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+        <form action="/tandeminklasse/", method="post">
+          <label for="tandeminklasse"> Tandemlehrer unterrichtet hauptsächlich in seiner Klasse: </label>
+          <input id="tandeminKlasse" type="text" parameter="tandeminKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+          <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+        <form action="/partnerinklasse/", method="post">
+          <label for="partnerinklasse"> Partnerlehrer unterrichtet hauptsächlich in seiner Klasse: </label>
+          <input id="partnerinKlasse" type="text" parameter="partnerinKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+          <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+        <form action="/lehrerwechsel/", method="post">
+          <label for="lehrerwechsel"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
+          <input id="lehrerwechsel" type="text" parameter="lehrerwechsel" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+          <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+        <form action="/sportunterricht/", method="post">
+          <label for="sportunterricht"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
+          <input id="sportunterricht" type="text" parameter="sportunterricht" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+          <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+        <form action="/lehrerminimum/", method="post">
+          <label for="lehrerminimum"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
+          <input id="lehrerminimum" type="text" parameter="lehrerminimum" value="{{ current_parameter }}" placeholder="Gewichtung" required>
+          <button type="submit" class="btn btn-outline-secondary">OK</button>
+        </form>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="container">
+        <form>
+          <p> Wählen sie hier aus, welcher Solver für das Optimieren benutzt werden soll: </p>
+          <form action="/solver/", method="post">
+            <label for="solver"> Wählen Sie einen Solver: </label>
+            <!-- <input id="solver" type="text" parameter="solver" value="{{ current_parameter }}" placeholder="Solver" required> -->
+            <select class="form-control" id="solver">
+              <option> Xpress </option>
+              <option> Pyomo </option>
+              <option> ? </option>
+            </select>
+            <p> </p>
+            <button type="submit" class="btn btn-outline-secondary">Speichern</button>
+            <!-- <input type="submit" value="OK"> -->
+          <!-- </form>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1"> Benutzter Solver</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option> Xpress </option>
+              <option> Pyomo </option>
+              <option> ? </option>
+            </select>
+          </div>
+          <button type="submit" class="save btn btn-default">Speichern</button>
+        </form> -->
+      </div>
+
+      <br />
+      <br />
+
+        <div class="container">
+          <p> Alle Parameter eingestellt? Dann gehts hier zur Optimierung: </p>
+          <button type="button" class="btn btn-light"> <h2><a href="{% url 'optimierung' %}"> Optimierung jetzt starten </a></h2> </button>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </body>
 </html>

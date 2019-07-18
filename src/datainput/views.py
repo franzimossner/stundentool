@@ -1,14 +1,20 @@
 from django.shortcuts import render
-#from .models import
 from django.utils import timezone
-#from .tables import TeacherTable, CurrTable, MainTeacherTable, RoomTable, ParallelTable, KlassenTable
+from django.contrib.auth.decorators import login_required
 from .models import Schulklasse, Raum, Tag, Stunde, Lehrer, Schulfach, Uebergreifung, VorgabeEinheit
+from django.forms import modelformset_factory
+
+
+from django.http import HttpResponseRedirect
+from .forms import LehrerForm
 
 
 # Create your views here.
+@login_required
 def input_main(request):
      return render(request, 'datainput/input_main.html',)
-#
+
+@login_required
 def room_page(request):
     rooms = Raum.objects.order_by('Name')
     tage = Tag.objects.order_by('Index')
@@ -30,20 +36,36 @@ def room_page(request):
         'roomToSlot': roomToSlot,
     })
 
+@login_required
 def teacher_page(request):
     lehrers = Lehrer.objects.order_by('Name')
-    return render(request,'datainput/teacher_page.html', {'lehrers':lehrers})
+    TeacherFormSet = modelformset_factory(Lehrer, fields = ("__all__"))
+    if request.method == "POST":
+        formset = TeacherFormSet(
+            request.POST, request.FILES,
+            queryset = Lehrer.objects.all()
+        )
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = TeacherFormSet(queryset = Lehrer.objects.all())
+    return render(request,'datainput/teacher_page.html', {'lehrers':lehrers, 'formset': formset})
 
 
+@login_required
 def curriculum_page(request):
     klassen = Schulklasse.objects.order_by('Name')
     print([k.lehrfaecher_set.all() for k in klassen])
     return render(request,'datainput/curriculum_page.html', {'klassen': klassen})
 
+
+@login_required
 def mainteacher_page(request):
     klassen = Schulklasse.objects.order_by('Name')
     return render(request, 'datainput/mainteacher_page.html', {'klassen':klassen})
 
+
+@login_required
 def parallel_page(request):
     faecher = Schulfach.objects.order_by('Name')
     parallels = []
@@ -58,10 +80,14 @@ def parallel_page(request):
 
     return render(request,'datainput/parallel_page.html', {'parallels': parallels})
 
+
+@login_required
 def uebergreifend_page(request):
     uebergreifend = Uebergreifung.objects.order_by('fach')
     return render(request,'datainput/uebergreifend_page.html', {'uebergreifend':uebergreifend})
 
+
+@login_required
 def unavailable_page(request):
     # lehrers = Lehrer.objects.order_by('Name')
     # return render(request, 'datainput/unavailable_page.html', {'lehrers':lehrers})
@@ -83,11 +109,15 @@ def unavailable_page(request):
         'stundenListe': stundenListe,
     })
 
+
+@login_required
 def hoursperday_page(request):
     klassen =  Schulklasse.objects.order_by('Name')
     tage = Tag.objects.order_by('Index')
     return render(request, 'datainput/hoursperday_page.html', {'klassen':klassen, 'tage':tage})
 
+
+@login_required
 def guidelines_page(request):
     # klassen =  Schulklasse.objects.order_by('Name')
     # return render(request, 'datainput/guidelines_page.html', {'klassen':klassen})

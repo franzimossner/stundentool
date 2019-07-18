@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -31,16 +33,22 @@
             <h1><a href="/"> Startseite Optimierungsprozess </a></h1>
             <br />
             <br />
+            <p> Auf dieser Seite werden sie Schritt für Schritt durch die Optimierung geleitet. Bitte starten sie immer mit dem Datencheck </p>
         </div>
-        <p>Hier ist die Startseite für die Optimierung. Hier soll ein Schritt für Schritt Prozess entstehen, der durch die Optimierung leitet</p>
-        <div>
-            <h2><a href="{% url 'datencheck' %}"> Datencheck </a></h2>
+        <br />
+        <br />
+        <div class="container">
+            <button type="button" class="btn btn-light"> <h2><a href="{% url 'datencheck' %}"> Datencheck </a></h2> </button>
+            <p> Im Datencheck werden alle in der Datenverwaltung eingegben Daten auf ihre Sinnhaftigkeit überprüft, um unzulässige Instanzen bereits vor der Optimierung zu erkennen </p>
+            <p> Bitte beseitigen sie alle Fehler, bevor sie mit der Optimierung fortfahren </p>
         </div>
-        <div>
-            <h2><a href="{% url 'parameters' %}"> Parameter Settings</a></h2>
+        <div class="container">
+          <button type="button" class="btn btn-light"> <h2><a href="{% url 'parameters' %}"> Parameter Einstellungen </a></h2> </button>
+          <p> Hier stellen sie die Parameter für ihre Optimierung ein. Hier stellen sie auch ein, welchen Solver sie benutzen. </p>
         </div>
-        <div>
-            <h2><a href="{% url 'optimierung' %}"> Optimierung</a></h2>
+        <div class="container">
+          <button type="button" class="btn btn-light"> <h2><a href="{% url 'optimierung' %}"> Starte Optimierungsprozess </a></h2> </button>
+          <p> Dieser Knopf startet sofort den Optimeirungsprozess. Nach dem Ablauf der Zeit können sie in den Ergebnissen die Daten herunterladen </p>
         </div>
       </div>
     </body>

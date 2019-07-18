@@ -8,6 +8,7 @@
     <body>
       <!-- Side navigation -->
         <div class="sidenav">
+          <a> <h2> <a href="{% url 'logout' %}"> Logout </h2> </a>
           <a href="{% url 'start_page' %}"> Startseite </a>
           <a href="{% url 'input_main' %}"> Datenverwaltung </a>
             <h5> <a href="{% url 'teacher_page' %}">  Lehrer </a></h5>
@@ -15,6 +16,7 @@
             <h5> <a  href="{% url 'curriculum_page' %}"> Lehrpläne </a></h5>
             <h5> <a  href="{% url 'unavailable_page' %}"> Lehrerverfügbarkeit </a></h5>
             <h5> <a  href="{% url 'parallel_page' %}"> Parallelfächer </a></h5>
+            <h5> <a  href="{% url 'uebergreifend_page' %}"> Übergreifende Fächer </a></h5>
             <h5> <a  href="{% url 'mainteacher_page' %}"> Klassleitungen </a></h5>
             <h5> <a  href="{% url 'hoursperday_page' %}"> Stundenzahlen </a></h5>
             <h5> <a  href="{% url 'guidelines_page' %}"> Vorgaben </a></h5>
@@ -39,21 +41,21 @@
         <br />
         <br />
         <div class="container">
-          <button type="button" class="btn btn-light"> <h2><a href="{% url 'input_main' %}"> Datenverwaltung </a></h2> </button>
+          <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'input_main' %}"> Datenverwaltung </a></h2> </button>
             <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
             <p> Außerdem können sie alle weiteren Vorgaben an die Stundenpläne, Klassen oder das Personal hier verwalten</p>
             <br />
             <br />
         </div>
         <div class="container">
-            <button type="button" class="btn btn-light"> <h2><a href="{% url 'optimierung_main' %}"> Optimierung</a></h2></button>
+            <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'optimierung_main' %}"> Optimierung</a></h2></button>
             <p> Hier werden sie Schritt für Schritt durch einen vollen Optimierungsprozess geleitet</p>
             <p> Außerdem befindet sich hier der Datencheck, um zu überprüfen, ob ihre Daten Widersprüche enthalten</p>
             <br />
             <br />
         </div>
         <div class="container">
-           <button type="button" class="btn btn-light"> <h2><a href="{% url 'output_main' %}"> Ergebnisse</a></h2> </button>
+           <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'output_main' %}"> Ergebnisse</a></h2> </button>
             <p> In diesem Punkt können sie ihre bereits produzierten Ergebnisse ansehen und als Excel oder PDF Datei exportieren</p>
             <br />
             <br />
