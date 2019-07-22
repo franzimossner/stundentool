@@ -9,6 +9,31 @@ In diesem Dokument wird das Skript gespeichert, das die X_res Datei einliest und
 
 class writingTimetables(object):
 
+    def convert_to_slot(number):
+        '''converting given number from 1 to 40 to a slot in out model
+        '''
+        number = int(number)
+        tag = ""
+        stundenindex = 0
+
+        if number in range(1,10):
+            tag = "Montag"
+            stundenindex = range(1,10).index(number) + 1
+        if number in range(10,19):
+            tag = "Dienstag"
+            stundenindex = range(10,19).index(number) + 1
+        if number in range(19,28):
+            tag = "Mittwoch"
+            stundenindex = range(19,28).index(number) + 1
+        if number in range(28,37):
+            tag = "Donnerstag"
+            stundenindex = range(28,37).index(number) + 1
+        if number in range(37,41):
+            tag = "Freitag"
+            stundenindex = range(37,41).index(number) + 1
+
+        return [tag, stundenindex]
+
     def getTimetableUnits():
         '''
         gehe durch X_res und finde alle Zeilen, die die gegebene Klasse haben
@@ -33,11 +58,12 @@ class writingTimetables(object):
                  # 1. objekt in der Zeile
                 lehrer = row[2]
                 # 3. Objekt in der Zeile
-                tag = row[3]
-                stundenindex = row[4]
+                slot = row[3]
+                tag, stundenindex = writingTimetables.convert_to_slot(slot)
+                #tag = row[3]
+                #stundenindex = row[4]
                 # 4. Objekt in der Zeile
                 klasse = row[1]
-                print(klasse)
 
                 Fach = Schulfach.objects.get(Name=fach)
                 Lehrperson = Lehrer.objects.get(Kurzname=lehrer)

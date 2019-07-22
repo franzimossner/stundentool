@@ -49,6 +49,7 @@ def class_detail(request, klasse):
             tagesplan = []
             for tag in tage:
                 tagesplan.append(klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
+                #tagesplan.append(klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
             stundenplan.append((stunde, tagesplan))
         runToStundenplan.append((klasse, stundenplan, run))
     return render(request, 'dataoutput/class_detail.html', {'runToStundenplan': runToStundenplan ,
@@ -103,6 +104,7 @@ def download_excel_data_Alleklassen(request, run):
     for klasse in klassen:
         ws = wb.add_sheet("Klasse {0} ".format(klasse))
         row_num = 0
+
         font_style = xlwt.XFStyle()
         # headers are bold
         font_style.font.bold = True
@@ -135,7 +137,7 @@ def download_excel_data_Alleklassen(request, run):
 
             cellobject=[fach, " ({0})".format(lehrer)]
 
-            colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName)))
+            colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName))) + 3
             # Warum 367??
             # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
             ws.col(tag).width = colwidth * 367
@@ -194,7 +196,7 @@ def download_excel_1klasse_1run(request, klasse, run):
 
         cellobject=[fach, " ({0})".format(lehrer)]
 
-        colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName)))
+        colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName))) + 3
         # Warum 367??
         # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
         ws.col(tag).width = colwidth * 367
@@ -259,7 +261,7 @@ def download_excel_1lehrer_1run(request, lehrer, run):
 
         cellobject=[fach, " ({0})".format(klasse)]
 
-        colwidth = max(len(str(fach)) + len(str(klasse)), len(str(TagName)))
+        colwidth = max(len(str(fach)) + len(str(klasse)), len(str(TagName))) + 3
         # Warum 367??
         # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
         ws.col(tag).width = colwidth * 367
@@ -320,7 +322,7 @@ def download_excel_data_Allelehrer(request, run):
 
             cellobject=[fach, " ({0})".format(klasse)]
 
-            colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName)))
+            colwidth = max(len(str(fach)) + len(str(lehrer)), len(str(TagName))) + 3
             # Warum 367??
             # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
             ws.col(tag).width = colwidth * 367

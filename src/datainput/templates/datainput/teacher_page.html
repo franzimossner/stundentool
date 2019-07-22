@@ -52,7 +52,6 @@
           <th>Kürzel</th>
           <th>Stundenzahl</th>
           <th>Fächer</th>
-          <th>Tandem</th>
         </tr>
         {% for lehrer in lehrers %}
           <tr>
@@ -64,7 +63,6 @@
                 {{ fach.Name }} {% if not forloop.last %},{% endif %}
               {% endfor %}
             </td>
-            <td> {{ lehrer.Tandem }}</td>
           </tr>
         {% endfor %}
       </table>

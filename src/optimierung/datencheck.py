@@ -47,23 +47,29 @@ class datenpruefer(object):
     def check_raum(self):
         """ Hier wird geprüft
             - Die Summe der eingegeben wochenstunden für alle Klassen, die einen bestimmten Raum benötigen, darf nicht die gesamtKapazität des Raums übersteigen
+            Probleme hier:
+            - Es wird geprüft ob ein einzelner Raum alles erfüllen kann, auch wenn wir mehrere haben
+            - Wenn Klassen zusammen Unterricht haben, zählt das mehrfach, deshalb reicht die Raumkapazität nicht
         """
         klassen = Schulklasse.objects.order_by('Name')
         raeume = Raum.objects.order_by('Name')
 
         for raum in raeume:
-            Faecher = raum.faecher
+            Faecher = raum.faecher.all()
             stundenzahl = 0
             for klasse in klassen:
-                for fach in klasse.lehrfaecher_set.all():
-                    # Hier möchte ich als zahl die wochenstunden des fachs für diese Klasse
-                    stundenzahl += fach.wochenstunden
+                for element in Faecher:
+                    for fach in klasse.lehrfaecher_set.filter(schulfach=element):
+                        # Hier möchte ich als zahl die wochenstunden des fachs für diese Klasse
+                        stundenzahl += fach.wochenstunden
             # multipliziere zahl der tage mit der zahl der stunden insgesamt. An maximal so vielen slots kann der raum frei sein
-            raumfreizahl = Tag.objects.all().count() * Stunde.objects.all().count()
+            # Fehler hier: es wird geprüft, ob ein Raum alleine das machen kann, auch wenn wir mehrere haben
+            raumfreizahl = Slot.objects.all().count()
+            #Tag.objects.all().count() * Stunde.objects.all().count()
             for belegt in RaumBelegt.objects.filter(raum=raum):
                 raumfreizahl -= 1
             if raumfreizahl < stundenzahl:
-                self.message.append("Raum" + raum + "hat nicht genug freie Slots, um alle Fächer unterzubringen, die benötigt werden")
+                self.message.append("Raum " + raum.Name + " hat nicht genug freie Slots, um alle Fächer unterzubringen, die benötigt werden")
 
         ''' Finde alle Fächer für einen Raum
             Finde diese Fächer in den Lehrplänen und addiere ihre Wochenstunden

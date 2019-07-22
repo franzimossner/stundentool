@@ -44,7 +44,7 @@
           <br />
           <!-- Hier soll eine tabelle für jeden Raum entstehen, nicht eine für alle -->
           {% for klasse, vorgabenListe in klasseToVorgabe %}
-            <b> Klasse {{ klasse.Name }} </b>
+            <h1><b> Klasse {{ klasse.Name }} </b><h1>
 
             <table class= "table table-hover">
               <tr>
@@ -59,7 +59,7 @@
                   {% for tagVorgabe in tagVorgabenListe %}
                     <td>
                       {% if tagVorgabe %}
-                         {{ tagVorgabe }}
+                         {{ tagVorgabe.Fach.Name }} {{ tagVorgabe.Lehrperson.Name }}
                       {% endif %}
                     </td>
                   {% endfor %}

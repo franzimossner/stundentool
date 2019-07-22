@@ -56,7 +56,7 @@
                   <tr>
                     <th> {{ stunde.Stunde }} </th>
                     {% for lehreinheit in tagesplan %}
-                      <td> {{ lehreinheit.Schulfach.Name }}  {{ lehreinheit.Klasse.Name }}  </td>
+                      <td> {{ lehreinheit.Schulfach.Name }}  {% if lehreinheit.Klasse != None %} ({% endif %} {{ lehreinheit.Klasse.Name }} {% if lehreinheit.Klasse != None %} )  {% endif %} </td>
                     {% endfor %}
                   </tr>
                 {% endfor %}

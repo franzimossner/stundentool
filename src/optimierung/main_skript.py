@@ -1,5 +1,7 @@
 from dataoutput.write_timetables import writingTimetables
 
+import xpress as xp
+
 '''
 Hier wird das Optimierungsmodell an den jeweils ausgewählten Solver weitergegeben.
 '''

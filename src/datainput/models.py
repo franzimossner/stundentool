@@ -33,7 +33,7 @@ class Partner(models.Model):
     lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.lehrer
+        return self.lehrer.Name
 
 class Uebergreifung(models.Model):
     """ Eine Model Klasse, um zu simulieren, dass bestimmte Fächer übergreifend statt finden müssen
@@ -57,7 +57,7 @@ class Lehrer(models.Model):
     Kurzname = models.CharField(max_length=10)
     Stundenzahl = models.IntegerField(default=0)
     #Sport = models.CharField(choices= [(1, 'Ja'), (0, 'Nein')], default=1, max_length=10)
-    Tandem = models.CharField(choices= [("1", "Ja"), ("0", "Nein")], default="1", max_length=10)
+    #Tandem = models.CharField(choices= [("1", "Ja"), ("0", "Nein")], default="1", max_length=10)
     Faecher = models.ManyToManyField('Schulfach', through ='Unterrricht', through_fields=('lehrer', 'fach'))
     NichtDa = models.ManyToManyField('Slot', through = 'LehrerBelegt', through_fields= ('lehrer', 'slot'))
 
