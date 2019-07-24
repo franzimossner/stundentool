@@ -37,7 +37,8 @@
         <div class="container">
             <br />
             <br />
-            <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'download_excel_data_Allelehrer' run=run.Index %}"> Download neueste Version in EXCEL für alle Lehrer </a></h2> </button>
+            <p><button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'download_excel_data_Allelehrer' run=run.Index %}'"> <h2> Download neueste Version in EXCEL für alle Lehrer </h2> </button></p>
+            <p><button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'download_pdf_data_Allelehrer' run=run.Index %}'"> <h2> Download neueste Version in PDF für alle Lehrer </h2> </button></p>
             <br />
             <br />
         </div>
@@ -46,7 +47,7 @@
           <br />
           <br />
           {% for lehrer in lehrers %}
-            <p> <button type="button" class="btn btn-outline-secondary">   <h2><a href="{% url 'teacher_detail' lehrer=lehrer.Kurzname %}"> {{ lehrer.Name }} ( {{ lehrer.Kurzname }} ) </a></h2> </button> </p>
+            <p> <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'teacher_detail' lehrer=lehrer.Kurzname %}'">   <h2> {{ lehrer.Name }} ( {{ lehrer.Kurzname }} )</h2> </button> </p>
           {% endfor %}
         </div>
       </div>

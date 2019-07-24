@@ -4,6 +4,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title> Lehrerverwaltung </title>
+        <style>
+        #hiddenForm {
+          display: none;
+        }
+        </style>
+        <script>
+        function showHiddenForm() {
+          var form = document.getElementById("hiddenForm");
+          form.style.display = "block";
+        }
+        </script>
     </head>
     <body>
       <!-- Side navigation -->
@@ -36,12 +47,13 @@
         </div>
         <br />
         <br />
-        <!-- <form method="post">
-          {{ formset }}
-        </form> -->
         <div>
-          <p> Lehrer hinzuzufügen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/lehrer/add/"> Lehrer hinzufügen </a></h3></button> </p>
-          <p> Einem Lehrer Fächer zuweisen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/unterrricht/add/"> Fächer hinzufügen </a></h3></button> </p>
+          <p> Lehrer hinzuzufügen: <button type="button" class="btn btn-outline-secondary" onClick="showHiddenForm()"> <h3> Lehrer hinzufügen </h3></button> </p>
+          <form method="post" id="hiddenForm" >
+              {{ form }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-info"> Save </button>
+          </form>
         </div>
     <div>
       <br />

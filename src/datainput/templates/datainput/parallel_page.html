@@ -4,6 +4,17 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title> Parallele Fächer</title>
+        <style>
+        #hiddenForm {
+          display: none;
+        }
+        </style>
+        <script>
+        function showHiddenForm() {
+          var form = document.getElementById("hiddenForm");
+          form.style.display = "block";
+        }
+        </script>
     </head>
     <body>
       <!-- Side navigation -->
@@ -37,7 +48,12 @@
         <br />
         <br />
         <div class="container">
-          <p> Schulfach hinzuzufügen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/schulfach/add/"> Schulfach hinzufügen </a></h3></button> </p>
+          <p> Schulfach hinzufügen: <button type="button" class="btn btn-outline-secondary" onclick="showHiddenForm()"> <h3> Schulfach hinzufügen </h3></button> </p>
+          <form method="post" id="hiddenForm" >
+              {{ form }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-info"> Save </button>
+          </form>
         </div>
     <div class="container">
       <br />

@@ -41,7 +41,8 @@
             {% for lehrer, stundenplan, run in runToStundenplan %}
               <h2> Ergebnis vom: {{ run.Zeit }} </h2>
               <b> Diesen Plan exportieren:    </b>
-              <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'download_excel_1lehrer_1run' lehrer=lehrer.Kurzname run=run.Index %}"> Download EXCEL </a></h2> </button>
+              <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'download_excel_1lehrer_1run' lehrer=lehrer.Kurzname run=run.Index %}'"> <h2> Download EXCEL</h2> </button>
+              <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'download_pdf_1lehrer_1run' lehrer=lehrer.Kurzname run=run.Index %}'"> <h2> Download PDF</h2> </button>
               <br />
               <br />
 

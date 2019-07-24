@@ -44,36 +44,11 @@
           <p> Bitte geben sie unter dem entsprechenden Punkt für die Paramerter einen Wert ein, der symbolisieren soll, wie wichtig ihnen die Erfüllung dieser Soft Constraint ist: </p>
           <br />
           <br />
-        <form action="/lehrerinklasse/", method="post">
-            <label for="lehrerinklasse"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
-            <input id="lehrerinKlasse" type="text" parameter="lehrerinKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-            <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
-        <form action="/tandeminklasse/", method="post">
-          <label for="tandeminklasse"> Tandemlehrer unterrichtet hauptsächlich in seiner Klasse: </label>
-          <input id="tandeminKlasse" type="text" parameter="tandeminKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-          <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
-        <form action="/partnerinklasse/", method="post">
-          <label for="partnerinklasse"> Partnerlehrer unterrichtet hauptsächlich in seiner Klasse: </label>
-          <input id="partnerinKlasse" type="text" parameter="partnerinKlasse" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-          <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
-        <form action="/lehrerwechsel/", method="post">
-          <label for="lehrerwechsel"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
-          <input id="lehrerwechsel" type="text" parameter="lehrerwechsel" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-          <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
-        <form action="/sportunterricht/", method="post">
-          <label for="sportunterricht"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
-          <input id="sportunterricht" type="text" parameter="sportunterricht" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-          <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
-        <form action="/lehrerminimum/", method="post">
-          <label for="lehrerminimum"> Klassenleiter unterrichtet hauptsächlich in seiner Klasse: </label>
-          <input id="lehrerminimum" type="text" parameter="lehrerminimum" value="{{ current_parameter }}" placeholder="Gewichtung" required>
-          <button type="submit" class="btn btn-outline-secondary">OK</button>
-        </form>
+          <form method="post" >
+              {{ form }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-info"> Save </button>
+          </form>
       </div>
 
       <br />
@@ -111,7 +86,7 @@
 
         <div class="container">
           <p> Alle Parameter eingestellt? Dann gehts hier zur Optimierung: </p>
-          <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'optimierung' %}"> Optimierung jetzt starten </a></h2> </button>
+          <button type="button" class="btn btn-outline-secondary" onclick="{% url 'optimierung' %}"> <h2> Optimierung jetzt starten </h2> </button>
         </div>
       </div>
       <br />
