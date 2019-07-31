@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Lehrer, Slot, Raum, VorgabeEinheit, Schulklasse, Nutzbar, StundenzahlproTag, Schulfach, Uebergreifung, Lehreinheit, Klassenstundenplan, Lehrerstundenplan, LehrerBelegt, RaumBelegt, Unterrricht, Partner, Stunde, Tag, Lehrfaecher, OptimierungsErgebnis
+from .models import Lehrer, Slot, Raum, VorgabeEinheit, Schulklasse, Nutzbar, StundenzahlproTag, Schulfach, Uebergreifung, Lehreinheit, LehrerBelegt, RaumBelegt, Unterrricht, Partner, Stunde, Tag, Lehrfaecher, OptimierungsErgebnis
 
 # Register your models here.
 admin.site.register(Lehrer)
@@ -10,8 +10,6 @@ admin.site.register(Schulklasse)
 admin.site.register(Schulfach)
 admin.site.register(Uebergreifung)
 admin.site.register(Lehreinheit)
-admin.site.register(Klassenstundenplan)
-admin.site.register(Lehrerstundenplan)
 admin.site.register(LehrerBelegt)
 admin.site.register(RaumBelegt)
 admin.site.register(Unterrricht)

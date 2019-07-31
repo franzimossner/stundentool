@@ -167,8 +167,8 @@ class Lehreinheit(models.Model):
     """ Eine Lehreinheit.
     Attribute: -
     Relationen: hat genau ein Fach (many-to-one)
-                hat genau einen Lehrerstundenplan und damit genau einen Lehrer (many-to-one)
-                hat genau einen Klassenstundenplan und damit genau eine Klasse (many-to-one)
+                hat genau einen Lehrer (many-to-one)
+                hat genau eine Klasse (many-to-one)
                 findet in genau einem Slot statt (many-to-one)
     """
     Schulfach = models.ForeignKey('Schulfach', on_delete=models.CASCADE)
@@ -181,25 +181,6 @@ class Lehreinheit(models.Model):
     def __str__(self):
         return "LehrEinheit: {0}, {1}, {2}, {3}".format(self.Zeitslot, self.Lehrer, self.Schulfach, self.Klasse)
 
-class Klassenstundenplan(models.Model):
-    """ Ein Stundenplan. Hier werden Ergebnisse gespeichert
-    Attribute: -
-    Relationen: hat eine Schulklasse (many-to-one)
-    """
-    Schulklasse = models.ForeignKey('Schulklasse', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.Schulklasse
-
-class Lehrerstundenplan(models.Model):
-    """ Ein Stundenplan. Hier werden Ergebnisse gespeichert
-    Attribute: -
-    Relationen: hat einen Lehrer (many-to-one)
-    """
-    Lehrer = models.ForeignKey('Lehrer', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.Lehrer
 
 class OptimierungsErgebnis(models.Model):
     Zeit = models.DateTimeField()

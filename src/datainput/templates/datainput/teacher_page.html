@@ -1,17 +1,24 @@
 {% load static %}
+{% load bootstrap3 %}
 <html>
     <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title> Lehrerverwaltung </title>
         <style>
-        #hiddenForm {
+        #hiddenFormFaecher, #hiddenFormLehrer {
           display: none;
         }
         </style>
         <script>
-        function showHiddenForm() {
-          var form = document.getElementById("hiddenForm");
+        function showHiddenForm1() {
+          var form = document.getElementById("hiddenFormLehrer");
+          form.style.display = "block";
+        }
+        </script>
+        <script>
+        function showHiddenForm2() {
+          var form = document.getElementById("hiddenFormFaecher");
           form.style.display = "block";
         }
         </script>
@@ -47,12 +54,20 @@
         </div>
         <br />
         <br />
-        <div>
-          <p> Lehrer hinzuzufügen: <button type="button" class="btn btn-outline-secondary" onClick="showHiddenForm()"> <h3> Lehrer hinzufügen </h3></button> </p>
-          <form method="post" id="hiddenForm" >
-              {{ form }}
+        <div class="container">
+          <p> Lehrer hinzufügen: <button type="button" class="btn btn-outline-secondary" onClick="showHiddenForm1()"> <h3> Lehrer hinzufügen </h3></button> </p>
+          <form method="post" id="hiddenFormLehrer" >
               {% csrf_token %}
-              <button type="submit" class="btn btn-info"> Save </button>
+              {% bootstrap_form formLehrer %}
+              <button type="submit" name="submitLehrer" class="btn btn-outline-secondary"> Save </button>
+          </form>
+        </div>
+        <div class="container">
+          <p> Einem Lehrer Fächer zuweisen: <button type="button" class="btn btn-outline-secondary" onClick="showHiddenForm2()"> <h3> Fächer zuweisen </h3></button> </p>
+          <form method="post" id="hiddenFormFaecher" >
+              {% csrf_token %}
+              {% bootstrap_form formFaecher %}
+              <button type="submit" name="submitFaecher" class="btn btn-outline-secondary"> Save </button>
           </form>
         </div>
     <div>

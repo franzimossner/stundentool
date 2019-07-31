@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap3 %}
 <html>
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -41,44 +42,15 @@
         </div>
 
         <div class="container">
-          <p> Bitte geben sie unter dem entsprechenden Punkt für die Paramerter einen Wert ein, der symbolisieren soll, wie wichtig ihnen die Erfüllung dieser Soft Constraint ist: </p>
+          <p> Bitte geben sie unter dem entsprechenden Punkt für die Paramerter einen Wert ein, der symbolisieren soll, wie wichtig ihnen die Erfüllung dieser Soft Constraint ist. </p>
+          <p> Unter "Solver" geben sie ein, welchen Solver sie für die Optimierung verwenden wollen. </p>
           <br />
           <br />
           <form method="post" >
-              {{ form }}
               {% csrf_token %}
-              <button type="submit" class="btn btn-info"> Save </button>
+              {% bootstrap_form form %}
+              <button type="submit" class="btn btn-outline-secondary"> Save </button>
           </form>
-      </div>
-
-      <br />
-      <br />
-
-      <div class="container">
-        <form>
-          <p> Wählen sie hier aus, welcher Solver für das Optimieren benutzt werden soll: </p>
-          <form action="/solver/", method="post">
-            <label for="solver"> Wählen Sie einen Solver: </label>
-            <!-- <input id="solver" type="text" parameter="solver" value="{{ current_parameter }}" placeholder="Solver" required> -->
-            <select class="form-control" id="solver">
-              <option> Xpress </option>
-              <option> Pyomo </option>
-              <option> ? </option>
-            </select>
-            <p> </p>
-            <button type="submit" class="btn btn-outline-secondary">Speichern</button>
-            <!-- <input type="submit" value="OK"> -->
-          <!-- </form>
-        <div class="form-group">
-            <label for="exampleFormControlSelect1"> Benutzter Solver</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option> Xpress </option>
-              <option> Pyomo </option>
-              <option> ? </option>
-            </select>
-          </div>
-          <button type="submit" class="save btn btn-default">Speichern</button>
-        </form> -->
       </div>
 
       <br />

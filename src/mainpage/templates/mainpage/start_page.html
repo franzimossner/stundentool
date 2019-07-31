@@ -34,29 +34,32 @@
             <br />
             <br />
             <p> Herzlich Willkommen im Optimierungstool für ihre Schule! Von hier können sie die gesamte Optimierung steuern.</p>
-            <p> Geben sie unter "Datenverwaltung" alle Daten ein und überprüfen sie sie auf Fehler im "Datencheck"</p>
-            <p> Unter Optimierung werden die Stundenpläne erstellt, die sie in "Ergebnisse" herunterladen können </p>
+            <p> Geben sie unter "Datenverwaltung" alle Daten ein und überprüfen sie sie auf Fehler im "Datencheck".</p>
+            <p> Unter Optimierung werden die Stundenpläne erstellt, die sie in "Ergebnisse" herunterladen können. </p>
         </div>
 
         <br />
         <br />
         <div class="container">
-          <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'input_main' %}"> Datenverwaltung </a></h2> </button>
-            <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen</p>
-            <p> Außerdem können sie alle weiteren Vorgaben an die Stundenpläne, Klassen oder das Personal hier verwalten</p>
+          <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'input_main' %}'"> <h2> Datenverwaltung </h2> </button>
+          <p></p>
+            <p> Dieser Unterpunkt erlaubt ihnen, ihr Personal mit Name, Arbeitsstunden und ihren Fächern zu verknüpfen. </p>
+            <p> Außerdem können sie alle weiteren Vorgaben an die Stundenpläne, Klassen oder das Personal hier verwalten. </p>
             <br />
             <br />
         </div>
         <div class="container">
-            <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'optimierung_main' %}"> Optimierung</a></h2></button>
-            <p> Hier werden sie Schritt für Schritt durch einen vollen Optimierungsprozess geleitet</p>
-            <p> Außerdem befindet sich hier der Datencheck, um zu überprüfen, ob ihre Daten Widersprüche enthalten</p>
+            <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'optimierung_main' %}'"> <h2> Optimierung </h2></button>
+            <p></p>
+            <p> Hier werden sie Schritt für Schritt durch einen vollen Optimierungsprozess geleitet. </p>
+            <p> Außerdem befindet sich hier der Datencheck, um zu überprüfen, ob ihre Daten Widersprüche enthalten. </p>
             <br />
             <br />
         </div>
         <div class="container">
-           <button type="button" class="btn btn-outline-secondary"> <h2><a href="{% url 'output_main' %}"> Ergebnisse</a></h2> </button>
-            <p> In diesem Punkt können sie ihre bereits produzierten Ergebnisse ansehen und als Excel oder PDF Datei exportieren</p>
+           <button type="button" class="btn btn-outline-secondary" onclick="location.href='{% url 'output_main' %}'"> <h2> Ergebnisse </h2> </button>
+           <p></p>
+            <p> In diesem Punkt können sie ihre bereits produzierten Ergebnisse ansehen und als Excel oder PDF Datei herunterladen.</p>
             <br />
             <br />
         </div>

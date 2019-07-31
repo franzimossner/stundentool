@@ -33,7 +33,6 @@ def output_teacher(request):
 
 @login_required
 def output_classes(request):
-    # aktuell nur die neueste Version zum download für alle Klassen, muss noch in eine Tabelle umgewandelt werden
     run = OptimierungsErgebnis.objects.order_by('-Index').first()
     klassen = Schulklasse.objects.order_by('Name')
     return render(request, 'dataoutput/output_classes.html', {'klassen': klassen, 'run': run})
@@ -51,7 +50,6 @@ def class_detail(request, klasse):
             tagesplan = []
             for tag in tage:
                 tagesplan.append(klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).all())
-                #tagesplan.append(klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
             stundenplan.append((stunde, tagesplan))
         runToStundenplan.append((klasse, stundenplan, run))
     return render(request, 'dataoutput/class_detail.html', {'runToStundenplan': runToStundenplan ,
@@ -84,17 +82,13 @@ def teacher_detail(request, lehrer):
     })
 
 
-
 ''' Ab hier Code zum Download von Klassenstundenplänen in Excel
 '''
 
 @login_required
 def download_excel_data_Alleklassen(request, run):
-    # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
-    #decide file name
     response['Content-Disposition'] = 'attachment; filename="alleKlassen_{0}_.xls"'.format(run)
-    #creating workbook
     wb = xlwt.Workbook(encoding='utf-8')
 
     #adding sheet for each class
@@ -140,8 +134,6 @@ def download_excel_data_Alleklassen(request, run):
                 row_num = stunde.Index
                 tag_num = tag.Index
 
-                # Warum 367??
-                # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
                 ws.col(tag_num).width = colwidth * 367
                 # ws.write(row_num, col_num, content, font_style)
                 ws.write(row_num, tag_num , cellobject, style)
@@ -150,14 +142,10 @@ def download_excel_data_Alleklassen(request, run):
 
 @login_required
 def download_excel_1klasse_1run(request, klasse, run):
-    # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
-    #decide file name
     response['Content-Disposition'] = 'attachment; filename="klassenplan_{0}_{1}.xls"'.format(klasse, run)
-    #creating workbook
     wb = xlwt.Workbook(encoding='utf-8')
 
-    #adding sheet for the class
     tage = Tag.objects.order_by('Index')
     stunden = Stunde.objects.order_by('Index')
     run = OptimierungsErgebnis.objects.get(Index=run)
@@ -200,8 +188,6 @@ def download_excel_1klasse_1run(request, klasse, run):
             row_num = stunde.Index
             tag_num = tag.Index
 
-            # Warum 367??
-            # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
             ws.col(tag_num).width = colwidth * 367
             # ws.write(row_num, col_num, content, font_style)
             ws.write(row_num, tag_num , cellobject, style)
@@ -210,28 +196,21 @@ def download_excel_1klasse_1run(request, klasse, run):
     return response
 
 
-
 ''' Ab hier Code zum Download von Lehrerstundenplänen in Excel
 '''
 
 @login_required
 def download_excel_1lehrer_1run(request, lehrer, run):
-    # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
-    #decide file name
     response['Content-Disposition'] = 'attachment; filename="lehrerplan_{0}_{1}.xls"'.format(lehrer, run)
-    #creating workbook
     wb = xlwt.Workbook(encoding='utf-8')
 
-    #adding sheet for the class
     tage = Tag.objects.order_by('Index')
     stunden = Stunde.objects.order_by('Index')
     run = OptimierungsErgebnis.objects.get(Index=run)
 
     ws = wb.add_sheet("{0} ".format(lehrer))
-    # Row to choose for the header of the data
     row_num = 0
-
     font_style = xlwt.XFStyle()
     style = xlwt.XFStyle()
     style.alignment.wrap = 1
@@ -267,8 +246,6 @@ def download_excel_1lehrer_1run(request, lehrer, run):
             row_num = stunde.Index
             tag_num = tag.Index
 
-            # Warum 367??
-            # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
             ws.col(tag_num).width = colwidth * 367
             # ws.write(row_num, col_num, content, font_style)
             ws.write(row_num, tag_num , cellobject, style)
@@ -279,14 +256,10 @@ def download_excel_1lehrer_1run(request, lehrer, run):
 
 @login_required
 def download_excel_data_Allelehrer(request, run):
-    # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
-    #decide file name
     response['Content-Disposition'] = 'attachment; filename="alleLehrer_{0}_.xls"'.format(run)
-    #creating workbook
     wb = xlwt.Workbook(encoding='utf-8')
 
-    #adding sheet for each class
     lehrers = Lehrer.objects.order_by('Name')
     tage = Tag.objects.order_by('Index')
     stunden = Stunde.objects.order_by('Index')
@@ -296,7 +269,6 @@ def download_excel_data_Allelehrer(request, run):
         ws = wb.add_sheet("{0} ".format(lehrer))
         # Row to choose for the header of the data
         row_num = 0
-
         font_style = xlwt.XFStyle()
         style = xlwt.XFStyle()
         style.alignment.wrap = 1
@@ -330,8 +302,6 @@ def download_excel_data_Allelehrer(request, run):
                 row_num = stunde.Index
                 tag_num = tag.Index
 
-                # Warum 367??
-                # Default value of width is 2962 units and excel points it to as 8.11 units. Hence i am multiplying 367 to length of data.
                 ws.col(tag_num).width = colwidth * 367
                 # ws.write(row_num, col_num, content, font_style)
                 ws.write(row_num, tag_num , cellobject, style)
@@ -339,26 +309,22 @@ def download_excel_data_Allelehrer(request, run):
     return response
 
 
-''' Ab hier Code zum Download von Klassenstundenplänen als PDF
+''' Ab hier Code zum Download von Klassen und Lehrern als PDF
 '''
 
-#
+@login_required
 def download_pdf_data_Alleklassen(request, run):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment;   filename="alleKlassen_{0}.pdf" '.format(run)
-
-    # buffer
     buffer = io.BytesIO()
     # create pdf object
     p = canvas.Canvas(buffer, pagesize=landscape(A4))
-    #width, height = A4
     styles =getSampleStyleSheet()
     styleBH = styles["Normal"]
     styleBH.alignment = TA_CENTER
 
     # Insert the content to the pdf, done with Reportlab documentation
     klassen = Schulklasse.objects.order_by('Name')
-    lehrers = Lehrer.objects.order_by('Name')
     tage = Tag.objects.order_by('Index')
     stunden = Stunde.objects.order_by('Index')
     Run = OptimierungsErgebnis.objects.get(Index=run)
@@ -372,7 +338,6 @@ def download_pdf_data_Alleklassen(request, run):
             for tag in tage:
                 data[-1].append("")
 
-        #dataunits = Lehreinheit.objects.filter(Klasse=klasse, run=Run)
         for stunde in stunden:
             for tag in tage:
                 celldata= klasse.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=Run).all()
@@ -391,12 +356,9 @@ def download_pdf_data_Alleklassen(request, run):
                         ('BACKGROUND',(0,0),(0,-1),colors.lavender),
                         ('INNERGRID',(0,0),(-1,-1),0.25, colors.black)
                         ]))
-        # table.wrapOn(p, width, height)
         table.wrapOn(p, width, height)
         table.drawOn(p, 5*cm, 6*cm)
         table.hAlign='TA_CENTER'
-        #p.Table(data)
-        #t.setStyle(tblStyle)
         p.showPage()
 
     p.save()
@@ -405,16 +367,121 @@ def download_pdf_data_Alleklassen(request, run):
     response.write(pdf)
     return response
 
+@login_required
+def download_pdf_data_Allelehrer(request, run):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment;   filename="allelehrer_{0}.pdf" '.format(run)
+    buffer = io.BytesIO()
+    # create pdf object
+    p = canvas.Canvas(buffer, pagesize=landscape(A4))
+    styles =getSampleStyleSheet()
+    styleBH = styles["Normal"]
+    styleBH.alignment = TA_CENTER
 
+    # Insert the content to the pdf, done with Reportlab documentation
+    lehrers = Lehrer.objects.order_by('Name')
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    Run = OptimierungsErgebnis.objects.get(Index=run)
+
+    for lehrer in lehrers:
+        data= [['Stunden']]
+        for tag in tage:
+            data[0].append(str(tag.Tag).encode('utf-8'))
+        for stunde in stunden:
+            data.append([str(stunde.Stunde).encode('utf-8')])
+            for tag in tage:
+                data[-1].append("")
+
+        for stunde in stunden:
+            for tag in tage:
+                celldata= lehrer.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=Run).all()
+                cellobject = ""
+                for lehreinheit in celldata:
+                    row_num = stunde.Index
+                    tag_num = tag.Index
+                    cellobject += "{0} ({1})\n".format(lehreinheit.Schulfach.Name, lehreinheit.Klasse.Name)
+                    data[row_num][tag_num] = cellobject
+
+        width, height = A4
+        table = Table(data, hAlign='RIGHT')
+        table.setStyle(TableStyle([
+                        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                        ('BACKGROUND',(0,0),(-1,0),colors.lavender),
+                        ('BACKGROUND',(0,0),(0,-1),colors.lavender),
+                        ('INNERGRID',(0,0),(-1,-1),0.25, colors.black)
+                        ]))
+        table.wrapOn(p, width, height)
+        table.drawOn(p, 5*cm, 6*cm)
+        table.hAlign='TA_CENTER'
+        p.showPage()
+
+    p.save()
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+    return response
+
+@login_required
+def download_pdf_1lehrer_1run(request, lehrer, run):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment;   filename="Lehrer{0}_{1}.pdf" '.format(lehrer,run)
+    buffer = io.BytesIO()
+    # create pdf object
+    p = canvas.Canvas(buffer, pagesize=landscape(A4))
+    styles =getSampleStyleSheet()
+    styleBH = styles["Normal"]
+    styleBH.alignment = TA_CENTER
+
+    # Insert the content to the pdf
+    tage = Tag.objects.order_by('Index')
+    stunden = Stunde.objects.order_by('Index')
+    Run = OptimierungsErgebnis.objects.get(Index=run)
+    data= [['Stunden']]
+    for tag in tage:
+        data[0].append(str(tag.Tag).encode('utf-8'))
+    for stunde in stunden:
+        data.append([str(stunde.Stunde).encode('utf-8')])
+        for tag in tage:
+            data[-1].append("")
+
+    Lehrperson = Lehrer.objects.get(Kurzname=lehrer)
+    for stunde in stunden:
+        for tag in tage:
+            celldata= Lehrperson.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=Run).all()
+            cellobject = ""
+            for lehreinheit in celldata:
+                row_num = stunde.Index
+                tag_num = tag.Index
+                cellobject += "{0} ({1})\n".format(lehreinheit.Schulfach.Name, lehreinheit.Klasse.Name)
+                data[row_num][tag_num] = cellobject
+
+    width, height = A4
+    table = Table(data, hAlign='RIGHT')
+    table.setStyle(TableStyle([
+                    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                    ('BACKGROUND',(0,0),(-1,0),colors.lavender),
+                    ('BACKGROUND',(0,0),(0,-1),colors.lavender),
+                    ('INNERGRID',(0,0),(-1,-1),0.25, colors.black)
+                    ]))
+    table.wrapOn(p, width, height)
+    table.drawOn(p, 5*cm, 6*cm)
+    table.hAlign='TA_CENTER'
+    p.showPage()
+    p.save()
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+    return response
+
+@login_required
 def download_pdf_1klasse_1run(request, klasse, run):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment;   filename="Klasse{0}_{1}.pdf" '.format(klasse,run)
-
     # buffer
     buffer = io.BytesIO()
     # create pdf object
     p = canvas.Canvas(buffer, pagesize=landscape(A4))
-    #width, height = A4
     styles =getSampleStyleSheet()
     styleBH = styles["Normal"]
     styleBH.alignment = TA_CENTER
@@ -453,14 +520,10 @@ def download_pdf_1klasse_1run(request, klasse, run):
                     ('BACKGROUND',(0,0),(0,-1),colors.lavender),
                     ('INNERGRID',(0,0),(-1,-1),0.25, colors.black)
                     ]))
-    # table.wrapOn(p, width, height)
     table.wrapOn(p, width, height)
     table.drawOn(p, 5*cm, 6*cm)
     table.hAlign='TA_CENTER'
-    #p.Table(data)
-    #t.setStyle(tblStyle)
     p.showPage()
-
     p.save()
     pdf = buffer.getvalue()
     buffer.close()

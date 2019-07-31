@@ -13,8 +13,8 @@ urlpatterns = [
     path('lehreransicht/<run>/excel_alle', views.download_excel_data_Allelehrer, name='download_excel_data_Allelehrer'),
     path('klassenansicht/<run>/pdf_alle', views.download_pdf_data_Alleklassen, name='download_pdf_data_Alleklassen'),
     path('klassenansicht/<klasse>/<run>/pdf', views.download_pdf_1klasse_1run, name='download_pdf_1klasse_1run'),
-    #path('lehreransicht/<run>/pdf_alle', views.download_pdf_data_Allelehrer, name='download_pdf_data_Allelehrer'),
-    #path('lehreransicht/<lehrer>/<run>/pdf', views.download_pdf_1lehrer_1run, name='download_pdf_1lehrer_1run'),
+    path('lehreransicht/<run>/pdf_alle', views.download_pdf_data_Allelehrer, name='download_pdf_data_Allelehrer'),
+    path('lehreransicht/<lehrer>/<run>/pdf', views.download_pdf_1lehrer_1run, name='download_pdf_1lehrer_1run'),
 
 
 ]

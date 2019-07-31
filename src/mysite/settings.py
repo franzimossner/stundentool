@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mainpage',
     'optimierung',
     'dataoutput',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

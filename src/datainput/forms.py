@@ -1,10 +1,15 @@
 from django import forms
-from .models import Lehrer, Schulklasse, Schulfach, Unterrricht, Uebergreifung, LehrerBelegt, StundenzahlproTag, VorgabeEinheit, Partner, Lehrfaecher, Raum
+from .models import Lehrer, Schulklasse, Schulfach, Unterrricht, Uebergreifung, LehrerBelegt, StundenzahlproTag, VorgabeEinheit, Partner, Lehrfaecher, Raum, Nutzbar, RaumBelegt
 
 class LehrerForm(forms.ModelForm):
     class Meta:
         model = Lehrer
-        exclude = ['NichtDa']
+        exclude = ['NichtDa', 'Faecher']
+
+class UnterrrichtForm(forms.ModelForm):
+    class Meta:
+        model = Unterrricht
+        fields = ['lehrer', 'fach']
 
 class SchulfachForm(forms.ModelForm):
     class Meta:
@@ -50,3 +55,13 @@ class RaumForm(forms.ModelForm):
     class Meta:
         model = Raum
         exclude = ['faecher', 'Nichtfrei']
+
+class RaumBelegtForm(forms.ModelForm):
+    class Meta:
+        model = RaumBelegt
+        fields = ['raum', 'slot']
+
+class NutzbarForm(forms.ModelForm):
+    class Meta:
+        model = Nutzbar
+        fields = ['raum', 'schulfach']

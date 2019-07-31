@@ -1,17 +1,30 @@
 {% load static %}
+{% load bootstrap3 %}
 <html>
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="{% static 'css/datainput.css' %}">
         <title>Raumverwaltung</title>
         <style>
-        #hiddenForm {
+        #hiddenFormRaum, #hiddenFormBelegt, #hiddenFormNutzbar {
           display: none;
         }
         </style>
         <script>
-        function showHiddenForm() {
-          var form = document.getElementById("hiddenForm");
+        function showHiddenForm1() {
+          var form = document.getElementById("hiddenFormRaum");
+          form.style.display = "block";
+        }
+        </script>
+        <script>
+        function showHiddenForm2() {
+          var form = document.getElementById("hiddenFormBelegt");
+          form.style.display = "block";
+        }
+        </script>
+        <script>
+        function showHiddenForm3() {
+          var form = document.getElementById("hiddenFormNutzbar");
           form.style.display = "block";
         }
         </script>
@@ -48,14 +61,24 @@
         <br />
         <br />
         <div class="container">
-          <p> Raum hinzuzufügen: <button type="button" class="btn btn-outline-secondary" onclick="showHiddenForm()"> <h3> Raum hinzufügen </h3></button> </p>
-          <form method="post" id="hiddenForm" >
-              {{ form }}
+          <p> Raum hinzufügen: <button type="button" class="btn btn-outline-secondary" onclick="showHiddenForm1()"> <h3> Raum hinzufügen </h3></button> </p>
+          <form method="post" id="hiddenFormRaum" >
               {% csrf_token %}
-              <button type="submit" class="btn btn-info"> Save </button>
+              {% bootstrap_form formRaum %}
+              <button type="submit" class="btn btn-outline-secondary"> Save </button>
           </form>
-          <p> Einen Raum belegt setzen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/raumbelegt/add/"> Belegung setzen </a></h3></button> </p>
-          <p> Einem Raum Fächer zuweisen: <button type="button" class="btn btn-outline-secondary"> <h3><a href="/admin/datainput/nutzbar/add/"> Fächer zuweisen </a></h3></button> </p>
+          <p> Einen Raum belegt setzen: <button type="button" class="btn btn-outline-secondary" onclick="showHiddenForm2()"> <h3> Belegung setzen </h3></button> </p>
+          <form method="post" id="hiddenFormBelegt" >
+              {% csrf_token %}
+              {% bootstrap_form formBelegt %}
+              <button type="submit" class="btn btn-outline-secondary"> Save </button>
+          </form>
+          <p> Einem Raum Fächer zuweisen: <button type="button" class="btn btn-outline-secondary" onclick="showHiddenForm3()"> <h3> Fächer zuweisen </h3></button> </p>
+          <form method="post" id="hiddenFormNutzbar" >
+              {% csrf_token %}
+              {% bootstrap_form formNutzbar %}
+              <button type="submit" class="btn btn-outline-secondary"> Save </button>
+          </form>
         </div>
         <div class="container">
           <br />

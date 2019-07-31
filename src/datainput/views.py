@@ -6,7 +6,7 @@ from django.forms import modelformset_factory
 
 
 from django.http import HttpResponseRedirect
-from .forms import LehrerForm, SchulfachForm, UebergreifungForm, BlockenForm, TagesForm, VorgabenForm, KlassenForm, PartnerForm, LehrfaecherForm, RaumForm
+from .forms import LehrerForm, SchulfachForm, UebergreifungForm, BlockenForm, TagesForm, VorgabenForm, KlassenForm, PartnerForm, LehrfaecherForm, RaumForm, UnterrrichtForm, RaumBelegtForm, NutzbarForm
 
 def rechte_check(user):
     return user.username in ['Direktor','franzi']
@@ -34,31 +34,51 @@ def room_page(request):
         roomToSlot.append((raum, stundenListe))
 
     if request.method == "POST":
-        form = RaumForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if 'submitRaum' in request.POST:
+            formRaum = RaumForm(request.POST)
+            if formRaum.is_valid():
+                formRaum.save()
+        elif 'submitBelegung' in request.POST:
+            formBelgegt = RaumBelegtForm(request.POST)
+            if formBelegt.is_valid():
+                formBelegt.save()
+        elif 'submitNutzbar' in request.POST:
+            formNutzbar = NutzbarForm(request.POST)
+            if formNutzbar.is_valid():
+                formNutzbar.save()
     else:
-        form = RaumForm()
+        formRaum = RaumForm()
+        formBelegt = RaumBelegtForm()
+        formNutzbar = NutzbarForm()
 
     return render(request, 'datainput/room_page.html', {
         'rooms': rooms,
         'tage': tage,
         'stunden': stunden,
         'roomToSlot': roomToSlot,
-        'form':form
+        'formRaum':formRaum,
+        'formBelegt': formBelegt,
+        'formNutzbar': formNutzbar,
     })
 
 @login_required
 @user_passes_test(rechte_check)
 def teacher_page(request):
+
     lehrers = Lehrer.objects.order_by('Name')
     if request.method == "POST":
-        form = LehrerForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if 'submitLehrer' in request.POST:
+            formLehrer = LehrerForm(request.POST)
+            if formLehrer.is_valid():
+                formLehrer.save()
+        elif 'submitFaecher' in request.POST:
+            formFaecher = UnterrrichtForm(request.POST)
+            if formFaecher.is_valid():
+                formFaecher.save()
     else:
-        form = LehrerForm()
-    return render(request,'datainput/teacher_page.html', {'lehrers':lehrers, 'form': form})
+        formLehrer = LehrerForm()
+        formFaecher = UnterrrichtForm()
+    return render(request,'datainput/teacher_page.html', {'lehrers':lehrers, 'formLehrer': formLehrer, 'formFaecher': formFaecher})
 
 
 @login_required
@@ -67,12 +87,18 @@ def curriculum_page(request):
     klassen = Schulklasse.objects.order_by('Name')
 
     if request.method == "POST":
-        form = LehrfaecherForm(request.POST)
-        if form.is_valid():
-            form.save()
+        if 'submitKlasse' in request.POST:
+            formKlasse = KlassenForm(request.POST)
+            if formKlasse.is_valid():
+                formKlasse.save()
+        elif 'submitFaecher' in request.POST:
+            formFaecher = LehrfaecherForm(request.POST)
+            if formFaecher.is_valid():
+                formFaecher.save()
     else:
-        form = LehrfaecherForm()
-    return render(request,'datainput/curriculum_page.html', {'klassen': klassen, 'form':form})
+        formKlasse = KlassenForm()
+        formFaecher = LehrfaecherForm()
+    return render(request,'datainput/curriculum_page.html', {'klassen': klassen, 'formKlasse':formKlasse, 'formFaecher': formFaecher})
 
 
 @login_required
@@ -87,14 +113,20 @@ def mainteacher_page(request):
     else:
         form = KlassenForm()
 
-    # if request.method == "POST":
-    #     form = PartnerForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    # else:
-    #     form = PartnerForm()
+    if request.method == "POST":
+        if 'submitKlasse' in request.POST:
+            formKlasse = KlassenForm(request.POST)
+            if formKlasse.is_valid():
+                formKlasse.save()
+        elif 'submitPartner' in request.POST:
+            formPartner = PartnerForm(request.POST)
+            if formPartner.is_valid():
+                formPartner.save()
+    else:
+        formKlasse = KlassenForm()
+        formPartner = PartnerForm()
 
-    return render(request, 'datainput/mainteacher_page.html', {'klassen':klassen, 'form':form})
+    return render(request, 'datainput/mainteacher_page.html', {'klassen':klassen, 'formKlasse':formKlasse, 'formPartner': formPartner})
 
 
 @login_required

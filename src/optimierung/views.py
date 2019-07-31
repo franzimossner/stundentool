@@ -17,7 +17,7 @@ def optimierung_main(request):
 @login_required
 @user_passes_test(rechte_check)
 def datencheck(request):
-    print("datencheck")
+    messages = []
     messages = datenpruefer.machdencheck(datenpruefer)
     if messages == []:
         messages = ["Ihre Daten haben den Datencheck bestanden. Gehen sie nun weiter zum nächsten Schritt"]
@@ -43,9 +43,6 @@ def parameters(request):
             ''' parameter verarbeiten
             '''
             form.save()
-            # redirect to a new URL:
-            #return HttpResponseRedirect('/thanks/')
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = ParameterForm()
 
