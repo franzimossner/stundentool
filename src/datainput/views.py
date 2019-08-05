@@ -38,14 +38,20 @@ def room_page(request):
             formRaum = RaumForm(request.POST)
             if formRaum.is_valid():
                 formRaum.save()
-        elif 'submitBelegung' in request.POST:
+        else:
+            formRaum = RaumForm()
+        if 'submitBelegung' in request.POST:
             formBelgegt = RaumBelegtForm(request.POST)
             if formBelegt.is_valid():
                 formBelegt.save()
-        elif 'submitNutzbar' in request.POST:
+        else:
+            formBelegt = RaumBelegtForm()
+        if 'submitNutzbar' in request.POST:
             formNutzbar = NutzbarForm(request.POST)
             if formNutzbar.is_valid():
                 formNutzbar.save()
+        else:
+            formNutzbar = NutzbarForm()
     else:
         formRaum = RaumForm()
         formBelegt = RaumBelegtForm()
@@ -71,10 +77,14 @@ def teacher_page(request):
             formLehrer = LehrerForm(request.POST)
             if formLehrer.is_valid():
                 formLehrer.save()
-        elif 'submitFaecher' in request.POST:
+        else:
+            formLehrer = LehrerForm()
+        if 'submitFaecher' in request.POST:
             formFaecher = UnterrrichtForm(request.POST)
             if formFaecher.is_valid():
                 formFaecher.save()
+        else:
+            formFaecher = UnterrrichtForm()
     else:
         formLehrer = LehrerForm()
         formFaecher = UnterrrichtForm()
@@ -91,10 +101,14 @@ def curriculum_page(request):
             formKlasse = KlassenForm(request.POST)
             if formKlasse.is_valid():
                 formKlasse.save()
-        elif 'submitFaecher' in request.POST:
+        else:
+            formKlasse = KlassenForm()
+        if 'submitFaecher' in request.POST:
             formFaecher = LehrfaecherForm(request.POST)
             if formFaecher.is_valid():
                 formFaecher.save()
+        else:
+            formFaecher = LehrfaecherForm()
     else:
         formKlasse = KlassenForm()
         formFaecher = LehrfaecherForm()
@@ -107,21 +121,18 @@ def mainteacher_page(request):
     klassen = Schulklasse.objects.order_by('Name')
 
     if request.method == "POST":
-        form = KlassenForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = KlassenForm()
-
-    if request.method == "POST":
         if 'submitKlasse' in request.POST:
             formKlasse = KlassenForm(request.POST)
             if formKlasse.is_valid():
                 formKlasse.save()
-        elif 'submitPartner' in request.POST:
+        else:
+            formKlasse = KlassenForm()
+        if 'submitPartner' in request.POST:
             formPartner = PartnerForm(request.POST)
             if formPartner.is_valid():
                 formPartner.save()
+        else:
+            formPartner = PartnerForm()
     else:
         formKlasse = KlassenForm()
         formPartner = PartnerForm()

@@ -1,6 +1,6 @@
 import csv
 from django.utils import timezone
-from datainput.models import Lehreinheit, Schulfach, Schulklasse, OptimierungsErgebnis, Lehrer, Slot
+from datainput.models import Lehreinheit, Schulfach, Schulklasse, OptimierungsErgebnis, Lehrer, Slot, Lehrfaecher, Tag
 
 
 '''
@@ -55,14 +55,9 @@ class writingTimetables(object):
 
             for row in resultfile:
                 fach = row[0]
-                 # 1. objekt in der Zeile
                 lehrer = row[2]
-                # 3. Objekt in der Zeile
                 slot = row[3]
                 tag, stundenindex = writingTimetables.convert_to_slot(slot)
-                #tag = row[3]
-                #stundenindex = row[4]
-                # 4. Objekt in der Zeile
                 klasse = row[1]
 
                 Fach = Schulfach.objects.get(Name=fach)
@@ -70,6 +65,12 @@ class writingTimetables(object):
                 Klasse = Schulklasse.objects.get(Name=klasse)
                 Zeitslot = Slot.objects.get(Tag__Tag=tag, Stunde__Index=stundenindex)
 
-                le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
-                # le = LehrEinheit(Schulfach= fach, Klassenstundenplan= klasse, Lehrerstundenplan= lehrer, Zeitslot= slot)
-                le.save()
+                # für die ganze fachdauer lehreinheiten kreieren
+                fachdauer = Lehrfaecher.objects.get(schulklasse=Klasse, schulfach=Fach).blockstunden
+
+                for i in range(1, fachdauer+1):
+                    # für jede stunde der fachdauer kreiere eine LehrEinheit
+                    tag_nr = Tag.objects.get(Tag=tag).Index
+                    Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
+                    le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
+                    le.save()
