@@ -1,4 +1,5 @@
 from dataoutput.write_timetables import writingTimetables
+from .schulmodell import model
 
 
 '''
@@ -8,8 +9,6 @@ Hier wird das Optimierungsmodell an den jeweils ausgewählten Solver weitergegeb
 Später muss das Ergebnis CSV Dateiblatt im Optimierung ordner gespeichert werden. Dann kann get getTimetableUnits seine Arbeit richtig machen
 '''
 def doeverything():
-    ''' Import von allen Parametern und dem Schulmodell für den solver
-    '''
     TODO
 
     ''' Senden an den solver und festlegen des Ouputorts
@@ -20,7 +19,16 @@ def doeverything():
     # instance = model.create_instance()
     # opt = pyo.SolverFactory('solvername')
     # opt.solve(instance)
-    # pyomo solve Schulmodell.py data.dat --solver=cplex
+    # pyomo solve Schulmodell.py --solver=xpress
+
+    opt = pyo.SolverFactory('xpress')
+    results = opt.solve(model, tree=True)
+
+    with open('X_res.csv') as file:
+        file.write('Fach, Klasse, Lehrer, Slot, Var\n')
+        for (n1,n2,n3,n4) in index_set:
+            if  model.x[n2, n3, n1, n4].value == 1:
+                f.write('$s, %s, %s, %s, %s\n') % (n1, n2, n3, n4, model.x[n2, n3, n1, n4].value)
 
     # geht das auch ohne .dat file sondern mit direktimport?
 
