@@ -1,5 +1,7 @@
 from dataoutput.write_timetables import writingTimetables
 from .schulmodell import model
+import pyomo.environ as pyo
+from pyomo.environ import *
 
 
 '''
@@ -9,7 +11,6 @@ Hier wird das Optimierungsmodell an den jeweils ausgewählten Solver weitergegeb
 Später muss das Ergebnis CSV Dateiblatt im Optimierung ordner gespeichert werden. Dann kann get getTimetableUnits seine Arbeit richtig machen
 '''
 def doeverything():
-    TODO
 
     ''' Senden an den solver und festlegen des Ouputorts
     Supported Solvers: CBC, Gurobi, Cplex
@@ -22,7 +23,8 @@ def doeverything():
     # pyomo solve Schulmodell.py --solver=xpress
 
     opt = pyo.SolverFactory('xpress')
-    results = opt.solve(model, tree=True)
+    instance = model.create()
+    results = opt.solve(instance, tree=True)
 
     with open('X_res.csv') as file:
         file.write('Fach, Klasse, Lehrer, Slot, Var\n')
