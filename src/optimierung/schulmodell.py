@@ -20,7 +20,7 @@ Here we will probably use abstract models since we have parameters and cosntrain
 from pyomo.environ import *
 
 #import von Django Model Klassen
-from datainput.models import Raum, Lehrer, Schulklasse, Schulfach, Lehrfaecher, Unterrricht, Tag, Stunde, Slot, Partner, LehrerBelegt, RaumBelegt, VorgabeEinheit
+from datainput.models import Raum, Lehrer, Schulklasse, Schulfach, Lehrfaecher, Unterrricht, Tag, Stunde, Slot, Partner, LehrerBelegt, RaumBelegt, VorgabeEinheit, Uebergreifung, LehrerBelegt, StundenzahlproTag
 from optimierung.models import Parameters
 
 '''Initialisierung des Problems
@@ -40,14 +40,17 @@ def Klassleitung(klasse):
 def Haupttandem(klasse):
     # gibt den Haupttandem einer Klasse zurück
     klasse = Schulklasse.objects.get(Name=klasse)
-    haupttandem = klasse.HauptTandem.Kurzname
+    haupttandem = [klasse.HauptTandem.Kurzname]
     return haupttandem
 
 def Partnerlehrer(klasse):
     # gibt eine Liste an Partnerlehrern der Klasse zurück
-    klasse = Schulklasse.objects.get(Name=klasse)
-    partnerlehrer = klasse.partner__set.all()
-    return partnerlehrer
+    Klasse = Schulklasse.objects.get(Name=klasse)
+    partnerlehrer = Klasse.partner_set.all()
+    lehrerliste = []
+    for partner in partnerlehrer:
+        lehrerliste.append(partner.lehrer.Kurzname)
+    return lehrerliste
 
 
 def Unterricht(lehrer):
@@ -61,8 +64,6 @@ def Unterricht(lehrer):
 
 def Fachdauer(fach, klasse):
     # gibt zurück, wie lange das Fach in der Klasse dauert
-    print(fach)
-    print(klasse)
     Klasse =  Schulklasse.objects.get(Name=klasse)
     Fach = Schulfach.objects.get(Name=fach)
     if Lehrfaecher.objects.filter(schulklasse=Klasse, schulfach=Fach).exists():
@@ -72,42 +73,24 @@ def Fachdauer(fach, klasse):
     else:
         return 0
 
-def wechselLehrer(klasse, lehrer, zeitslot):
-    # stellt fest, ob zu dieser stunde ein Lehrerwechsel stattgefunden hat
-    wl = sum(sum(model.x[k,l,f,t] for t in max(1, Range(z+1-Fachdauer(f,k), z+1))) for f in model.Faecher) + sum(model.x[k,l,g,t+1] for g in model.Faecher)
-    if wl % 2 > 0:
-        return 1
-    else:
-        return 0
-    return 0
-
-def sportGleichzeitig(klasse, zeitslot):
-    # stellt fest, ob Mädchen und Jungen der Klasse gleichzeitig Sport haben
-    sport = sum(model.x[k,l,"SportM",z] for l in model.Lehrer) + sum(model.x[k,l,"SportW",z] for l in model.Lehrer)
-    if sport % 2 > 0 :
-        return 0
-    else:
-        return 1
-
-def LehrerinKlasse(klasse, lehrer):
-    # stellt fest, ob der lehrer in der Klasse stunden unterrichtet
-    lehrerval = sum(model.x[klasse,lehrer,f,z] for f in model.Faecher and z in model.Zeitslots)
-    if lehrerval >= 1:
-        return True
-    else:
-        return False
+def Uebergreifend(fach, klasse):
+    # gibt alle fächer zurück die zu diesem Fach in der Klasse übergeifend sind, und sich slebst
+    # außerdem getUebergreifend = len( Uebergeifernd)
+    return []
 
 def getUebergreifend(fach, klasse):
-    '''!!!'''
     # gibt zurück, wie viele Fächer zu dem Fach überggreifend sind in dieser Klasse (Gesamtzahl, also mindestens 1)
     schulfach = Schulfach.objects.get(Name=fach)
     schulklasse = Schulklasse.objects.get(Name=klasse)
 
-    uebergreifend = Uebergreifung.objects.filter(schulfach=schulfach, schulklasse=schulklasse)
-    menge = []
-    for Klasse in uebergreifend:
-        menge.append(Klasse.Name)
-    return len(menge)
+    uebergreifend = Uebergreifung.objects.filter(fach=schulfach, schulklasse=schulklasse)
+    number = 1
+    for group in uebergreifend:
+        number = group.schulklasse.all().count()
+    return number
+
+#def Uebergreifend(fach, gruppe):
+    # gübr zurück, ob und wenn ja welche klassengruppe in dem Fach übergreifend zu unterrichten ist. Gruppe ist eine Zahl, die indiziert, die wievielte Gruppe des fachs es ist
 
 def Arbeitszeit(lehrer):
     # gibt die Arbeitszeit in Stunden für den Lehrer zurück
@@ -119,10 +102,11 @@ def GleichzeitigFach(fach):
     # gibt zurück, ob das Fach parallel Fächer hat udn wenn ja, eine Liste dieser
     fach = Schulfach.objects.get(Name=fach)
     faecher = Schulfach.objects.all()
-    parallelfaecher=[fach]
+    #parallelfaecher=[fach.Name]
+    parallelfaecher=[]
     for parfach in faecher:
         if parfach.Parallel == fach:
-            parallelfaecher.append(parfach)
+            parallelfaecher.append(parfach.Name)
     return parallelfaecher
 
 def convert_to_slot(number):
@@ -158,15 +142,13 @@ def slot_to_number(tagindex, stundenindex):
     return number2
 
 def RaumVerfuegbar(raum, zeitslot):
-    '''!!!'''
     # gibt zurück, ob der Raum zu dem Zeitpunkt verfügbar Ist
-    # soll die zahl der Räume dieses Raumtyps zum Zeitpunkt angeben
     # hole alle Räume mit diesem Fach und prüfe dann wie viele frei sind, da es keine Überschneidungen gibt
     raum = Raum.objects.get(Name=raum)
     # alle Räume mit der gleichen Fächerkombination
-    raumliste = Raum.objects.filter(nutzbar__set=raum.nutzbar__set)
+    raumliste = Raum.objects.filter(faecher__id__in=raum.faecher.all())
     slotliste = convert_to_slot(zeitslot)
-    zeitslot = Slot.objects.get(Tag_Tag=slotliste[0], Stunde_Index=slotliste[1])
+    zeitslot = Slot.objects.get(Tag__Tag=slotliste[0], Stunde__Index=slotliste[1])
 
     raumverfuegbar = 0
     for ort in raumliste:
@@ -175,9 +157,9 @@ def RaumVerfuegbar(raum, zeitslot):
     return raumverfuegbar
 
 def RaumFaecher(raum):
-    # gibt die Fächer eines Raumes zurück
+    # gibt die Fächer eines Raumes zurück als Liste
     raumobj = Raum.objects.get(Name=raum)
-    faecherliste = [fach.Name for fach in raumobj.nutzbar__set.all()]
+    faecherliste = [fach.Name for fach in raumobj.faecher.all()]
     return faecherliste
 
 def GeteilteFaecher(fach, klasse):
@@ -198,9 +180,49 @@ def Klassenfaecher(klasse):
     # gibt zurück, welche Fächer dir Klasse hat
     schulklasse = Schulklasse.objects,get(Name=klasse)
     faecherliste = []
-    for fach in schulklasse.lehrfaecher__set:
+    for fach in schulklasse.lehrfaecher_set.all():
         faecherliste.append(fach.Name)
     return faecherliste
+
+def TagAnfang(tag):
+    # gibt für index von tag den index der ersten Stunde des tages zurück
+    number = int(tag)
+
+    if number in range(1,10):
+        anfang = 1
+    if number in range(10,19):
+        anfang = 10
+    if number in range(19,28):
+        anfang = 19
+    if number in range(28,37):
+        anfang = 28
+    if number in range(37,41):
+        anfang = 37
+
+    return anfang
+
+def Klassenzeiten(klasse):
+    # gibt alle Zeitslots zurück, an denen die klasse Unterricht hat
+    zeitenlist = []
+    Klasse = Schulklasse.objects.get(Name=klasse)
+    for tagobj in Tag.objects.order_by('Index'):
+        taganfang = TagAnfang(tagobj.Index)
+        zahl = StundenzahlproTag.filter(tag=tagobj, schulklasse=Klasse).Stundenzahl
+        for index in range(taganfang, taganfang+zahl):
+            zeitenlist.append(index)
+    return zeitenlist
+
+def KlassenTagEnde(klasse):
+    # gibt alle stundennummern zurück bei denen für diese Klasse ein Tag endet
+    tagendelist =[]
+    for tagobj in Tag.objects.order_by('Index'):
+        taganfang = TagAnfang(tagobj.Index)
+        Klasse = Schulklasse.objects.get(Name=klasse)
+        zahl = StundenzahlproTag.filter(tag=tagobj, schulklasse=Klasse).Stundenzahl
+        tagende = taganfang + zahl -1
+        tagendelist.append(tagende)
+    return tagendelist
+
 
 
 '''Deklaration von Mengen
@@ -216,7 +238,6 @@ Lehrermenge = []
 for lehrer in Lehrer.objects.order_by('Kurzname'):
     Lehrermenge.append(lehrer.Kurzname)
 model.Lehrer = Set(initialize=Lehrermenge)
-#model.Lehrer = Set(dimen=zahlLehrer, initialize=Lehrermenge)
 
 # Klassen
 # get Klassenzahl aus Django
@@ -226,7 +247,6 @@ Klassenmenge = []
 for klasse in Schulklasse.objects.order_by('Name'):
     Klassenmenge.append(klasse.Name)
 model.Klassen = Set(initialize=Klassenmenge)
-#model.Klassen = Set(dimen=zahlKlassen, initialize=Klassenmenge)
 
 # Räume
 # get raumzahl aus Django
@@ -236,7 +256,6 @@ Raummenge =[]
 for raum in Raum.objects.order_by('Name'):
     Raummenge.append(raum.Name)
 model.Raeume = Set(initialize=Raummenge)
-#model.Raeume = Set(dimen=zahlraum, initialize=Raummenge)
 
 # Zeitslots
 # get zahlslots aus Django
@@ -256,22 +275,35 @@ for vorgabe in VorgabeEinheit.objects.order_by('Schulklasse'):
     stundenindex = vorgabe.Zeitslot.Stunde.Index
     tagindex = vorgabe.Zeitslot.Tag.Index
     zeitnummer = slot_to_number(tagindex, stundenindex)
-    Vorgabenmenge.append(frozenset([vorgabe.Schulklasse.Name, vorgabe.Fach.Name, zeitnummer, vorgabe.Lehrperson]))
-model.Vorgaben = Set(initialize=Vorgabenmenge)
+    if vorgabe.Lehrperson == None:
+        Vorgabenmenge.append((vorgabe.Schulklasse.Name, vorgabe.Fach.Name, 0 , zeitnummer,))
+    else:
+        Vorgabenmenge.append((vorgabe.Schulklasse.Name, vorgabe.Fach.Name, vorgabe.Lehrperson.Kurzname, zeitnummer))
+model.Vorgaben = Set(dimen=4,initialize=Vorgabenmenge)
 
 
 '''Deklaration von Parametern
 '''
 
 # Deklariere optimierungsparameter aus den modellen, der Parameter solver wird erst im main-skript abgefragt und verwendet
-model.lehrerinKlasseGewicht = Param(initialize=Parameters.lehrerinKlasse)
-model.tandeminKlasseGewicht = Param(initialize=Parameters.tandeminKlasse)
-model.partnerinKlasseGewicht = Param(initialize=Parameters.partnerinKlasse)
-model.lehrerwechselGewicht = Param(initialize=Parameters.lehrerwechsel)
-model.sportunterrichtGewicht = Param(initialize=Parameters.sportunterricht)
-model.lehrerminimumGewicht = Param(initialize=Parameters.lehrerminimum)
+parameterset = Parameters.objects.order_by('lehrerinKlasse').first()
+model.lehrerinKlasseGewicht = Param(initialize=parameterset.lehrerinKlasse)
+model.tandeminKlasseGewicht = Param(initialize=parameterset.tandeminKlasse)
+model.partnerinKlasseGewicht = Param(initialize=parameterset.partnerinKlasse)
+model.lehrerwechselGewicht = Param(initialize=parameterset.lehrerwechsel)
+model.sportunterrichtGewicht = Param(initialize=parameterset.sportunterricht)
+model.lehrerminimumGewicht = Param(initialize=parameterset.lehrerminimum)
+
+# schreibe alle lehrer nicht da Paare in eine Menge:
+LehrerBelegtMenge = LehrerBelegt.objects.order_by('lehrer')
+LehrerBelegt = []
+for belegung in LehrerBelegtMenge:
+    LehrerBelegt.append((belegung.lehrer.Kurzname, slot_to_number(belegung.slot.Tag.Index, belegung.slot.Stunde.Index)))
+
+model.LehrerNichtDa = Set(initialize=LehrerBelegt)
 
 # die zahl der parallelen Fächer in der größten Gruppe
+# aktuell nicht benutzt
 faecher = Schulfach.objects.all()
 lengths = []
 for fach in faecher:
@@ -288,7 +320,45 @@ model.maxUebergreifungRange = max(lengths)
 '''
 # deklariere die variable, boolean setzt es als 0/1 variable
 # die 4 Mengen sind die Indexmengen in dieser Reihenfolge
+# x ist die Hauptvariable, die später auch ausgewertet wird
 model.x = Var(model.Klassen, model.Lehrer, model.Faecher, model.Zeitslots, domain=Boolean)
+
+# Hilfsvariable für Lehrerzahl
+model.y = Var(model.Klassen, model.Lehrer, domain=Boolean)
+# Hilfsvariable für wechselzähler
+model.w = Var(model.Klassen, model.Lehrer, model.Zeitslots, domain=Boolean)
+# Hilfsvariable für sportunterricht
+model.p = Var(model.Klassen, model.Zeitslots, domain=Boolean)
+# Hilfsvariable für parallele und geteilte Fächer
+model.pds = Var(model.Klassen, model.Zeitslots, model.Faecher, domain=Boolean)
+
+# kreiere Variablenmenge von Variablen, die überhaupt den Wert 1 annehmen könnten
+Variablenmenge = []
+for k in model.Klassen, l in model.Lehrer, z in model.Zeitslots with z in Klassenzeiten(k):
+    for f in Unterricht(l):
+        if not f in Klassenfaecher(k):
+            continue
+        if Fachdauer(f,k) > 1:
+            for t in range(z+1, min(zahlslots, z+Fachdauer(f,k)-1)):
+                if not t in Klassenzeiten(k):
+                    continue
+                if t-1 in KlassenTagEnde(k):
+                    continue 2
+        if z+Fachdauer(f,k)-1 > zahlslots:
+            continue
+        if (l,z) in model.LehrerNichtDa:
+            continue
+        for r in model.Raeume with f in RaumFaecher(r):
+            if RaumVerfuegbar(r,z) <= 0:
+                continue 2
+        if Fachdauer(f,k) >1:
+            for tag in range(1,6), i in range(1,4):
+                if z== Taganfang(tag)+ 2*i-1:
+                    continue 2
+        Variablenmenge.append((k,l,f,z))
+
+# initialize Variablenmenge
+model.Variablenmenge = Set(initialize=Variablenmenge)
 
 '''Objective Function
     Sie besteht aus allen softconstraints mit den Gewichten (Parametern)
@@ -297,27 +367,31 @@ model.x = Var(model.Klassen, model.Lehrer, model.Faecher, model.Zeitslots, domai
 def ObjRule(model):
     # Gewicht * Summe über alle klassen, deren Klassleitungen, deren Unterrichtsfächer und alle Zeitslot mit dem wert der Variable und der Fachdauer
     # Belohne jedes Ereignis, in dem der Klassleiter in seiner Klasse ist
-    lehrerKlasse = model.lehrerinKlasseGewicht * sum(model.x[k,l,f,z] * Fachdauer(f,k) for k in model.Klassen for f in Unterricht(Klassleitung(k)[0]) for z in model.Zeitslots for l in Klassleitung(k))
-    # Gewicht * Summer über alle Klassen, deren HauptTandem, deren Fächer und allen Zeitslots mit dem Wert der Variable und der Fachdauer
-    # Belohne jedes Ereignis, in dem der HauptTandemin der Klasse ist
-    tandemKlasse = model.tandeminKlasseGewicht * sum(model.x[k,l,f,z] * Fachdauer(f,k) for k in model.Klassen and f in Unterricht(Haupttandem(k)) and z in model.Zeitslots and l==Haupttandem(k))
-
-    # Belohne jedes Ereignis, bei dem ein Partnerlehrer in der Klasse ist
+    lehrerKlasse = model.lehrerinKlasseGewicht * sum(model.x[k,l,f,z] * Fachdauer(f,k) for k in model.Klassen for f in Unterricht(Klassleitung(k)[0]) for z in model.Zeitslots for l in Klassleitung(k) and (k,l,f,z) in model.Variablenmenge)
+    print("Lehrer in Klasse berechnet")
+    #Gewicht * Summer über alle Klassen, deren HauptTandem, deren Fächer und allen Zeitslots mit dem Wert der Variable und der Fachdauer
+    #Belohne jedes Ereignis, in dem der HauptTandemin der Klasse ist
+    tandemKlasse = model.tandeminKlasseGewicht * sum(model.x[k,l,f,z] * Fachdauer(f,k) for k in model.Klassen for f in Unterricht(Haupttandem(k)[0]) for z in model.Zeitslots for l in Haupttandem(k) and (k,l,f,z) in model.Variablenmenge)
+    print("Tandem in Klasse berechnet")
+    #Belohne jedes Ereignis, bei dem ein Partnerlehrer in der Klasse ist
     partnerKlasse = 0
-    for k in model.Klassen and pl in Partnerlehrer(k):
-        partnerKlasse += model.partnerinKlasseGewicht * sum(model.x[k,l,f,z] * Fachdauer(f,k) for k in model.Klassen and f in Unterricht(pl) and z in model.Zeitslots and l==pl)
-
-    # Belohne, wenn es weniger Lehrerwechsel im Tagesablauf gibt
-    wechsel = model.lehrerwechselGewicht * sum(wechselLehrer(k,l,z) * 0.5 for k in model.Klassen and l in model.Lehrer and z in range(1, zahlslots))
-
-    # Belohne, wenn Mädchen und Jungen der Klasse gleichzeitig Sport haben
-    sport = model.sportunterrichtGewicht * sum(sportGleichzeitig(k,z) for k in model.Klassen and z in model.Zeitslots)
-
-    # Belohne, wenn wenige Lehrer insgesamt die Klasse unterrichten
-    lehrermin = model.lehrerminimumGewicht * sum(LehrerinKlasse(k,l) for k in model.Klassen and l in model.Lehrer)
-
-    # Setze alles zu einer Zielfunktion zusammen
-    objective = lehrerinKlasse + tandeminKlasse + partnerinKlasse - wechsel + sport - lehrermin
+    for k in model.Klassen:
+        for pl in Partnerlehrer(k):
+            partnerKlasse += model.partnerinKlasseGewicht * sum(model.x[k,pl,f,z] * Fachdauer(f,k) for k in model.Klassen for f in Unterricht(pl) for z in model.Zeitslots and (k,pl,f,z) in model.Variablenmenge)
+    print("Partner in Klasse berechnet")
+    #Belohne, wenn es weniger Lehrerwechsel im Tagesablauf gibt
+    wechsel = model.lehrerwechselGewicht * sum(model.w[k,l,z] * 0.5 for k in model.Klassen for l in model.Lehrer for z in model.Zeitslots)
+    print("Wechsel berechnet")
+    #Belohne, wenn Mädchen und Jungen der Klasse gleichzeitig Sport haben
+    sport = model.sportunterrichtGewicht * sum(model.p[k,z] for k in model.Klassen for z in model.Zeitslots)
+    print("Sport berechnet")
+    #Belohne, wenn wenige Lehrer insgesamt die Klasse unterrichten
+    lehrermin = model.lehrerminimumGewicht * sum(model.y[k,l] for k in model.Klassen for l in model.Lehrer)
+    print("Lehrermin berechnet")
+    #Setze alles zu einer Zielfunktion zusammen
+    objective = lehrerKlasse + tandemKlasse + partnerKlasse - wechsel + sport - lehrermin
+    #objective = lehrerKlasse
+    print("Objective eingelesen")
     return objective
 
 # Set objective
@@ -326,101 +400,153 @@ model.Obj = pyomo.environ.Objective(rule=ObjRule, sense=maximize)
 
 ''' Deklaration von Constraints
 '''
-# Vorgaben, sowohl mit als auch ohne Lehrer angegeben (If Clause)
-def VorgabeRule(model,vorgabe):
-    for klasse, fach, zeitslot, lehrer in vorgabe:
-        if lehrer != None:
-            return sum(model.x[klasse, lehrer, fach, z] for z in max(1, Range(zetislot+1-Fachdauer(fach,klasse), zeitslot+1)))>= 1
-        else:
-            sum(model.x[klasse, fach, l, z] for l in model.Lehrer and z in max(1, Range(zetislot+1-Fachdauer(fach,klasse), zeitslot+1))) >= 1
-vorgabencheck = Constraint(model.Vorgaben, rule=VorgabeRule)
-
-
 # Lehrer müsssen in ihrer Arbeitszeit bleiben
+'''Stimmt mit Model überein'''
 def ArbeitszeitRule(model,l):
-    maxArbeit = sum(model.x[k,l,f,z] * Fachdauer(f,k)/getUebergreifend(f,k) for k in model.Klassen and f in model.Faecher and z in model.Zeitslots)
+    maxArbeit = sum(model.x[k,l,f,z] * Fachdauer(f,k)/getUebergreifend(f,k) for k in model.Klassen for f in model.Faecher for z in model.Zeitslots and (k,l,f,z) in model.Variablenmenge)
     return maxArbeit <= Arbeitszeit(l)
 # erstelle indexierte Constraint
-maxArbeitszeit = Constraint(model.Lehrer, rule=ArbeitszeitRule)
+model.maxArbeitszeit = Constraint(model.Lehrer, rule=ArbeitszeitRule)
+print("ArbeitszeitRule gelesen")
+
+# Vorgaben, sowohl mit als auch ohne Lehrer angegeben (If Clause)
+'''Stimmt mit Model überein'''
+def VorgabeRule(model, klasse, fach, lehrer, zeitslot):
+    if lehrer != 0:
+        return sum(model.x[klasse, lehrer, fach, z] for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1) and (klasse,lehrer,fach,z) in model.Variablenmenge) >= 1
+    else:
+        return sum(model.x[klasse, l, fach, z] for l in model.Lehrer for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1) and (klasse,l,fach,z) in model.Variablenmenge) >= 1
+model.vorgabencheck = Constraint(model.Vorgaben, rule=VorgabeRule)
+print("VorgabenRule gelesen")
 
 # Räume müssen verfügbar sein
+'''Stimmt mit Model überein'''
 def RaumRule(model,r,z):
     if RaumVerfuegbar(r,z) > 0:
-        RaumDa= sum(model.x[k,l,f,z]/getUebergreifend(f,k) for f in RaumFaecher(r) and k in model.Klassen and t in max(1, Range(z+1-Fachdauer(f,k), z+1)))
+        RaumDa= sum(model.x[k,l,f,z]/getUebergreifend(f,k) for f in RaumFaecher(r) for l in model.Lehrer for k in model.Klassen for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and (k,l,f,z) in model.Variablenmenge)
         return RaumDa <= RaumVerfuegbar(r,z)
+    return Constraint.Feasible
 # erstelle Constraints
-Raumverfuegbarkeit = Constraint(model.Raeume, model.Zeitslots, rule=RaumRule)
-
-# Parallele Fächer müssen gleichzeitig stattfinden
-'''!!! Synatx Error: cant assign to function call bei zweitem k in model.x'''
-def GleichzeitigRule(model,f,k,z):
-    if len(GleichzeitigFach(f)) > 0 :
-        gleich = sum(model.x[k,l,f,z] for l in model.Lehrer) - sum(model.x[k,l,fach,z] for l in model.Lehrer and fach in GleichzeitigFach(f))
-        return gleich == 0
-# erstelle Constraint
-paralleleFaecher = Constraint(model.Faecher, model.Klassen, model.Zeitslots, rule=GleichzeitigRule)
+model.Raumverfuegbarkeit = Constraint(model.Raeume, model.Zeitslots, rule=RaumRule)
+print("RaumRule gelesen")
 
 # Es darf nur ein Unterricht pro stunde pro klasse stattfinden, außer für geteilte Fächer
+'''Stimmt mit Model überein'''
 def NureinUnterrichtRule(model,k,z):
-    maxUnterricht = sum(model.x[k,l,f,z]/GeteilteFaecher(f,k) for f in model.Faecher and l in model.Lehrer and t in max(1, Range(z+1-Fachdauer(f,k), z+1)))
+    maxUnterricht = sum(model.x[k,l,f,z]/GeteilteFaecher(f,k) for f in model.Faecher and f != "Tandem" for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and (k,l,f,z) in model.Variablenmenge)
     return maxUnterricht <= 1
-NureinUnterricht = Constraint(model.Klassen, model.Zeitslots, rule=NureinUnterrichtRule)
+model.NureinUnterricht = Constraint(model.Klassen, model.Zeitslots, rule=NureinUnterrichtRule)
+print("NureinUnterrichtRule Klassen gelesen")
 
 # parallele und geteilte fächer müssen zusammen stattfinden
-# '''??? Ist das eine Restriktion oder nicht?'''
-# model.ggf = Var(model.Faecher, model.Klassen, model.Zeitslots, domain=boolean)
-# def parallelundgeteiltRule(model,f,k,z):
-#     if f in Klassenfaecher(f):
-#         model.ggf[f,k,z] = sum(model.x[k,l,f,z]/GeteilteFaecher(f) for l in model.Lehrer and f in Unterricht(l))
+'''Stimmt mit Model überein, aber die Funktion ParallelGeteilt ist noch unklar'''
+def parallelundgeteiltRule(model,f,k,z):
+    # ParellelGeteilt(f,k) muss also alle fächer zurückgeben, die parallel zu dem Fach sind und geteilt sind?
+    if f in ParallelGeteilt(f,k):
+        wert = sum(model.x[k,l,f,z]/GeteilteFaecher(f,k) for l in model.Lehrer and (k,l,f,z) in model.Variablenmenge)
+        return wert == model.pds[k,z,f]
+    else:
+        return Constraint.Feasible
+model.Parallelundgeteilt = Constraint(model.Faecher, model.Klassen, model.Zeitslots, rule=ParallelundgeteiltRule)
+print("ParallelundgeteiltRule eingelesen")
 
 # Ein lehrer darf nur einen Unterricht geben, außer bei übergreifenden fächern
+'''stimmt mit Model überein'''
 def lehrernureinUnterrichtRule(model,l,z):
-    lv = 0
-    for f in Unterricht(l):
-        if Uebergreifend(f,1).exists():
-            lv += sum(1/len(Uebergreifend(f,gruppe)) * sum(model.x[k,l,f,z] for k in Uebergreifend(f,gruppe) for gruppe in range(1,maxUebergreifung +1) and Uebergreifend(f,gruppe).exists()))
-        else:
-            lv += sum(model.x[k,l,f,t] for k in model.Klassen and t in max(1, Range(z+1-Fachdauer(f), z+1)))
-    return lv <= 1
-LehrerUnterricht = Constraint(model.Lehrer, model.Zeitslots, rule=lehrernureinUnterrichtRule)
+    ohneCCS = sum(model.x[k,l,f,t] for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and getUebergreifend(f,k) == 1 and (k,l,f,t) in model.Variablenmenge)
+    mitCCS = sum(sum(model.x[c,l,f,t] for c in Uebergreifend(f,k))/getUebergreifend(f,k) for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and getUebergreifend(f,k) > 1 and (c,l,f,z) in model.Variablenmenge)
+    return ohneCCS + mitCCS <= 1
+model.LehrerUnterricht = Constraint(model.Lehrer, model.Zeitslots, rule=lehrernureinUnterrichtRule)
+print("lehrernureinUnterrichtRule gelesen")
 
+# Übergreifende Fächer müssen gleichzeitig stattfinden
+'''Nicht komplett gleich, weil die Summe mehrer Restriktionen ersetzt wie bei parallenzusammen'''
+def UebergreifendRule(model,f,k,z):
+    if getUebergreifend(f,k) > 1:
+        uebergreifendsumme = 0
+        for klasse in Uebergreifend(f,k) with klasse != k:
+            uebergreifendsumme += sum(model.x[k,l,f,z] for l in model.Lehrer and (k,l,f,z) in model.Variablenmenge) - sum(model.x[klasse,l,f,z] for l in model.Lehrer and (klasse,l,f,z) in model.Variablenmenge)
+        return uebergreifendsumme == 0
+    else:
+        return Constraint.Feasible
+model.Uebergreifend = Constraint(model.Faecher, model.Klassen, model.Zeitslots, rule=UebergreifendRule)
 
-# Übergreifende Fächer brauchen auch den gleichen Lehre
-'''??? glaube nicht richtig'''
-def UebergreifendgleicherLehrerRule(model,f,gruppe,l,z):
-    for f in model.Faecher, gruppe in range(1, maxUebergreifung +1), l in model.Lehrer, z in model.Zeitslots and Uebergreifend(f,gruppe).exists():
-        klassetemp = Uebergreifend(f,gruppe)
-        for i in  range(1,len(klassetemp)):
-            uebergreifendLehrer = model.x[klassetemp[i],l,f,z] - model.x[klassetemp[i+1],l,f,z]
-            return uebergreifendLehrer ==  0
-UebergreifendgleicherLehrer = Constraint(model.Faecher, model.maxUebergreifungRange, model.Lehrer, model.Zeitslots, rule=UebergreifendgleicherLehrerRule)
+# Übergreifende Fächer brauchen auch den gleichen Lehrer
+'''Auch hier eine extra Summe, eventuell mit Index arbeiten '''
+def UebergreifendgleicherLehrerRule(model,f,l,z,k):
+    if getUebergreifend(f,k) > 1:
+        lehrersumme = 0
+        for klasse in Uebergreifend(f,k) and klasse != k and (klasse,l,f,z) in model.Variablenmenge and (k,l,f,z) in model.Variablenmenge:
+            lehrersumme += model.x[k,l,f,z] - model.x[klasse,l,f,z]
+        return lehrersumme == 0
+    else:
+        return Constraint.Feasible
+model.UebergreifendgleicherLehrer = Constraint(model.Faecher, model.Lehrer, model.Zeitslots, model.Klassen, rule=UebergreifendgleicherLehrerRule)
+print("UebergreifendgleicherLehrertRule gelesen")
 
-
-# Übergreifende Fächer müsssen zusammen stattfinden
-'''??? glaube nicht richtig'''
-def UebergreifendzusammenRule(model):
-    for f in model.Faecher, gruppe in range(1, maxUebergreifung +1), z in model.Zeitslots and Uebergreifend(f,gruppe).exists():
-        klassetemp = Uebergreifend(f, gruppe)
-        for i in range(1, len(klassetemp)):
-            uebergreifendzusammen = sum( model.x[klassetemp[i],l,f,z] for l in model.Lehrer) - sum(model.x[klassetemp[i+1],l,f,z] for l in model.Lehrer)
-            return uebergreifendzusammen == 0
-Uebergreifendzusammen = Constraint(model.Faecher, model.Zeitslots, model.maxUebergreifungRange, model.Zeitslots, rule=UebergreifendzusammenRule)
-
+# Parallele Fächer müsssen gleichzeitig stattfinden
+'''Nicht komplett wie im Modell, da hier mit zusätzlicher summe, also nochmal prüfen'''
+def ParallelzusammenRule(model,f,k,z):
+    if GleichzeitigFach(f) != []:
+        parallelsumme = 0
+        for parfach in GleichzeitigFach(f):
+            parallelaumme += sum(model.x[k,l,f,z] for l in model.Lehrer and (k,l,f,z) in model.Variablenmenge) - sum(model.x[k,l,parfach,z] for l in model.Lehrer and (k,l,parfach,z) in model.Variablenmenge)
+        return parallelsumme == 0
+    else:
+        return Constraint.Feasible
+model.Parallelzusammen = Constraint(model.Faecher, model.Klassen, model.Zeitslots, rule=ParallelzusammenRule)
+print("ParallelzusammenRule gelesen")
 
 # Jede Klasse muss ihren Lehrplan erfüllen
+'''Stimmt mit Model überein'''
 def LehrplanRule(model,f,k):
-    mindestUnterricht = sum(model.x[k,l,f,z] * Fachdauer(f,k)/GeteilteFaecher(f,k) for l in model.Lehrer and z in model.Zeitslots)
+    mindestUnterricht = sum(model.x[k,l,f,z] * Fachdauer(f,k)/GeteilteFaecher(f,k) for l in model.Lehrer for z in model.Zeitslots and (k,l,f,z) in model.Variablenmenge)
     return mindestUnterricht >= Lehrplanstunden(f,k)
-Lehrplanerfuellt = Constraint(model.Faecher, model.Klassen, rule=LehrplanRule)
+model.Lehrplanerfuellt = Constraint(model.Faecher, model.Klassen, rule=LehrplanRule)
+print("LehrplanRule gelesen")
 
 # Tandemlehrer muss anwesend sein wenn gefordert
+'''Stimmt mit Model überein'''
 def TandemRule(model,k,z):
-    Tandem1 = sum(model.x[k,l,"Tandem",z] for l  in model.Lehrer)
-    Tandem2 = sum(Tandemnummer(f,k) * model.x[k,l,f,t] for f in model.Faecher and l in model.Lehrer and t in  max(1, Range(z+1-Fachdauer(f), z+1)))
+    Tandem1 = sum(model.x[k,l,"Tandem",z] for l  in model.Lehrer and (k,l,"Tandem",z) in model.Variablenmenge)
+    Tandem2 = sum(Tandemnummer(f,k) * model.x[k,l,f,t] for f in model.Faecher for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and (k,l,f,t) in model.Variablenmenge)
     return Tandem1 == Tandem2
 # erstelle Constraint
-Tandembenoetigt = Constraint(model.Klassen, model.Zeitslots, rule=TandemRule)
+model.Tandembenoetigt = Constraint(model.Klassen, model.Zeitslots, rule=TandemRule)
+print("TandemRule gelesen")
 
 
-'''Output für csv Datei in main_skript.py
+'''Constraints für auxiliary variables
 '''
+
+# Restriktion für Variable y:
+'''Wie im Model'''
+''' ToDo: Funktion für intelligente Arbeitszeit schreiben'''
+def auxiliaryYRule(model,k,l):
+    return sum(model.x[k,l,f,z] * Fachdauer(f,k)/GeteilteFaecher(f,k) for f in Unterricht(l) for z in model.Zeitslots and (k,l,f,z) in model.Variablenmenge) <= model.y[k,l] * Arbeitszeit(l)
+
+model.auxilaryY = Constraint(model.Klassen, model.Lehrer, rule=auxiliaryYRule)
+print("auxiliaryYRule eingelesen")
+
+# Restriktion für Variable w
+'''Stimmt mit Model überein'''
+def auxiliaryWRule(model,k,l,z):
+    return sum(model.x[k,l,f,t] for f in Klassenfaecher(k) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and (k,l,f,t) in model.Variablenmenge) - sum(model.x[k,l,g,t+1] for g in Klassenfaecher(k) for t in range(max(1,z+1-Fachdauer(f,k)) and (k,l,g,t+1) in model.Variablenmenge)) <= model.w[k,l,z]
+
+model.auxilaryW = Constraint(model.Klassen, model.Lehrer, model.Zeitslots, rule=auxilaryW)
+print("auxiliaryWRule eingelesen")
+
+# Restriktion für Variable p
+'''Stimmt mit Model überein '''
+def auxiliaryPRule1(model,k,z):
+    return sum(model.x[k,l,"SportM",z] for l in model.Lehrer and (k,l,"SportM",z) in model.Variablenmenge) - sum(model.x[k,l,"SportW",z] for l in model.Lehrer and (k,l,"SportW",z) in model.Variablenmenge) <= model.p[k,z]
+
+model.auxiliaryP1 = Constraint(model.Klassen, model.Zeitslots, rule=auxiliaryPRule1)
+print("auxiliaryPRule1 eingelesen")
+
+'''Stimmt mit Model überein '''
+def auxiliaryPRule2(model,k,z):
+    return sum(model.x[k,l,"SportW",z] for l in model.Lehrer and (k,l,"SportW",z) in model.Variablenmenge) - sum(model.x[k,l,"SportM",z] for l in model.Lehrer and (k,l,"SportM",z) in model.Variablenmenge) <= model.p[k,z]
+
+model.auxiliaryP2 = Constraint(model.Klassen, model.Zeitslots, rule=auxiliaryPRule2)
+print("auxiliaryPRule2 eingelesen")

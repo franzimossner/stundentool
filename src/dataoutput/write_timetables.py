@@ -49,16 +49,16 @@ class writingTimetables(object):
         sp = OptimierungsErgebnis.objects.create(Zeit=timezone.now(),Index=OptimierungsErgebnis.objects.count() + 1)
         sp.save()
 
-        with open('optimierung/X_res.csv') as csvfile:
+        with open('./X_res.csv') as csvfile:
             resultfile = csv.reader(csvfile, delimiter=',')
             next(resultfile, None)  # skip the headers
 
             for row in resultfile:
-                fach = row[0]
-                lehrer = row[2]
+                fach = row[2]
+                lehrer = row[1]
                 slot = row[3]
                 tag, stundenindex = writingTimetables.convert_to_slot(slot)
-                klasse = row[1]
+                klasse = row[0]
 
                 Fach = Schulfach.objects.get(Name=fach)
                 Lehrperson = Lehrer.objects.get(Kurzname=lehrer)
@@ -71,6 +71,12 @@ class writingTimetables(object):
                 for i in range(1, fachdauer+1):
                     # für jede stunde der fachdauer kreiere eine LehrEinheit
                     tag_nr = Tag.objects.get(Tag=tag).Index
-                    Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
-                    le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
-                    le.save()
+                    if stundenindex -1+i <= 9 and tag_nr <= 5:
+                        if tag_nr == 5 and stundenindex -1+i <= 4:
+                            Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
+                            le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
+                            le.save()
+                        elif tag_nr != 5:
+                            Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
+                            le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
+                            le.save()

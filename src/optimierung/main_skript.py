@@ -2,6 +2,7 @@ from dataoutput.write_timetables import writingTimetables
 from .schulmodell import model
 import pyomo.environ as pyo
 from pyomo.environ import *
+import os
 
 
 '''
@@ -16,23 +17,35 @@ def doeverything():
     Supported Solvers: CBC, Gurobi, Cplex
     all solvers with pyomo help --solvers
     '''
-    #write in command line -> noch rausfinden wie
-    # instance = model.create_instance()
-    # opt = pyo.SolverFactory('solvername')
-    # opt.solve(instance)
-    # pyomo solve Schulmodell.py --solver=xpress
 
-    opt = pyo.SolverFactory('xpress')
-    instance = model.create()
-    results = opt.solve(instance, tree=True)
+    # check if file exists, then delete it if so
+    if os.path.exists('./X_res.csv'):
+        os.remove('./X_res.csv')
 
-    with open('X_res.csv') as file:
-        file.write('Fach, Klasse, Lehrer, Slot, Var\n')
-        for (n1,n2,n3,n4) in index_set:
-            if  model.x[n2, n3, n1, n4].value == 1:
-                f.write('$s, %s, %s, %s, %s\n') % (n1, n2, n3, n4, model.x[n2, n3, n1, n4].value)
+    # import solver and solve model, wirte documentation and load results
+    opt = pyo.SolverFactory('glpk')
+    instance = model.create_instance()
+    results = opt.solve(instance, tee=True)
+    results.write(num=1)
+    # brauche ich das für irgendwas?
+    instance.solutions.load_from(results)
 
-    # geht das auch ohne .dat file sondern mit direktimport?
+    print('optimierung done')
+
+    with open('./X_res.csv','w') as file:
+        file.write('Klasse, Lehrer, Fach, Slot, Var\n')
+        for v in instance.component_data_objects(Var, active=True):
+            #print ("Variable",v)
+            varobject = getattr(instance, str(v))
+            for index in varobject:
+                if varobject[index].value == 1:
+                    #indexlist = []
+                    for element in index:
+                        file.write('{0},'.format(element))
+                    file.write('{0}\n'.format(int(varobject[index].value)))
+
+
+
 
     '''Benutze kreiertes Erbegnis, um Lehreinheiten zu erstellen
     '''
