@@ -1,9 +1,20 @@
 from dataoutput.write_timetables import writingTimetables
-from .schulmodell import model
-from .schulmodell import Datenbankzugriff
+from .schulmodell import createModel
+#from .schulmodell import Datenbankzugriff
 import pyomo.environ as pyo
 from pyomo.environ import *
 import os
+
+# Aus schulmodell.py
+from pyomo.environ import *
+import cProfile
+import time
+import datetime
+
+#import von Django Model Klassen
+from datainput.models import Raum, Lehrer, Schulklasse, Schulfach, Lehrfaecher, Unterrricht, Tag, Stunde, Slot, Partner, LehrerBelegt, RaumBelegt, VorgabeEinheit, Uebergreifung, LehrerBelegt, StundenzahlproTag
+from optimierung.models import Parameters
+
 
 
 '''
@@ -24,6 +35,7 @@ def doeverything():
         os.remove('./X_res.csv')
 
     # import solver and solve model, wirte documentation and load results
+    model = createModel()
     opt = pyo.SolverFactory('glpk')
     instance = model.create_instance()
     results = opt.solve(instance, tee=True)

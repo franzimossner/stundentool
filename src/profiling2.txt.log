@@ -1,0 +1,4503 @@
+event: ns : Nanoseconds
+events: ns
+summary: 206550909343
+fl=<frozen importlib._bootstrap>
+fn=_handle_fromlist
+997 659103271
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=683055 0
+997 1482735263
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=103221 0
+997 28742358
+
+fl=<string>
+fn=__new__
+12 203800245
+cfl=~
+cfn=<built-in method __new__ of type object at 0x00000000530CC3F0>
+calls=583779 0
+12 531443592
+
+fl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+fn=_check_methods
+72 34359
+
+fl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+fn=__subclasshook__:271
+271 8032
+cfl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+cfn=_check_methods
+calls=5 72
+271 22311
+
+fl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+fn=__subclasshook__:349
+349 7585
+cfl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+cfn=_check_methods
+calls=5 72
+349 12048
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=__init__
+16 12494
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=__enter__
+20 23203
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=10 0
+20 5800
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=__exit__
+26 27219
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=_commit_removals
+calls=10 52
+26 9370
+cfl=~
+cfn=<method 'remove' of 'set' objects>
+calls=10 0
+26 4908
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=_commit_removals
+52 9370
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=__iter__
+58 50423
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__init__
+calls=10 16
+58 12494
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__enter__
+calls=10 20
+58 29004
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__exit__
+calls=10 26
+58 41499
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=__contains__
+70 1286005034
+
+fl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+fn=add
+81 18741
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=10 0
+81 4016
+
+fl=C:\Users\franzi\Anaconda3\lib\abc.py
+fn=__instancecheck__
+178 1764755046
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__contains__
+calls=951852 70
+178 1285987631
+cfl=C:\Users\franzi\Anaconda3\lib\abc.py
+cfn=__subclasscheck__
+calls=5 194
+178 359658
+
+fl=C:\Users\franzi\Anaconda3\lib\abc.py
+fn=__subclasscheck__
+194 109325
+cfl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+cfn=__subclasshook__:271
+calls=5 271
+194 30343
+cfl=C:\Users\franzi\Anaconda3\lib\_collections_abc.py
+cfn=__subclasshook__:349
+calls=5 349
+194 19633
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__iter__
+calls=10 58
+194 133421
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=__contains__
+calls=20 70
+194 17402
+cfl=C:\Users\franzi\Anaconda3\lib\_weakrefset.py
+cfn=add
+calls=10 81
+194 22757
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=10 0
+194 5800
+cfl=~
+cfn=<built-in method builtins.issubclass>
+calls=5 0
+194 161087
+cfl=~
+cfn=<method '__subclasses__' of 'type' objects>
+calls=10 0
+194 7585
+
+fl=C:\Users\franzi\Anaconda3\lib\collections\__init__.py
+fn=__init__
+517 880663342
+cfl=C:\Users\franzi\Anaconda3\lib\collections\__init__.py
+cfn=update
+calls=118372 586
+517 284985852
+cfl=~
+cfn=<built-in method builtins.len>
+calls=118372 0
+517 27155130
+
+fl=C:\Users\franzi\Anaconda3\lib\collections\__init__.py
+fn=update
+586 1071887133
+cfl=~
+cfn=<built-in method _collections._count_elements>
+calls=169978 0
+586 312074941
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169978 0
+586 1317637604
+cfl=~
+cfn=<built-in method builtins.len>
+calls=288350 0
+586 70115166
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=copy
+66 1424711057
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=_reconstruct
+calls=169980 268
+66 2488160488
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=339960 0
+66 441377626
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169980 0
+66 79937510
+cfl=~
+cfn=<built-in method builtins.issubclass>
+calls=169980 0
+66 77655506
+cfl=~
+cfn=<method '__reduce_ex__' of 'object' objects>
+calls=169980 0
+66 1538995088
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=339960 0
+66 144987556
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=deepcopy
+132 3467182
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=_deepcopy_atomic
+calls=328 190
+132 102185
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=_deepcopy_list
+calls=164 210
+132 4462267
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=_deepcopy_tuple
+calls=164 219
+132 3071378
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=_keep_alive
+calls=328 252
+132 1007580
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__deepcopy__
+calls=164 48
+132 7481438
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=164 0
+132 93707
+cfl=~
+cfn=<built-in method builtins.id>
+calls=820 0
+132 260596
+cfl=~
+cfn=<built-in method builtins.issubclass>
+calls=164 0
+132 68272
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=1640 0
+132 629625
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=_deepcopy_atomic
+190 102185
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=_deepcopy_list
+210 554213
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=deepcopy
+calls=164 132
+210 3797836
+cfl=~
+cfn=<built-in method builtins.id>
+calls=164 0
+210 49531
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=164 0
+210 60686
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=_deepcopy_tuple
+219 1326185
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=<listcomp>
+calls=164 220
+219 1705924
+cfl=~
+cfn=<built-in method builtins.id>
+calls=164 0
+219 39267
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=<listcomp>
+220 431947
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=deepcopy
+calls=328 132
+220 1273977
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=_keep_alive
+252 816594
+cfl=~
+cfn=<built-in method builtins.id>
+calls=492 0
+252 117357
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=164 0
+252 73627
+
+fl=C:\Users\franzi\Anaconda3\lib\copy.py
+fn=_reconstruct
+268 722801697
+cfl=C:\Users\franzi\Anaconda3\lib\copyreg.py
+cfn=__newobj__
+calls=169980 87
+268 970671745
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169980 0
+268 338737437
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169980 0
+268 65020149
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=169980 0
+268 390929459
+
+fl=C:\Users\franzi\Anaconda3\lib\copyreg.py
+fn=__newobj__
+87 380917915
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__new__
+calls=164 20
+87 709054
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+cfn=__new__
+calls=169816 14
+87 589044775
+
+fl=C:\Users\franzi\Anaconda3\lib\inspect.py
+fn=getmro
+479 1338
+
+fl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+fn=debug
+1284 203441925
+cfl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+cfn=isEnabledFor
+calls=118209 1542
+1284 471465805
+
+fl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+fn=getEffectiveLevel
+1528 218150898
+
+fl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+fn=isEnabledFor
+1542 253314907
+cfl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+cfn=getEffectiveLevel
+calls=118209 1528
+1542 218150898
+
+fl=C:\Users\franzi\Anaconda3\lib\re.py
+fn=compile
+231 155499321
+cfl=C:\Users\franzi\Anaconda3\lib\re.py
+cfn=_compile
+calls=118209 286
+231 287092488
+
+fl=C:\Users\franzi\Anaconda3\lib\re.py
+fn=_compile
+286 287092488
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=Unterricht
+85 6501970
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__get__:485
+calls=270 485
+85 29541997
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=manager_method
+calls=270 81
+85 372658703
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=all
+calls=270 148
+85 192938193
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__get__
+calls=270 176
+85 1569825
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__iter__:257
+calls=270 257
+85 357319212
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=4293 0
+85 826411
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=Fachdauer
+94 760058509
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=manager_method
+calls=117342 81
+94 168108606688
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__get__
+calls=117342 176
+94 532316412
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=exists
+calls=32913 716
+94 37149927733
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=Klassenfaecher
+217 887545
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__get__:141
+calls=164 141
+217 284564168
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__get__:485
+calls=9 485
+217 435963
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=manager_method
+calls=9 81
+217 14300675
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=all
+calls=9 148
+217 5939724
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__get__
+calls=9 176
+217 43730
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__iter__:257
+calls=9 257
+217 23014592
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=164 0
+217 66041
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=TagAnfang
+225 89470252
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=Klassenzeiten
+243 833551
+cfl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+cfn=TagAnfang
+calls=45 225
+243 358320
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=manager_method
+calls=54 81
+243 130196031
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__get__
+calls=54 176
+243 317267
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__iter__:257
+calls=9 257
+243 1251666
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=312 0
+243 66487
+
+fl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+fn=KlassenTagEnde
+261 713962
+cfl=C:\Users\franzi\stundentool\src\optimierung\schulmodell.py
+cfn=TagAnfang
+calls=45 225
+261 403835
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=manager_method
+calls=90 81
+261 184349666
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__get__
+calls=90 176
+261 458721
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__iter__:257
+calls=9 257
+261 30343
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=45 0
+261 18295
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=queries_logged
+147 144175870
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=ensure_connection
+212 70788522
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=_prepare_cursor
+220 345897145
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=queries_logged
+calls=118209 147
+220 144175870
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=validate_thread_sharing
+calls=118209 518
+220 295780078
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=make_debug_cursor
+calls=118209 558
+220 389604165
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=_cursor
+231 750172355
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=ensure_connection
+calls=118209 212
+231 70788522
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=_prepare_cursor
+calls=118209 220
+231 1175457259
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+cfn=create_cursor
+calls=118209 182
+231 669771661
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__enter__
+calls=118209 65
+231 40549965
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__exit__
+calls=118209 68
+231 53631103
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=cursor
+253 147046893
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=_cursor
+calls=118209 231
+253 2760370867
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=validate_no_broken_transaction
+434 67449854
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=validate_thread_sharing
+518 229267300
+cfl=~
+cfn=<built-in method _thread.get_ident>
+calls=118209 0
+518 66512777
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+fn=make_debug_cursor
+558 261535742
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=__init__
+calls=118209 17
+558 128068422
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+fn=field_cast_sql
+178 54526680
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+fn=lookup_cast
+235 54355329
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+fn=compiler
+307 157374365
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=118209 0
+307 70496690
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+fn=get_db_converters
+541 114180506
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+fn=create_cursor
+182 166341739
+cfl=~
+cfn=<method 'cursor' of 'sqlite3.Connection' objects>
+calls=118209 0
+182 503429922
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+fn=execute
+301 22483542487
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+cfn=convert_query
+calls=118209 311
+301 2536246777
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+fn=convert_query
+311 236419422
+cfl=~
+cfn=<method 'replace' of 'str' objects>
+calls=118209 0
+311 201272371
+cfl=~
+cfn=<method 'sub' of '_sre.SRE_Pattern' objects>
+calls=118209 0
+311 2098554983
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+fn=check_expression_support
+33 4908
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=1 0
+33 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+fn=_quote_params_for_last_executed_query
+102 944086892
+cfl=~
+cfn=<built-in method builtins.len>
+calls=236416 0
+102 58360214
+cfl=~
+cfn=<method 'close' of 'sqlite3.Cursor' objects>
+calls=118208 0
+102 109705744
+cfl=~
+cfn=<method 'cursor' of 'sqlite3.Connection' objects>
+calls=118208 0
+102 335581275
+cfl=~
+cfn=<method 'execute' of 'sqlite3.Cursor' objects>
+calls=118208 0
+102 1281923844
+cfl=~
+cfn=<method 'fetchone' of 'sqlite3.Cursor' objects>
+calls=118208 0
+102 246546093
+cfl=~
+cfn=<method 'join' of 'str' objects>
+calls=118208 0
+102 79684053
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+fn=last_executed_query
+129 824992983
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=_quote_params_for_last_executed_query
+calls=118208 102
+129 3055888118
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=118208 0
+129 124488345
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+fn=quote_name
+147 1118197440
+cfl=~
+cfn=<method 'startswith' of 'str' objects>
+calls=600312 0
+147 459237853
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+fn=get_db_converters
+202 1396515772
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+cfn=get_db_converters
+calls=382284 541
+202 114180506
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:916
+calls=221999 916
+202 70981292
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:1076
+calls=85476 1076
+202 26932909
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:1828
+calls=74809 1828
+202 21536688
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=__init__
+17 128068422
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=__getattr__
+23 975301348
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__call__
+calls=203505 91
+23 148338720
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=407010 0
+23 240281961
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=execute:67
+67 277658362
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=_execute_with_wrappers
+calls=118209 73
+67 26548856700
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=_execute_with_wrappers
+73 518814928
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=_execute
+calls=118209 79
+73 26030041771
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=_execute
+79 828894343
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=validate_no_broken_transaction
+calls=118209 434
+79 67449854
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\base.py
+cfn=execute
+calls=118209 301
+79 25019789264
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__enter__
+calls=118209 65
+79 35087257
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__exit__
+calls=118209 68
+79 78821051
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+fn=execute:97
+97 2065456112
+cfl=C:\Users\franzi\Anaconda3\lib\logging\__init__.py
+cfn=debug
+calls=118209 1284
+97 674907731
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=last_executed_query
+calls=118209 129
+97 4005369446
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=execute:67
+calls=118209 67
+97 26826515062
+cfl=~
+cfn=<built-in method time.time>
+calls=236418 0
+97 205572658
+cfl=~
+cfn=<method 'append' of 'collections.deque' objects>
+calls=118209 0
+97 136579305
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=_base_manager
+365 133421
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=_default_manager
+369 4462
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=1 28
+369 7585
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=__get__
+375 123604
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=__init__
+395 1574397828
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\dispatch\dispatcher.py
+cfn=send
+calls=178956 155
+395 158697874
+cfl=~
+cfn=<built-in method builtins.iter>
+calls=89478 0
+395 45155025
+cfl=~
+cfn=<built-in method builtins.len>
+calls=178956 0
+395 34145718
+cfl=~
+cfn=<built-in method builtins.setattr>
+calls=395605 0
+395 243073110
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=from_db
+499 531561842
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=__init__
+calls=89478 395
+499 2055469557
+cfl=~
+cfn=<built-in method builtins.len>
+calls=178956 0
+499 48606143
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+fn=_get_pk_val
+561 827750
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=549 0
+561 234715
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=__init__:149
+149 130394602
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=__getstate__
+153 361945245
+cfl=~
+cfn=<method 'copy' of 'dict' objects>
+calls=169816 0
+153 197472303
+cfl=~
+cfn=<method 'pop' of 'dict' objects>
+calls=169816 0
+153 73099085
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=get_source_expressions:166
+166 61880051
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=set_source_expressions:169
+169 186215787
+cfl=~
+cfn=<built-in method builtins.len>
+calls=169815 0
+169 47742694
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=contains_aggregate
+207 477016
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=get_source_expressions:166
+calls=277 166
+207 114680
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=resolve_expression
+228 907365999
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=get_source_expressions:166
+calls=169815 166
+228 61765371
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=set_source_expressions:169
+calls=169815 169
+228 233958482
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=<listcomp>
+calls=169816 246
+228 80852721
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=copy
+calls=169816 336
+228 6526907697
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=set_source_expressions:1108
+calls=1 1108
+228 892
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=get_source_expressions:1111
+calls=1 1111
+228 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=<listcomp>
+246 80810329
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=resolve_expression
+calls=1 228
+246 42837
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=get_lookup
+322 302148180
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=get_lookup
+calls=169814 167
+322 2137845697
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=copy
+336 337458997
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=copy
+calls=169816 66
+336 6189448700
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=__init__:686
+686 222616736
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:149
+calls=32913 149
+686 31827124
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=__init__
+calls=32913 134
+686 1354580272
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=as_sql:695
+695 77601067
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=__init__:730
+730 399712094
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:149
+calls=136985 149
+730 98567478
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=as_sql:740
+740 1921579214
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=quote_name_unless_alias
+calls=1104198 371
+740 4211703814
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=get_db_converters
+750 1243671054
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=__eq__
+calls=382284 472
+750 617836665
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_db_converters
+calls=382284 683
+750 834104487
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_db_converters
+calls=136703 973
+750 616410971
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=__init__:1094
+1094 2677
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=1 0
+1094 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=set_source_expressions:1108
+1108 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=get_source_expressions:1111
+1111 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=as_sql:1114
+1114 18741
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=check_expression_support
+calls=1 33
+1114 5800
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=1 388
+1114 10709
+cfl=~
+cfn=<method 'count' of 'str' objects>
+calls=1 0
+1114 1784
+cfl=~
+cfn=<method 'rstrip' of 'str' objects>
+calls=1 0
+1114 446
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=1 0
+1114 892
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+fn=as_sqlite
+1131 3123
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=as_sql:1114
+calls=1 1114
+1131 38375
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=__init__
+134 3398645166
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=511623 0
+134 566704432
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=136134 0
+134 1161757651
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=647757 0
+134 408708472
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_col
+353 2587154559
+cfl=<frozen importlib._bootstrap>
+cfn=_handle_fromlist
+calls=136973 997
+353 535581453
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:730
+calls=136973 730
+353 498238966
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=__eq__
+calls=552099 472
+353 928143210
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+cfn=__new__
+calls=136973 14
+353 469041455
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=12 28
+353 247209
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=cached_col
+362 71842
+cfl=<frozen importlib._bootstrap>
+cfn=_handle_fromlist
+calls=12 997
+362 57117
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:730
+calls=12 730
+362 40606
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+cfn=__new__
+calls=12 14
+362 41945
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=select_format
+367 151709070
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=__eq__
+472 1213604294
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=934383 0
+472 332375581
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=__hash__
+484 15617
+cfl=~
+cfn=<built-in method builtins.hash>
+calls=9 0
+484 5800
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=db_type_parameters
+611 617767054
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\datastructures.py
+cfn=__init__
+calls=169814 267
+611 1015372066
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=db_type
+626 934273473
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=db_type_parameters
+calls=169814 611
+626 1633139120
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:916
+calls=434 916
+626 131190
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:1076
+calls=66159 1076
+626 17625065
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:1828
+calls=103221 1828
+626 34072983
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\datastructures.py
+cfn=__getitem__
+calls=66159 272
+626 289780112
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_db_converters
+683 355053272
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=518987 0
+683 775851813
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=unique
+688 611330
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_internal_type:742
+742 138747521
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_prep_value:749
+749 220406575
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=273035 0
+749 125211232
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_db_prep_value:755
+755 29975283
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_internal_type:916
+916 71278479
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=rel_db_type
+931 648960983
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=__init__
+calls=103221 134
+931 4181235450
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=db_type
+calls=103221 626
+931 1430643195
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_db_prep_value:937
+937 42274632
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_prep_value:943
+943 330357298
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:749
+calls=103655 749
+943 150340939
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_internal_type:1076
+1076 66656016
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=to_python
+1079 51186226
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=66159 0
+1079 17237294
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_prep_value:1084
+1084 221843425
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:749
+calls=66159 749
+1084 88898190
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=to_python
+calls=66159 1079
+1084 68423520
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+fn=get_internal_type:1828
+1828 55609672
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+fn=get_cached_value
+10 751445
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_cache_name
+calls=164 442
+10 46407
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+fn=is_cached
+19 404727
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=__get__
+calls=164 375
+19 123604
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_cache_name
+calls=164 442
+19 70503
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+fn=set_cached_value
+22 636765
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_cache_name
+calls=328 442
+22 158410
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_reverse_related_filter
+345 2293159
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<dictcomp>
+calls=164 352
+345 493526
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=164 618
+345 266397
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_extra_descriptor_filter
+calls=164 671
+345 62917
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=__init__
+calls=328 57
+345 3740272
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=__and__
+calls=164 82
+345 10817875
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=164 0
+345 60240
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<dictcomp>
+352 354304
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=164 0
+352 139222
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=related_query_name
+423 1075852
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_cache_name
+442 275321
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=related_fields
+618 848077632
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=1068893 0
+618 486238589
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=reverse_related_fields
+624 1189194
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=540 618
+624 730919
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<listcomp>:626
+calls=540 626
+624 460506
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<listcomp>:626
+626 460506
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=local_related_fields
+628 1010257
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=164 618
+628 260150
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<genexpr>:630
+calls=328 630
+628 193662
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<genexpr>:630
+630 193662
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=foreign_related_fields
+632 3298638160
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=860339 618
+632 1090343964
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<genexpr>:634
+calls=1720678 634
+632 795883825
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<genexpr>:634
+634 795883825
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_local_related_value
+636 526101
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=local_related_fields
+calls=164 628
+636 1464070
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_instance_value_for_fields
+calls=164 642
+636 877281
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_foreign_related_value
+639 875050
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=foreign_related_fields
+calls=270 632
+639 1955365
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_instance_value_for_fields
+calls=270 642
+639 3696542
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_instance_value_for_fields
+642 2807212
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_get_pk_val
+calls=270 561
+642 655507
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=get_ancestor_link
+calls=270 598
+642 748768
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=164 0
+642 179829
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=434 0
+642 182506
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_joining_columns
+664 407629049
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=103761 618
+664 135714964
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=reverse_related_fields
+calls=540 624
+664 2380619
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<genexpr>:666
+calls=208602 666
+664 173644686
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<genexpr>:666
+666 173644686
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_reverse_joining_columns
+668 864787
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_joining_columns
+calls=540 664
+668 5823705
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_extra_descriptor_filter
+671 62917
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_extra_restriction
+686 145023
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_path_info
+700 2261006518
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=foreign_related_fields
+calls=413424 632
+700 2333967719
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_lookups
+728 12494
+cfl=C:\Users\franzi\Anaconda3\lib\inspect.py
+cfn=getmro
+calls=1 479
+728 446
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=<listcomp>:733
+calls=1 733
+728 6693
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=merge_dicts
+calls=1 185
+728 6247
+cfl=~
+cfn=<method 'index' of 'tuple' objects>
+calls=1 0
+728 1784
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=<listcomp>:733
+733 4016
+cfl=~
+cfn=<method 'get' of 'mappingproxy' objects>
+calls=2 0
+733 2677
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=target_field
+875 506532090
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=foreign_related_fields
+calls=343145 632
+875 2273492389
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_reverse_path_info:879
+879 4529201
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=unique
+calls=540 688
+879 611330
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_attname
+915 249440
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_db_prep_value
+938 289799300
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_db_prep_value:937
+calls=103221 937
+938 42066244
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=target_field
+calls=103221 875
+938 836753289
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=db_type
+962 309300749
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=rel_db_type
+calls=103221 931
+962 6260839629
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=target_field
+calls=103221 875
+962 820084934
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_db_converters
+973 319610372
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_db_converters
+calls=136703 683
+973 296800598
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_col
+979 815219724
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_col
+calls=240194 353
+979 3509116189
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=target_field
+calls=136703 875
+979 1123186255
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=_get_path_info
+1460 6355607
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_path_info
+calls=540 700
+1460 7901783
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_reverse_path_info:879
+calls=540 879
+1460 6481443
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=_get_m2m_attr
+calls=540 1509
+1460 2655495
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=_get_m2m_reverse_attr
+calls=540 1527
+1460 2107975
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=get_field
+calls=1080 545
+1460 663092
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=1620 0
+1460 477016
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=get_reverse_path_info:1493
+1493 1059342
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=_get_path_info
+calls=540 1460
+1493 26642415
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=_get_m2m_attr
+1509 2589900
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=811 0
+1509 385986
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=810 0
+1509 1291826
+cfl=~
+cfn=<built-in method builtins.setattr>
+calls=1 0
+1509 1338
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+fn=_get_m2m_reverse_attr
+1527 1936177
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=811 0
+1527 371260
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=810 0
+1527 1098164
+cfl=~
+cfn=<built-in method builtins.setattr>
+calls=1 0
+1527 1338
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=get_queryset:102
+102 1113335
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_base_manager
+calls=164 365
+102 133421
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=db_manager
+calls=164 127
+102 6961583
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=all
+calls=164 148
+102 5109742
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=get_object
+136 1930377
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_reverse_related_filter
+calls=164 345
+136 17734390
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=get_queryset:102
+calls=164 102
+136 13318084
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=get
+calls=164 389
+136 245303797
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=__get__:141
+141 2121808
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+cfn=get_cached_value
+calls=164 10
+141 797853
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+cfn=set_cached_value
+calls=164 22
+141 490403
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_local_related_value
+calls=164 636
+141 2867453
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=get_object
+calls=164 136
+141 278286649
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=__set__
+180 1420786
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+cfn=set_cached_value
+calls=164 22
+180 304772
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=164 618
+180 201248
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=allow_relation
+calls=164 270
+180 228914
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=164 0
+180 64702
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=164 0
+180 52654
+cfl=~
+cfn=<built-in method builtins.setattr>
+calls=164 0
+180 152163
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=related_manager_cls:476
+476 8924
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_default_manager
+calls=1 369
+476 10263
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=create_reverse_many_to_one_manager
+calls=1 513
+476 82998
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=__get__:485
+485 2098158
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__init__:522
+calls=9 522
+485 208387
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__init__:758
+calls=270 758
+485 26191726
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__new__
+calls=279 20
+485 1279332
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=2 28
+485 200355
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=create_reverse_many_to_one_manager
+513 7139
+cfl=~
+cfn=<built-in method builtins.__build_class__>
+calls=1 0
+513 75858
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=RelatedManager
+521 16064
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=__init__:522
+522 78089
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__init__
+calls=9 26
+522 130298
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=_apply_rel_filters:537
+537 236053
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_get_pk_val
+calls=9 561
+537 24542
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=__hash__
+calls=9 484
+537 21418
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=foreign_related_fields
+calls=9 632
+537 63364
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=filter
+calls=9 834
+537 5099925
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_add_hints
+calls=9 1228
+537 19633
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__getitem__
+calls=9 195
+537 29004
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=_route_db
+calls=9 249
+537 33467
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=9 0
+537 5800
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=get_queryset:560
+560 97277
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=_apply_rel_filters:537
+calls=9 537
+560 5533211
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=get_queryset
+calls=9 141
+560 261935
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=related_manager_cls:732
+732 8032
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_default_manager
+calls=1 369
+732 1784
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=create_forward_many_to_many_manager
+calls=1 749
+732 79428
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=create_forward_many_to_many_manager
+749 2677
+cfl=~
+cfn=<built-in method builtins.__build_class__>
+calls=1 0
+749 76751
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=ManyRelatedManager
+757 14279
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=__init__:758
+758 10536306
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=_get_pk_val
+calls=270 561
+758 382416
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_query_name
+calls=270 423
+758 1060234
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=270 618
+758 509144
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_foreign_related_value
+calls=270 639
+758 6526959
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=_get_m2m_attr
+calls=270 1509
+758 1613556
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=_get_m2m_reverse_attr
+calls=270 1527
+758 1298966
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=__init__
+calls=270 26
+758 3584093
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=get_field
+calls=540 545
+758 546181
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=270 0
+758 133868
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=_apply_rel_filters:826
+826 2020961
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=filter
+calls=270 834
+826 178766477
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_next_is_sticky
+calls=270 1186
+826 169119
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_add_hints
+calls=270 1228
+826 646136
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+fn=get_queryset:841
+841 2591238
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=_apply_rel_filters:826
+calls=270 826
+841 181602694
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=get_queryset
+calls=270 141
+841 7437707
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+fn=get_normalized_value
+26 906708707
+cfl=<frozen importlib._bootstrap>
+cfn=_handle_fromlist
+calls=103221 997
+26 365276774
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_path_info
+calls=103221 700
+26 1378108917
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=103221 0
+26 54763180
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=206442 0
+26 142625678
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=103221 0
+26 35803451
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+fn=get_prep_lookup
+103 1188204173
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:943
+calls=103221 943
+103 478662997
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_path_info
+calls=103221 700
+103 1138009016
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+cfn=get_normalized_value
+calls=103221 26
+103 2883286710
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=get_prep_lookup
+calls=103221 64
+103 628590284
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=rhs_is_direct_value
+calls=103221 95
+103 263014984
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=103221 0
+103 48831042
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=103221 0
+103 56336130
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+fn=as_sql
+119 357702967
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=as_sql
+calls=103221 159
+119 20031032394
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=103221 0
+119 58957712
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+fn=name
+58 14279
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_query_name
+calls=10 423
+58 15617
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+fn=get_joining_columns
+133 991069
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_reverse_joining_columns
+calls=540 668
+133 6688493
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+fn=get_extra_restriction
+136 606422
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_extra_restriction
+calls=270 686
+136 145023
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+fn=get_path_info
+166 991962
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_reverse_path_info:1493
+calls=540 1493
+166 27701758
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=__init__
+16 593319181
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+cfn=get_prep_lookup
+calls=103221 103
+16 6684935339
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=get_prep_lookup
+calls=66593 64
+16 753183493
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169814 0
+16 215527085
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=get_prep_lookup
+64 522498084
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:749
+calls=103221 749
+64 106378677
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:943
+calls=434 943
+64 2035240
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_prep_value:1084
+calls=66159 1084
+64 379165136
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=339628 0
+64 371696638
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=process_lhs:74
+74 769585897
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=resolve_expression
+calls=169814 228
+74 7810713726
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=169814 388
+74 2424989948
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169814 0
+74 94044523
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=process_rhs:80
+80 473880338
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=get_db_prep_lookup
+calls=169814 177
+80 2489026168
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169814 0
+80 224322214
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=rhs_is_direct_value
+95 91411339
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=103221 0
+95 171603645
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=contains_aggregate
+114 224461883
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=277 28
+114 1608647
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=169814 0
+114 248489410
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=process_lhs:150
+150 1941809351
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+cfn=field_cast_sql
+calls=169814 178
+150 54526680
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+cfn=lookup_cast
+calls=169814 235
+150 54355329
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=db_type
+calls=66593 626
+150 1478378751
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:742
+calls=103221 742
+150 138747521
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:916
+calls=434 916
+150 165996
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_internal_type:1076
+calls=66159 1076
+150 22098042
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=db_type
+calls=103221 962
+150 7390225313
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=process_lhs:74
+calls=169814 74
+150 11099334095
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=as_sql
+159 1004999524
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=process_lhs:150
+calls=169814 150
+159 22179641081
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=get_rhs_op
+calls=169814 166
+159 348078748
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=process_rhs:248
+calls=169814 248
+159 4941748218
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=169814 0
+159 67570335
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=get_rhs_op
+166 348078748
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=get_db_prep_lookup
+177 762921946
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_db_prep_value:755
+calls=66159 755
+177 29975283
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_db_prep_value:937
+calls=434 937
+177 208387
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_db_prep_value
+calls=103221 938
+177 1168618834
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=339628 0
+177 527301715
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+fn=process_rhs:248
+248 1041588781
+cfl=<frozen importlib._bootstrap>
+cfn=_handle_fromlist
+calls=169814 997
+248 614322183
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=process_rhs:80
+calls=169814 80
+248 3187228722
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169814 0
+248 98608531
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=__new__
+20 1607308
+cfl=~
+cfn=<built-in method __new__ of type object at 0x00000000530CC3F0>
+calls=443 0
+20 381077
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=__init__
+26 1862104
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=_set_creation_counter
+calls=279 119
+26 1852287
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=manager_method
+81 1139826498
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=get_queryset
+calls=117765 141
+81 3263723592
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=get
+calls=84852 389
+81 135909670760
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=filter
+calls=32913 834
+81 28416185894
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=117765 0
+81 80705020
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=_set_creation_counter
+119 1852287
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=db_manager
+127 585449
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=copy
+calls=164 66
+127 6376134
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=get_queryset
+141 556796413
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__init__:185
+calls=118208 185
+141 2719524607
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=all
+148 1565809
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=get_queryset:560
+calls=9 560
+148 5892424
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=get_queryset:841
+calls=270 841
+148 191631641
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+cfn=get_queryset
+calls=164 141
+148 4897785
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\manager.py
+fn=__get__
+176 458124071
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=swapped
+calls=117765 323
+176 76565820
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=2 28
+176 16064
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=swapped
+323 76565820
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=managers_map
+368 4908
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=<dictcomp>
+calls=2 370
+368 3569
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=<dictcomp>
+370 3569
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=default_manager
+400 3123
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=fields_map
+530 37036
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=_get_fields
+calls=1 737
+530 6247
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=10 28
+530 47300
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=get_field
+545 297368199
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=1 28
+545 94600
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=get_ancestor_link
+598 748768
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+fn=_get_fields
+737 5800
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=1 0
+737 446
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=__init__:38
+38 142838082
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=__iter__:47
+47 1779991905
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\base.py
+cfn=from_db
+calls=89478 499
+47 2635637544
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\mixins.py
+cfn=is_cached
+calls=164 19
+47 598836
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_attname
+calls=164 915
+47 249440
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=<listcomp>
+calls=85296 59
+47 451890283
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=db
+calls=85296 1107
+47 490514334
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=get_related_populators
+calls=85296 1791
+47 165674630
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=results_iter
+calls=85296 1015
+47 6809145685
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=execute_sql
+calls=85296 1039
+47 78179573255
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_compiler
+calls=85296 271
+47 1548522029
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=164 0
+47 164657
+cfl=~
+cfn=<built-in method builtins.setattr>
+calls=164 0
+47 2750988
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=164 0
+47 62471
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=<listcomp>
+59 451890283
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=__init__:185
+185 1395660801
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=__init__:138
+calls=118208 138
+185 1973239780
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=__len__
+253 188653970
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_fetch_all
+calls=85016 1180
+253 92812360303
+cfl=~
+cfn=<built-in method builtins.len>
+calls=85016 0
+253 23501425
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=__iter__:257
+257 683173
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_fetch_all
+calls=297 1180
+257 380795202
+cfl=~
+cfn=<built-in method builtins.iter>
+calls=297 0
+257 137437
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=get
+389 802333587
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=filter
+calls=85016 834
+389 37095074861
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=order_by
+calls=85016 1012
+389 4993072329
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=can_filter
+calls=85016 1634
+389 80657274
+cfl=~
+cfn=<built-in method builtins.len>
+calls=85016 0
+389 93183836506
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=exists
+716 374776496
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=db
+calls=32913 1107
+716 190210855
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=has_results
+calls=32913 499
+716 36584940381
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=filter
+834 391077160
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_filter_or_exclude
+calls=118208 848
+834 65304049998
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_filter_or_exclude
+848 1117495525
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_chain
+calls=118208 1154
+848 5655632519
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=__init__
+calls=118208 57
+848 1656276424
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=add_q
+calls=118208 1241
+848 56747910877
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=can_filter
+calls=118208 1634
+848 126734650
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=order_by
+1012 464697438
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_chain
+calls=85016 1154
+1012 4290161636
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=can_filter
+calls=85016 1634
+1012 41331308
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=add_ordering
+calls=85016 1708
+1012 109978389
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=clear_ordering
+calls=85016 1733
+1012 86903556
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=db
+1107 380804127
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=_route_db
+calls=118209 249
+1107 299921062
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_chain
+1154 462825963
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=_clone
+calls=203224 1166
+1154 9329092691
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=203224 0
+1154 153875501
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_clone
+1166 1462449347
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__init__:185
+calls=203224 185
+1166 649375974
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=chain
+calls=203224 332
+1166 7217267369
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_fetch_all
+1180 985541360
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__init__:38
+calls=85296 38
+1180 142838082
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__iter__:47
+calls=174774 47
+1180 92064776063
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_next_is_sticky
+1186 169119
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=_add_hints
+1228 362782
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=279 0
+1228 302987
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+fn=get_related_populators
+1791 126281730
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=85296 0
+1791 39392899
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=__init__
+57 855920960
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=118536 19
+57 288678378
+cfl=~
+cfn=<built-in method builtins.sorted>
+calls=118536 0
+57 378043322
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=118536 0
+57 40138098
+cfl=~
+cfn=<method 'pop' of 'dict' objects>
+calls=237072 0
+57 97235937
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=_combine
+62 804993
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=deepcopy
+calls=164 132
+62 9431895
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__bool__
+calls=164 58
+62 195001
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=164 0
+62 59348
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=__and__
+82 326637
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=_combine
+calls=164 62
+82 10491237
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=_get_lookup
+157 392667512
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_lookups
+calls=1 728
+157 27666
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=get_lookups
+calls=1 161
+157 38375
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=169814 0
+157 66198634
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=get_lookups
+161 7585
+cfl=C:\Users\franzi\Anaconda3\lib\inspect.py
+cfn=getmro
+calls=1 479
+161 892
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=<listcomp>
+calls=1 164
+161 18741
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=merge_dicts
+calls=1 185
+161 11155
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=<listcomp>
+164 13386
+cfl=~
+cfn=<method 'get' of 'mappingproxy' objects>
+calls=4 0
+164 5354
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=get_lookup
+167 935795999
+cfl=<frozen importlib._bootstrap>
+cfn=_handle_fromlist
+calls=169814 997
+167 655343364
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=_get_lookup
+calls=169814 157
+167 458932188
+cfl=~
+cfn=<built-in method builtins.issubclass>
+calls=169814 0
+167 87774144
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=merge_dicts
+185 8478
+cfl=~
+cfn=<method 'update' of 'dict' objects>
+calls=6 0
+185 8924
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=check_rel_lookup_compatibility
+271 134474900
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=check
+calls=103221 278
+271 102842330
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+fn=check
+278 102842330
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=__init__
+24 443522192
+cfl=C:\Users\franzi\Anaconda3\lib\re.py
+cfn=compile
+calls=118209 231
+24 442591810
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=setup_query
+38 927452897
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=<genexpr>
+calls=118208 39
+38 78826405
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_select
+calls=118209 184
+38 21883135439
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_initial_alias
+calls=1 877
+38 18741
+cfl=~
+cfn=<built-in method builtins.all>
+calls=118209 0
+38 259766007
+cfl=~
+cfn=<built-in method builtins.len>
+calls=118209 0
+38 38852518
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=<genexpr>
+39 226842503
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=pre_sql_setup
+44 1067246820
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=setup_query
+calls=118209 38
+44 23188052010
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_group_by
+calls=118209 58
+44 90617501
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_order_by
+calls=118209 254
+44 448251304
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_extra_select
+calls=118209 361
+44 97116794
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=split_having
+calls=118209 31
+44 2885834218
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_group_by
+58 90617501
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_select
+184 2615784022
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:686
+calls=32913 686
+184 1609024133
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=415197 388
+184 7556147599
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_default_columns
+calls=85296 587
+184 9012178867
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=annotation_select
+calls=118209 1937
+184 126926082
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=extra_select
+calls=118209 1956
+184 512116172
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+cfn=__new__
+calls=32913 14
+184 135563247
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=1212678 0
+184 243204300
+cfl=~
+cfn=<method 'items' of 'collections.OrderedDict' objects>
+calls=32913 0
+184 9416277
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=203505 0
+184 62774736
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_order_by
+254 447864425
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=resolve_expression
+calls=1 228
+254 95938
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=1 388
+254 47746
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=find_ordering_name
+calls=1 655
+254 67380
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=annotations
+calls=1 229
+254 2677
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=280 278
+254 158856
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=annotation_select
+calls=1 1937
+254 892
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_order_dir
+calls=1 2060
+254 1784
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=1 0
+254 1784
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=1 0
+254 446
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=1 0
+254 446
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=1 0
+254 892
+cfl=~
+cfn=<method 'group' of '_sre.SRE_Match' objects>
+calls=1 0
+254 892
+cfl=~
+cfn=<method 'search' of '_sre.SRE_Pattern' objects>
+calls=1 0
+254 7139
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_extra_select
+361 97116794
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=quote_name_unless_alias
+371 2624404231
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=quote_name
+calls=566859 147
+371 1490216254
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=extra_select
+calls=566859 1956
+371 453114283
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=compile
+388 3646365282
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=as_sql:695
+calls=32913 695
+388 77601067
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=as_sql:740
+calls=552099 740
+388 6133283028
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=as_sqlite
+calls=1 1131
+388 41499
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=select_format
+calls=415197 367
+388 151709070
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_lookups.py
+cfn=as_sql
+calls=103221 119
+388 20447693074
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=as_sql
+calls=66593 159
+388 8511005514
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=as_sql:61
+calls=270 61
+388 8742028
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=as_sql:157
+calls=118209 157
+388 591464663
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=as_sql
+calls=118209 64
+388 31307390898
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=991515 0
+388 2086506860
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=as_sql
+438 2859729506
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=quote_name
+calls=32913 147
+438 85992807
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=pre_sql_setup
+calls=118209 44
+438 27777118651
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=118209 388
+438 31881486631
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_distinct
+calls=118209 632
+438 384818383
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_from_clause
+calls=118209 702
+438 2104457671
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=reset_refcounts
+calls=118209 786
+438 1099367116
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=802738 0
+438 169082017
+cfl=~
+cfn=<method 'copy' of 'dict' objects>
+calls=118209 0
+438 79232472
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=769824 0
+438 160768366
+cfl=~
+cfn=<method 'join' of 'str' objects>
+calls=236419 0
+438 196288464
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_default_columns
+587 2116635646
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_col
+calls=245581 353
+587 1112664674
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_col
+calls=136703 979
+587 4453330257
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=deferred_to_columns
+calls=85296 971
+587 251533569
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=85296 278
+587 56579323
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_initial_alias
+calls=85296 877
+587 719513005
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=join_parent_model
+calls=382284 939
+587 205001041
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=382284 0
+587 96921347
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_distinct
+632 313317682
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=118209 278
+632 71500700
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=find_ordering_name
+655 9816
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=<listcomp>:685
+calls=1 685
+655 21865
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=_setup_joins
+calls=1 687
+655 29004
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=trim_joins
+calls=1 1479
+655 4016
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_order_dir
+calls=1 2060
+655 1338
+cfl=~
+cfn=<method 'split' of 'str' objects>
+calls=1 0
+655 1338
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=<listcomp>:685
+685 8478
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__init__:1094
+calls=1 1094
+685 3569
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_col
+calls=1 353
+685 5354
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+cfn=__new__
+calls=1 14
+685 4462
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=_setup_joins
+687 5354
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_initial_alias
+calls=1 877
+687 2677
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=setup_joins
+calls=1 1416
+687 20972
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_from_clause
+702 803820415
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=118479 388
+702 1220896532
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=118479 0
+702 39539261
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=118479 0
+702 40201462
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=deferred_to_columns
+971 182891844
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=deferred_to_data
+calls=85296 612
+971 68641725
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=get_converters
+981 1278602132
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=get_db_converters
+calls=382284 202
+981 1630147170
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=get_db_converters
+calls=382284 750
+981 3312023178
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=results_iter
+1015 426405826
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=get_converters
+calls=85296 981
+1015 6220772481
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=<listcomp>:1020
+calls=85296 1020
+1015 100193974
+cfl=~
+cfn=<built-in method from_iterable>
+calls=85296 0
+1015 61773403
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=<listcomp>:1020
+1020 100193974
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=has_results
+1029 286645369
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=execute_sql
+calls=32913 1039
+1029 33221149988
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=add_extra
+calls=32913 1775
+1029 710896366
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=set_extra_mask
+calls=32913 1891
+1029 69733642
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=execute_sql
+1039 2020604521
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\base.py
+cfn=cursor
+calls=118209 253
+1039 2907417761
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=__getattr__
+calls=151122 23
+1039 382254364
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=execute:97
+calls=118209 97
+1039 33914400318
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=as_sql
+calls=118209 438
+1039 66798342089
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=cursor_iter
+calls=170592 1456
+1039 4938704951
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=inner
+calls=32913 94
+1039 396714343
+cfl=~
+cfn=<method 'close' of 'sqlite3.Cursor' objects>
+calls=118209 0
+1039 42284895
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=cursor_iter
+1456 704525587
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=__getattr__
+calls=85296 23
+1456 142150447
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=<lambda>
+calls=170592 1462
+1456 3993605124
+cfl=~
+cfn=<built-in method builtins.iter>
+calls=85296 0
+1456 70991109
+cfl=~
+cfn=<method 'close' of 'sqlite3.Cursor' objects>
+calls=85296 0
+1456 27432683
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+fn=<lambda>
+1462 860665690
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\utils.py
+cfn=__getattr__
+calls=170592 23
+1462 839517218
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=inner
+calls=170592 94
+1462 2293422215
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=__init__:43
+43 375557393
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_joining_columns
+calls=103761 664
+43 713545615
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+cfn=get_joining_columns
+calls=540 133
+43 7679562
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=as_sql:61
+61 4169542
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\sqlite3\operations.py
+cfn=quote_name
+calls=540 147
+61 1226231
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+cfn=get_extra_restriction
+calls=270 136
+61 751445
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=quote_name_unless_alias
+calls=810 371
+61 2392221
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=270 0
+61 90584
+cfl=~
+cfn=<method 'join' of 'str' objects>
+calls=270 0
+61 112002
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=relabeled_clone
+106 2961160
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=__init__:43
+calls=540 43
+106 7141413
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=1080 0
+106 305665
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=equals
+119 179847238
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=155367 0
+119 66203542
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=__eq__
+128 202632023
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=equals
+calls=155367 119
+128 246050781
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=demote
+131 1300751
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=relabeled_clone
+calls=540 106
+131 10408239
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=__init__:153
+153 130176397
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+fn=as_sql:157
+157 237825929
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=quote_name_unless_alias
+calls=118209 371
+157 353638733
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=__init__:138
+138 1780525146
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=118208 19
+138 192714633
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=extra
+223 80038803
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=annotations
+229 2677
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=base_table
+239 178492048
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=get_compiler
+271 697587207
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\backends\base\operations.py
+cfn=compiler
+calls=118209 307
+271 227871056
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=__init__
+calls=118209 24
+271 886114002
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__getitem__
+calls=118209 195
+271 331110975
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=get_meta
+278 360242443
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=clone
+286 3364713189
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=clone
+calls=236137 141
+286 2193525428
+cfl=~
+cfn=<method 'copy' of 'collections.OrderedDict' objects>
+calls=236137 0
+286 275209023
+cfl=~
+cfn=<method 'copy' of 'dict' objects>
+calls=944548 0
+286 1139718065
+cfl=~
+cfn=<method 'copy' of 'set' objects>
+calls=472274 0
+286 281300911
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=chain
+332 686234305
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=clone
+calls=203224 286
+332 6151920136
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=203224 0
+332 379112927
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=has_results
+499 286841709
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=has_results
+calls=32913 1029
+499 34288425368
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_compiler
+calls=32913 271
+499 594161211
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=clone
+calls=32913 286
+499 1102546482
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=set_limits
+calls=32913 1604
+499 60326736
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=clear_select_clause
+calls=32913 1642
+499 209698024
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=clear_ordering
+calls=32913 1733
+499 42940848
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=deferred_to_data
+612 68641725
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=table_alias
+700 535892027
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=221970 0
+700 93954832
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=ref_alias
+725 142529293
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=unref_alias
+729 303884002
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=promote_joins
+733 216884507
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=demote_joins
+767 632757596
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=demote
+calls=540 131
+767 11708990
+cfl=~
+cfn=<method 'pop' of 'list' objects>
+calls=222133 0
+767 302400298
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=reset_refcounts
+786 694261032
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=unref_alias
+calls=221970 729
+786 187222921
+cfl=~
+cfn=<method 'copy' of 'dict' objects>
+calls=118209 0
+786 97895014
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=221970 0
+786 77663092
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=118209 0
+786 42325055
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=get_initial_alias
+877 990598894
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=__init__:153
+calls=118209 153
+877 130176397
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=118209 278
+877 39068046
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=ref_alias
+calls=136903 725
+877 142529293
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=join
+calls=118209 897
+877 1166065078
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=136902 28
+877 582589213
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=join
+897 1424872144
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=table_alias
+calls=221970 700
+897 629846859
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<listcomp>
+calls=221970 920
+897 853248954
+cfl=~
+cfn=<method 'items' of 'collections.OrderedDict' objects>
+calls=221970 0
+897 81953116
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<listcomp>
+920 404566149
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=__eq__
+calls=155367 128
+920 448682805
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=join_parent_model
+939 205001041
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=resolve_lookup_value
+995 289096047
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169814 0
+995 243566190
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169814 0
+995 134095161
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=solve_lookup_type
+1006 1133338360
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=169814 278
+1006 110010517
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=names_to_path
+calls=169814 1320
+1006 3976384786
+cfl=~
+cfn=<built-in method builtins.len>
+calls=509442 0
+1006 97064140
+cfl=~
+cfn=<method 'split' of 'str' objects>
+calls=169814 0
+1006 239018693
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=check_query_object_type
+1024 255816900
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query_utils.py
+cfn=check_rel_lookup_compatibility
+calls=103221 271
+1024 237317231
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=103221 0
+1024 33480394
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=check_related_objects
+1035 335683014
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=check_query_object_type
+calls=103221 1024
+1035 526614526
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=103221 0
+1035 48449964
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=103221 0
+1035 45348688
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=build_lookup
+1055 1515680185
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=get_lookup
+calls=169814 322
+1055 2439993877
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=__init__
+calls=169814 16
+1055 8246965100
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__getitem__
+calls=169814 195
+1055 465418540
+cfl=~
+cfn=<built-in method builtins.len>
+calls=169814 0
+1055 41918096
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=build_filter
+1117 5022331865
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=get_col
+calls=66323 353
+1117 396620635
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_col
+calls=103491 979
+1117 994191912
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_meta
+calls=169814 278
+1117 82924998
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=get_initial_alias
+calls=169814 877
+1117 2331492499
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=resolve_lookup_value
+calls=169814 995
+1117 666757399
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=solve_lookup_type
+calls=169814 1006
+1117 5555816499
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=check_related_objects
+calls=169814 1035
+1117 956096193
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=build_lookup
+calls=169814 1055
+1117 12709975801
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<setcomp>:1166
+calls=169814 1166
+1117 236834413
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=setup_joins
+calls=169814 1416
+1117 9045032313
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=trim_joins
+calls=169814 1479
+1117 3570099771
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=169814 19
+1117 264292978
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=add
+calls=169814 76
+1117 556527784
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=169814 0
+1117 305755031
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=339628 0
+1117 1589614607
+cfl=~
+cfn=<built-in method builtins.len>
+calls=206442 0
+1117 52423167
+cfl=~
+cfn=<method 'copy' of 'dict' objects>
+calls=169814 0
+1117 95841032
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=169814 0
+1117 55351753
+cfl=~
+cfn=<method 'update' of 'set' objects>
+calls=339628 0
+1117 260934229
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<setcomp>:1166
+1166 206572652
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=103212 0
+1166 30261761
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=add_q
+1241 1003820593
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=demote_joins
+calls=118208 767
+1241 160024953
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<setcomp>:1252
+calls=118208 1252
+1241 93050330
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=_add_q
+calls=118208 1258
+1241 55049253618
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__bool__
+calls=118208 58
+1241 103470617
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=add
+calls=118208 76
+1241 338290764
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<setcomp>:1252
+1252 93050330
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=_add_q
+1258 2469922307
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=build_filter
+calls=169814 1117
+1258 44748914888
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=_add_q
+calls=164 1258
+1258 39753004
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=__init__:2099
+calls=118372 2099
+1258 1674570830
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=add_votes
+calls=169978 2114
+1258 2901287498
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=update_join_types
+calls=118372 2121
+1258 2083923654
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=118372 19
+1258 131567732
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__bool__
+calls=169978 58
+1258 207338824
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=add
+calls=169978 76
+1258 691468991
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=169978 0
+1258 102330508
+cfl=~
+cfn=<built-in method builtins.len>
+calls=118372 0
+1258 37928383
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=names_to_path
+1320 3449205337
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=get_path_info
+calls=206442 700
+1320 2880478158
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+cfn=get_path_info
+calls=540 166
+1320 28693720
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=get_field
+calls=340169 545
+1320 296253524
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=340169 0
+1320 373779179
+cfl=~
+cfn=<built-in method builtins.len>
+calls=66594 0
+1320 15240429
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=206982 0
+1320 65914387
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=413964 0
+1320 120095242
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=setup_joins
+1416 1742470927
+cfl=<string>
+cfn=__new__
+calls=169815 12
+1416 389945529
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\datastructures.py
+cfn=__init__:43
+calls=103761 43
+1416 1089641157
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=join
+calls=103761 897
+1416 1823855997
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=names_to_path
+calls=169815 1320
+1416 3253275192
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=is_nullable
+calls=103491 2041
+1416 706796435
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=103761 0
+1416 39068046
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=trim_joins
+1479 2087740231
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=related_fields
+calls=103491 618
+1479 106289432
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related.py
+cfn=foreign_related_fields
+calls=103491 632
+1479 575387112
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=unref_alias
+calls=103491 729
+1479 116661081
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<setcomp>:1498
+calls=103491 1498
+1479 129321873
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<setcomp>:1499
+calls=103491 1499
+1479 68411472
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<dictcomp>
+calls=103491 1502
+1479 192438419
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<genexpr>:1503
+calls=206982 1503
+1479 122885052
+cfl=~
+cfn=<built-in method builtins.len>
+calls=103761 0
+1479 27716929
+cfl=~
+cfn=<method 'issubset' of 'set' objects>
+calls=103491 0
+1479 66229870
+cfl=~
+cfn=<method 'pop' of 'list' objects>
+calls=103491 0
+1479 77022310
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<setcomp>:1498
+1498 129321873
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<setcomp>:1499
+1499 68411472
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<dictcomp>
+1502 192438419
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<genexpr>:1503
+1503 122885052
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=set_limits
+1604 60326736
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=can_filter
+1634 248723233
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=clear_select_clause
+1642 98593805
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=set_annotation_mask
+calls=32913 1879
+1642 41868565
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=set_extra_mask
+calls=32913 1891
+1642 69235653
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=add_ordering
+1708 109978389
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=clear_ordering
+1733 129844405
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=add_extra
+1775 311800065
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=extra
+calls=32913 223
+1775 57601183
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\encoding.py
+cfn=force_text
+calls=32913 51
+1775 160246727
+cfl=~
+cfn=<built-in method builtins.iter>
+calls=32913 0
+1775 16627748
+cfl=~
+cfn=<method 'find' of 'str' objects>
+calls=32913 0
+1775 50693592
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=32913 0
+1775 11543886
+cfl=~
+cfn=<method 'update' of 'collections.OrderedDict' objects>
+calls=32913 0
+1775 102383163
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=set_annotation_mask
+1879 41868565
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=set_extra_mask
+1891 138969296
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=annotation_select
+1937 126926974
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=extra_select
+1956 874351465
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=extra
+calls=32913 223
+1956 22437620
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=<genexpr>:1964
+calls=65826 1964
+1956 58009926
+cfl=~
+cfn=<method 'items' of 'collections.OrderedDict' objects>
+calls=32913 0
+1956 10431443
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=<genexpr>:1964
+1964 58009926
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=is_nullable
+2041 387505561
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__getitem__
+calls=103491 195
+2041 319290874
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=get_order_dir
+2060 3123
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=__init__:2099
+2099 481766504
+cfl=C:\Users\franzi\Anaconda3\lib\collections\__init__.py
+cfn=__init__
+calls=118372 517
+2099 1192804325
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=add_votes
+2114 414558505
+cfl=C:\Users\franzi\Anaconda3\lib\collections\__init__.py
+cfn=update
+calls=169978 586
+2114 2486728992
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+fn=update_join_types
+2121 976992993
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=promote_joins
+calls=118372 733
+2121 216884507
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=demote_joins
+calls=118372 767
+2121 786841932
+cfl=~
+cfn=<method 'add' of 'set' objects>
+calls=222133 0
+2121 62698431
+cfl=~
+cfn=<method 'items' of 'dict' objects>
+calls=118372 0
+2121 40505789
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=split_having
+31 235324828
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=118209 28
+31 2650509390
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=as_sql
+64 1178063670
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=compile
+calls=169814 388
+64 29878223821
+cfl=~
+cfn=<built-in method builtins.len>
+calls=236417 0
+64 62833638
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=169814 0
+64 62071929
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=169814 0
+64 49145631
+cfl=~
+cfn=<method 'join' of 'str' objects>
+calls=118209 0
+64 77052208
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=clone
+141 905999652
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=_new_instance
+calls=236137 27
+141 934261871
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=169535 0
+141 302309714
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=169535 0
+141 50954189
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=_contains_aggregate
+161 716589774
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+cfn=__get__
+calls=169814 28
+161 826800647
+cfl=~
+cfn=<built-in method builtins.any>
+calls=118209 0
+161 1820634686
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=288023 0
+161 154638995
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=<genexpr>
+164 330956134
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=_contains_aggregate
+calls=169814 161
+164 1278298697
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+fn=contains_aggregate
+167 184645068
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=_contains_aggregate
+calls=118209 161
+167 2240365406
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=__enter__
+65 134482932
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=__exit__
+68 212168782
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=__call__
+91 148338720
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=inner
+94 621330621
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__enter__
+calls=203505 65
+94 58845709
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+cfn=__exit__
+calls=203505 68
+94 79716628
+cfl=~
+cfn=<method 'fetchmany' of 'sqlite3.Cursor' objects>
+calls=170592 0
+94 1669504371
+cfl=~
+cfn=<method 'fetchone' of 'sqlite3.Cursor' objects>
+calls=32913 0
+94 260739228
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=__getitem__
+195 609298116
+cfl=~
+cfn=<built-in method builtins.getattr>
+calls=391523 0
+195 165379674
+cfl=~
+cfn=<built-in method builtins.hasattr>
+calls=391523 0
+195 341171604
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=_route_db
+249 245068190
+cfl=~
+cfn=<method 'get' of 'dict' objects>
+calls=118218 0
+249 54886339
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\utils.py
+fn=allow_relation
+270 228914
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\dispatch\dispatcher.py
+fn=send
+155 158697874
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\datastructures.py
+fn=__init__
+267 1015372066
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\datastructures.py
+fn=__getitem__
+272 184898079
+cfl=~
+cfn=<function DictWrapper.__getitem__ at 0x0000006FE7ECC1E0>
+calls=66159 0
+272 46357160
+cfl=~
+cfn=<method 'startswith' of 'str' objects>
+calls=66159 0
+272 58524872
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\deconstruct.py
+fn=__new__
+14 978716767
+cfl=~
+cfn=<built-in method __new__ of type object at 0x00000000530CC3F0>
+calls=339715 0
+14 214979118
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\encoding.py
+fn=force_text
+51 126716355
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=32913 0
+51 18664327
+cfl=~
+cfn=<built-in method builtins.issubclass>
+calls=32913 0
+51 14866044
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\functional.py
+fn=__get__
+28 982931825
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=contains_aggregate
+calls=277 207
+28 591696
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\__init__.py
+cfn=cached_col
+calls=12 362
+28 211511
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=related_manager_cls:476
+calls=1 476
+28 102185
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=related_manager_cls:732
+calls=1 732
+28 89245
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\reverse_related.py
+cfn=name
+calls=10 58
+28 29897
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\lookups.py
+cfn=contains_aggregate
+calls=169814 114
+28 474559942
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=managers_map
+calls=2 368
+28 8478
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=default_manager
+calls=1 400
+28 3123
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\options.py
+cfn=fields_map
+calls=1 530
+28 90584
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\query.py
+cfn=base_table
+calls=136902 239
+28 178492048
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=contains_aggregate
+calls=118209 167
+28 2425010475
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=__init__
+19 1222777824
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=_new_instance
+27 588966686
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=236137 19
+27 345295185
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=__deepcopy__
+48 1111997
+cfl=C:\Users\franzi\Anaconda3\lib\copy.py
+cfn=deepcopy
+calls=164 132
+48 6140526
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__init__
+calls=164 19
+48 228914
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=__bool__
+58 311004443
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=__eq__
+66 57152725
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+fn=add
+76 1170774109
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\utils\tree.py
+cfn=__eq__
+calls=51606 66
+76 57152725
+cfl=~
+cfn=<built-in method builtins.isinstance>
+calls=458000 0
+76 187719571
+cfl=~
+cfn=<method 'append' of 'list' objects>
+calls=169814 0
+76 67158468
+cfl=~
+cfn=<method 'extend' of 'list' objects>
+calls=288186 0
+76 103482666
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\block.py
+fn=model
+814 29208665
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+cfn=parent_block:683
+calls=18603 683
+814 40779326
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+fn=parent_block:404
+404 28581717
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+fn=model
+411 40213510
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\block.py
+cfn=model
+calls=18603 814
+411 69987992
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+fn=getname
+445 64614975
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+cfn=parent_block:404
+calls=18603 404
+445 28581717
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+cfn=model
+calls=18603 411
+445 110201502
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+fn=name
+472 32579016
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+cfn=getname
+calls=18603 445
+472 203398195
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+fn=parent_block:683
+683 40779326
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\sets.py
+fn=_verify
+747 277929668
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\component.py
+cfn=name
+calls=18603 472
+747 235977212
+
+fl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\sets.py
+fn=__contains__
+974 99509909
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\pyomo\core\base\sets.py
+cfn=_verify
+calls=18603 747
+974 513906880
+
+fl=~
+fn=<built-in method __new__ of type object at 0x00000000530CC3F0>
+0 746803789
+
+fl=~
+fn=<built-in method _collections._count_elements>
+0 312074941
+
+fl=~
+fn=<built-in method _thread.get_ident>
+0 66512777
+
+fl=~
+fn=<built-in method builtins.__build_class__>
+0 122266
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=RelatedManager
+calls=1 521
+0 16064
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=ManyRelatedManager
+calls=1 757
+0 14279
+
+fl=~
+fn=<built-in method builtins.all>
+0 111749909
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\compiler.py
+cfn=<genexpr>
+calls=118209 39
+0 148016098
+
+fl=~
+fn=<built-in method builtins.any>
+0 211379853
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\sql\where.py
+cfn=<genexpr>
+calls=288023 164
+0 1609254832
+
+fl=~
+fn=<built-in method builtins.getattr>
+0 4789541158
+
+fl=~
+fn=<built-in method builtins.hasattr>
+0 5933850896
+
+fl=~
+fn=<built-in method builtins.hash>
+0 5800
+
+fl=~
+fn=<built-in method builtins.id>
+0 466753
+
+fl=~
+fn=<built-in method builtins.isinstance>
+0 2856621983
+cfl=C:\Users\franzi\Anaconda3\lib\abc.py
+cfn=__instancecheck__
+calls=475926 178
+0 3051102336
+
+fl=~
+fn=<built-in method builtins.issubclass>
+0 180377356
+cfl=C:\Users\franzi\Anaconda3\lib\abc.py
+cfn=__subclasscheck__
+calls=5 194
+0 147701
+
+fl=~
+fn=<built-in method builtins.iter>
+0 132911321
+
+fl=~
+fn=<built-in method builtins.len>
+0 842925052
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\query.py
+cfn=__len__
+calls=85016 253
+0 93024515698
+
+fl=~
+fn=<built-in method builtins.min>
+0 7492593
+
+fl=~
+fn=<built-in method builtins.print>
+0 2340459
+
+fl=~
+fn=<built-in method builtins.setattr>
+0 243553696
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\fields\related_descriptors.py
+cfn=__set__
+calls=164 180
+0 2425242
+
+fl=~
+fn=<built-in method builtins.sorted>
+0 378043322
+
+fl=~
+fn=<built-in method from_iterable>
+0 61773403
+
+fl=~
+fn=<built-in method time.time>
+0 205572658
+
+fl=~
+fn=<function DictWrapper.__getitem__ at 0x0000006FE7ECC1E0>
+0 46357160
+
+fl=~
+fn=<method '__reduce_ex__' of 'object' objects>
+0 906478454
+cfl=C:\Users\franzi\stundentool\virtenv\lib\site-packages\django\db\models\expressions.py
+cfn=__getstate__
+calls=169816 153
+0 632516634
+
+fl=~
+fn=<method '__subclasses__' of 'type' objects>
+0 7585
+
+fl=~
+fn=<method 'add' of 'set' objects>
+0 62709140
+
+fl=~
+fn=<method 'append' of 'collections.deque' objects>
+0 136579305
+
+fl=~
+fn=<method 'append' of 'list' objects>
+0 878213111
+
+fl=~
+fn=<method 'close' of 'sqlite3.Cursor' objects>
+0 179423323
+
+fl=~
+fn=<method 'copy' of 'collections.OrderedDict' objects>
+0 275209023
+
+fl=~
+fn=<method 'copy' of 'dict' objects>
+0 1610158887
+
+fl=~
+fn=<method 'copy' of 'set' objects>
+0 281300911
+
+fl=~
+fn=<method 'count' of 'str' objects>
+0 1784
+
+fl=~
+fn=<method 'cursor' of 'sqlite3.Connection' objects>
+0 839011197
+
+fl=~
+fn=<method 'disable' of '_lsprof.Profiler' objects>
+0 446
+
+fl=~
+fn=<method 'execute' of 'sqlite3.Cursor' objects>
+0 1281923844
+
+fl=~
+fn=<method 'extend' of 'list' objects>
+0 541741614
+
+fl=~
+fn=<method 'fetchmany' of 'sqlite3.Cursor' objects>
+0 1669504371
+
+fl=~
+fn=<method 'fetchone' of 'sqlite3.Cursor' objects>
+0 507285321
+
+fl=~
+fn=<method 'find' of 'str' objects>
+0 50693592
+
+fl=~
+fn=<method 'get' of 'dict' objects>
+0 508280407
+
+fl=~
+fn=<method 'get' of 'mappingproxy' objects>
+0 8032
+
+fl=~
+fn=<method 'group' of '_sre.SRE_Match' objects>
+0 892
+
+fl=~
+fn=<method 'index' of 'tuple' objects>
+0 1784
+
+fl=~
+fn=<method 'issubset' of 'set' objects>
+0 66229870
+
+fl=~
+fn=<method 'items' of 'collections.OrderedDict' objects>
+0 101800837
+
+fl=~
+fn=<method 'items' of 'dict' objects>
+0 252701791
+
+fl=~
+fn=<method 'join' of 'str' objects>
+0 353136728
+
+fl=~
+fn=<method 'pop' of 'dict' objects>
+0 170335022
+
+fl=~
+fn=<method 'pop' of 'list' objects>
+0 379422609
+
+fl=~
+fn=<method 'remove' of 'set' objects>
+0 4908
+
+fl=~
+fn=<method 'replace' of 'str' objects>
+0 201272371
+
+fl=~
+fn=<method 'rstrip' of 'str' objects>
+0 446
+
+fl=~
+fn=<method 'search' of '_sre.SRE_Pattern' objects>
+0 7139
+
+fl=~
+fn=<method 'split' of 'str' objects>
+0 239020032
+
+fl=~
+fn=<method 'startswith' of 'str' objects>
+0 517762726
+
+fl=~
+fn=<method 'sub' of '_sre.SRE_Pattern' objects>
+0 2098554983
+
+fl=~
+fn=<method 'update' of 'collections.OrderedDict' objects>
+0 102383163
+
+fl=~
+fn=<method 'update' of 'dict' objects>
+0 953826238
+
+fl=~
+fn=<method 'update' of 'set' objects>
+0 260934229
+
