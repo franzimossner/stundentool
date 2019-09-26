@@ -1,5 +1,6 @@
 from dataoutput.write_timetables import writingTimetables
 from .schulmodell import model
+from .schulmodell import Datenbankzugriff
 import pyomo.environ as pyo
 from pyomo.environ import *
 import os
