@@ -120,20 +120,6 @@ def createModel():
             liste.append(schulklasse.Name)
         return liste
 
-    # def getUebergreifend(fach, klasse):
-    #     # gibt zurück, wie viele Fächer zu dem Fach überggreifend sind in dieser Klasse (Gesamtzahl, also mindestens 1)
-    #     schulfach = Schulfach.objects.get(Name=fach)
-    #     schulklasse = Schulklasse.objects.get(Name=klasse)
-    #
-    #     uebergreifend = Uebergreifung.objects.filter(fach=schulfach, schulklasse=schulklasse)
-    #     number = 1
-    #     for group in uebergreifend:
-    #         number = group.schulklasse.all().count()
-    #     return number
-
-    #def Uebergreifend(fach, gruppe):
-        # gübr zurück, ob und wenn ja welche klassengruppe in dem Fach übergreifend zu unterrichten ist. Gruppe ist eine Zahl, die indiziert, die wievielte Gruppe des fachs es ist
-
     def Arbeitszeit(lehrer):
         # gibt die Arbeitszeit in Stunden für den Lehrer zurück
         lehrperson = Lehrer.objects.get(Kurzname=lehrer)
@@ -389,7 +375,7 @@ def createModel():
     # Klassenmenge, Lehrermenge, zahlslots sind korrekt importiert
     # 135468 Variablen geprüft
     # 75691 aufgenommen
-    # 8 Minuten gesamtlaufzeit mit Optimierung
+    # 11 Minuten gesamtlaufzeit mit Optimierung
 
     # Vermutung: Zu wenige Variablen werden aufgenommen in die Variablenmenge
 
@@ -499,6 +485,7 @@ def createModel():
     '''
     # Lehrer müsssen in ihrer Arbeitszeit bleiben
     '''Stimmt mit Model überein'''
+    '''Ohne Fehlermeldung einlesbar'''
     def ArbeitszeitRule(model,l):
         maxArbeit = sum(model.x[k,l,f,z] * Fachdauer(f,k)/len(Uebergreifend(f,k)) for k in model.Klassen for f in model.Faecher for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
         return maxArbeit <= Arbeitszeit(l)
@@ -508,6 +495,7 @@ def createModel():
 
     # Vorgaben, sowohl mit als auch ohne Lehrer angegeben (If Clause)
     '''Stimmt mit Model überein'''
+    '''Ohne Fehlermeldung einlesbar'''
     def VorgabeRule(model, klasse, fach, lehrer, zeitslot):
         if lehrer != 0:
             return sum(model.x[klasse, lehrer, fach, z] for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1) if (klasse,lehrer,fach,z) in model.Variablenmenge) >= 1
@@ -518,12 +506,10 @@ def createModel():
 
     # Räume müssen verfügbar sein
     '''Stimmt mit Model überein'''
-    '''Leere Constraint für Küche, stunde 11 '''
+    '''Leere Constraint für Küche, stunde 11 , vermutlich ist dort ein Raum verfügbar, aber die Varaiblen sind alle nicht in der Variablenmenge?'''
     def RaumRule(model,r,z):
         if RaumVerfuegbar(r,z) > 0:
             RaumNoetig= sum(model.x[k,l,f,t]/len(Uebergreifend(f,k)) for f in RaumFaecher(r) for l in model.Lehrer for k in model.Klassen for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
-            if RaumNoetig == None:
-                return Constraint.Feasible
             if r == "Küche" and z == 11:
                 print(RaumNoetig)
             return RaumNoetig <= RaumVerfuegbar(r,z)
@@ -535,7 +521,7 @@ def createModel():
     # Es darf nur ein Unterricht pro stunde pro klasse stattfinden, außer für geteilte Fächer
     '''Stimmt mit Model überein'''
     def NureinUnterrichtRule(model,k,z):
-        maxUnterricht = sum(model.x[k,l,f,z]/GeteilteFaecher(f,k) for f in model.Faecher and f != "Tandem" for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,z) in model.Variablenmenge)
+        maxUnterricht = sum(model.x[k,l,f,t]/GeteilteFaecher(f,k) for f in model.Faecher if f != "Tandem" for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
         return maxUnterricht <= 1
     model.NureinUnterricht = Constraint(model.Klassen, model.Zeitslots, rule=NureinUnterrichtRule)
     print("NureinUnterrichtRule Klassen gelesen")
