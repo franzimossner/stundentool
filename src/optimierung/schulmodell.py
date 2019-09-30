@@ -22,13 +22,12 @@ def createModel():
     '''Initialisierung des Problems
     '''
     # wir deklarieren ein abstraktes Modell, weil wir sich ändernde Daten haben
-    model = AbstractModel()
+    model = ConcreteModel()
 
     '''Deklaration von Funktionen
     '''
 
     # Setze eine Klasse auf, die alle Datenbankzugriffe macht und auf die man dann später zugreifen kann.
-    # Bis der Fehler in der Variablenmenge gefunden ist, ist das auf Hold
 
     class Datenbankzugriff():
         '''Diese Klasse speichert alle Datenbankzugriffe auf Django, damit sie nicht bereits beim migrate ausgeführt werden, sondern erst beim import
@@ -201,7 +200,10 @@ def createModel():
         # gibt zurück, wie viele studnen die klasse in dem Fach machen muss
         schulklasse = Schulklasse.objects.get(Name=klasse)
         schulfach = Schulfach.objects.get(Name=fach)
-        stundenzahl = Lehrfaecher.objects.get(schulklasse=schulklasse, schulfach=schulfach).wochenstunden
+        if Lehrfaecher.objects.get(schulklasse=schulklasse, schulfach=schulfach).exists():
+            stundenzahl = Lehrfaecher.objects.get(schulklasse=schulklasse, schulfach=schulfach).wochenstunden
+        else:
+            stundenzahl = 0
         return stundenzahl
 
     def Klassenfaecher(klasse):
@@ -415,12 +417,6 @@ def createModel():
                             # Wenn der Lehrer nicht da ist, dann kein Unterricht
                             if (l,z) in model.LehrerNichtDa:
                                 continue
-                            # Räume müssen frei sein für Unterricht
-                            # for r in Raummenge:
-                            #     if f in RaumFaecher(r):
-                            #         if RaumVerfuegbar(r,z) <= 0:
-                            #             testbestanden = 0
-                            #             break
                             # Doppelstunden nicht über die Pause
                             if Fachlaenge > 1:
                                 for tag in range(1,6):
@@ -488,7 +484,11 @@ def createModel():
     '''Ohne Fehlermeldung einlesbar'''
     def ArbeitszeitRule(model,l):
         maxArbeit = sum(model.x[k,l,f,z] * Fachdauer(f,k)/len(Uebergreifend(f,k)) for k in model.Klassen for f in model.Faecher for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
-        return maxArbeit <= Arbeitszeit(l)
+        constraint =  maxArbeit <= Arbeitszeit(l)
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
     # erstelle indexierte Constraint
     model.maxArbeitszeit = Constraint(model.Lehrer, rule=ArbeitszeitRule)
     print("ArbeitszeitRule gelesen")
@@ -498,31 +498,46 @@ def createModel():
     '''Ohne Fehlermeldung einlesbar'''
     def VorgabeRule(model, klasse, fach, lehrer, zeitslot):
         if lehrer != 0:
-            return sum(model.x[klasse, lehrer, fach, z] for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1) if (klasse,lehrer,fach,z) in model.Variablenmenge) >= 1
+            constraint = sum(model.x[klasse, lehrer, fach, z] for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1) if (klasse,lehrer,fach,z) in model.Variablenmenge) >= 1
         else:
-            return sum(model.x[klasse, l, fach, z] for l in model.Lehrer for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1)) >= 1
+            constraint = sum(model.x[klasse, l, fach, z] for l in model.Lehrer for z in range(max(1,zeitslot+1-Fachdauer(fach,klasse)), zeitslot+1)) >= 1
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
     model.vorgabencheck = Constraint(model.Vorgaben, rule=VorgabeRule)
     print("VorgabenRule gelesen")
 
     # Räume müssen verfügbar sein
     '''Stimmt mit Model überein'''
-    '''Leere Constraint für Küche, stunde 11 , vermutlich ist dort ein Raum verfügbar, aber die Varaiblen sind alle nicht in der Variablenmenge?'''
+    '''Leere Constraint für Küche, stunde 11/17 , vermutlich ist dort ein Raum verfügbar, aber die Varaiblen sind alle nicht in der Variablenmenge?'''
     def RaumRule(model,r,z):
         if RaumVerfuegbar(r,z) > 0:
-            RaumNoetig= sum(model.x[k,l,f,t]/len(Uebergreifend(f,k)) for f in RaumFaecher(r) for l in model.Lehrer for k in model.Klassen for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
-            if r == "Küche" and z == 11:
-                print(RaumNoetig)
-            return RaumNoetig <= RaumVerfuegbar(r,z)
+            RaumNoetig = sum(model.x[k,l,f,t]/len(Uebergreifend(f,k)) for f in RaumFaecher(r) for l in model.Lehrer for k in model.Klassen for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
+            constraint = RaumNoetig <= RaumVerfuegbar(r,z)
+            if isinstance(constraint, Constraint):
+                return constraint
+            else:
+                return Constraint.Feasible
         return Constraint.Feasible
     # erstelle Constraints
     model.Raumverfuegbarkeit = Constraint(model.Raeume, model.Zeitslots, rule=RaumRule)
     print("RaumRule gelesen")
 
     # Es darf nur ein Unterricht pro stunde pro klasse stattfinden, außer für geteilte Fächer
+    # auch mit andersrum überprüfen pyomo.core.base.constraint.indexedConstraint oder ähnlich
+    # oder auch nach Constraint (ohne alles)
     '''Stimmt mit Model überein'''
     def NureinUnterrichtRule(model,k,z):
+        # erstelle die SumExpression
         maxUnterricht = sum(model.x[k,l,f,t]/GeteilteFaecher(f,k) for f in model.Faecher if f != "Tandem" for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
-        return maxUnterricht <= 1
+        #stelle constraint auf
+        constraint = maxUnterricht <= 1
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
+    # erstelle Constraint
     model.NureinUnterricht = Constraint(model.Klassen, model.Zeitslots, rule=NureinUnterrichtRule)
     print("NureinUnterrichtRule Klassen gelesen")
 
@@ -541,9 +556,13 @@ def createModel():
     # Ein lehrer darf nur einen Unterricht geben, außer bei übergreifenden fächern
     '''stimmt mit Model überein'''
     def lehrernureinUnterrichtRule(model,l,z):
-        ohneCCS = sum(model.x[k,l,f,t] for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and len(Uebergreifend(f,k)) == 1 if (k,l,f,t) in model.Variablenmenge)
-        mitCCS = sum(sum(model.x[c,l,f,t] for c in Uebergreifend(f,k))/len(Uebergreifend(f,k)) for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) and len(Uebergreifend(f,k)) > 1 if (c,l,f,z) in model.Variablenmenge)
-        return ohneCCS + mitCCS <= 1
+        ohneCCS = sum(model.x[k,l,f,t] for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if len(Uebergreifend(f,k)) == 1 if (k,l,f,t) in model.Variablenmenge)
+        mitCCS = sum(sum(model.x[c,l,f,t] for c in Uebergreifend(f,k))/len(Uebergreifend(f,k)) for k in model.Klassen for f in Unterricht(l) for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if len(Uebergreifend(f,k)) > 1 if (c,l,f,z) in model.Variablenmenge)
+        constraint = ohneCCS + mitCCS <= 1
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
     model.LehrerUnterricht = Constraint(model.Lehrer, model.Zeitslots, rule=lehrernureinUnterrichtRule)
     print("lehrernureinUnterrichtRule gelesen")
 
@@ -578,8 +597,12 @@ def createModel():
         if GleichzeitigFach(f) != []:
             parallelsumme = 0
             for parfach in GleichzeitigFach(f):
-                parallelaumme += sum(model.x[k,l,f,z] for l in model.Lehrer if (k,l,f,z) in model.Variablenmenge) - sum(model.x[k,l,parfach,z] for l in model.Lehrer if (k,l,parfach,z) in model.Variablenmenge)
-            return parallelsumme == 0
+                parallelsumme += sum(model.x[k,l,f,z] for l in model.Lehrer if (k,l,f,z) in model.Variablenmenge) - sum(model.x[k,l,parfach,z] for l in model.Lehrer if (k,l,parfach,z) in model.Variablenmenge)
+            constraint = parallelsumme == 0
+        else:
+            constraint = Constraint.Feasible
+        if isinstance(constraint, Constraint):
+            return constraint
         else:
             return Constraint.Feasible
     model.Parallelzusammen = Constraint(model.Faecher, model.Klassen, model.Zeitslots, rule=ParallelzusammenRule)
@@ -589,7 +612,11 @@ def createModel():
     '''Stimmt mit Model überein'''
     def LehrplanRule(model,f,k):
         mindestUnterricht = sum(model.x[k,l,f,z] * Fachdauer(f,k)/GeteilteFaecher(f,k) for l in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
-        return mindestUnterricht >= Lehrplanstunden(f,k)
+        constraint = mindestUnterricht >= Lehrplanstunden(f,k)
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
     model.Lehrplanerfuellt = Constraint(model.Faecher, model.Klassen, rule=LehrplanRule)
     print("LehrplanRule gelesen")
 
@@ -598,7 +625,11 @@ def createModel():
     def TandemRule(model,k,z):
         Tandem1 = sum(model.x[k,l,"Tandem",z] for l  in model.Lehrer if (k,l,"Tandem",z) in model.Variablenmenge)
         Tandem2 = sum(Tandemnummer(f,k) * model.x[k,l,f,t] for f in model.Faecher for l in model.Lehrer for t in range(max(1,z+1-Fachdauer(f,k)), z+1) if (k,l,f,t) in model.Variablenmenge)
-        return Tandem1 == Tandem2
+        constraint = Tandem1 == Tandem2
+        if isinstance(constraint, Constraint):
+            return constraint
+        else:
+            return Constraint.Feasible
     # erstelle Constraint
     model.Tandembenoetigt = Constraint(model.Klassen, model.Zeitslots, rule=TandemRule)
     print("TandemRule gelesen")

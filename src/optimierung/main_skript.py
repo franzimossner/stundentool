@@ -37,7 +37,7 @@ def doeverything():
     # import solver and solve model, wirte documentation and load results
     model = createModel()
     opt = pyo.SolverFactory('glpk')
-    instance = model.create_instance()
+    #instance = model.create_instance()
     results = opt.solve(instance, tee=True)
     results.write(num=1)
     # brauche ich das für irgendwas?
