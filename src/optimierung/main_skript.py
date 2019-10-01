@@ -36,26 +36,29 @@ def doeverything():
 
     # import solver and solve model, wirte documentation and load results
     model = createModel()
+    #model.pprint('model-debug.txt')
     opt = pyo.SolverFactory('glpk')
     #instance = model.create_instance()
-    results = opt.solve(instance, tee=True)
+    results = opt.solve(model, tee=True)
     results.write(num=1)
     # brauche ich das für irgendwas?
-    instance.solutions.load_from(results)
+    #solutions.load_from(results
+    model.display('results.txt')
 
     print('optimierung done')
 
     with open('./X_res.csv','w') as file:
         file.write('Klasse, Lehrer, Fach, Slot, Var\n')
-        for v in instance.component_data_objects(Var, active=True):
+        for v_data in model.component_data_objects(Var, descend_into=True):
             #print ("Variable",v)
-            varobject = getattr(instance, str(v))
-            for index in varobject:
-                if varobject[index].value == 1:
+            #varobject = getattr(model, str(v))
+            #for index in varobject:
+                #if varobject[index].value == 1:
                     #indexlist = []
-                    for element in index:
-                        file.write('{0},'.format(element))
-                    file.write('{0}\n'.format(int(varobject[index].value)))
+                    #for element in index:
+
+            file.write('{0},'.format(v_data.name))
+            file.write('{0}\n'.format(value(v_data)))
 
 
 
