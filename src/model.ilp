@@ -1,0 +1,201 @@
+\ Model Obj_copy
+\ LP format - for model browsing. Use MPS format to capture full model detail.
+Maximize
+ 
+Subject To
+ c_u_LehrerUnterricht(Hin_1)_: x(45_Hin_Religion_1) + x(4G_Hin_Religion_1)
+   <= 1
+ c_u_LehrerUnterricht(Hin_3)_: x(45_Hin_Religion_3) + x(4G_Hin_Religion_3)
+   + x(45_Hin_Religion_2) + x(4G_Hin_Religion_2) <= 1
+ c_u_LehrerUnterricht(Hin_5)_: x(45_Hin_Religion_5) + x(4G_Hin_Religion_5)
+   + x(45_Hin_Religion_4) + x(4G_Hin_Religion_4) <= 1
+ c_u_LehrerUnterricht(Hin_10)_: x(45_Hin_Religion_10)
+   + x(4G_Hin_Religion_10) + x(45_Hin_Religion_9) + x(4G_Hin_Religion_9)
+   <= 1
+ c_u_LehrerUnterricht(Hin_12)_: x(45_Hin_Religion_12)
+   + x(4G_Hin_Religion_12) + x(45_Hin_Religion_11) + x(4G_Hin_Religion_11)
+   <= 1
+ c_u_LehrerUnterricht(Hin_14)_: x(45_Hin_Religion_14)
+   + x(4G_Hin_Religion_14) + x(45_Hin_Religion_13) + x(4G_Hin_Religion_13)
+   <= 1
+ c_u_LehrerUnterricht(Hin_19)_: x(45_Hin_Religion_19)
+   + x(4G_Hin_Religion_19) + x(45_Hin_Religion_18) + x(4G_Hin_Religion_18)
+   <= 1
+ c_u_LehrerUnterricht(Hin_21)_: x(45_Hin_Religion_21)
+   + x(4G_Hin_Religion_21) + x(45_Hin_Religion_20) + x(4G_Hin_Religion_20)
+   <= 1
+ c_u_LehrerUnterricht(Hin_23)_: x(45_Hin_Religion_23)
+   + x(4G_Hin_Religion_23) + x(45_Hin_Religion_22) + x(4G_Hin_Religion_22)
+   <= 1
+ c_u_LehrerUnterricht(Hin_28)_: x(45_Hin_Religion_28)
+   + x(4G_Hin_Religion_28) + x(45_Hin_Religion_27) + x(4G_Hin_Religion_27)
+   <= 1
+ c_u_LehrerUnterricht(Hin_30)_: x(45_Hin_Religion_30)
+   + x(4G_Hin_Religion_30) + x(45_Hin_Religion_29) + x(4G_Hin_Religion_29)
+   <= 1
+ c_u_LehrerUnterricht(Hin_32)_: x(45_Hin_Religion_32)
+   + x(4G_Hin_Religion_32) + x(45_Hin_Religion_31) + x(4G_Hin_Religion_31)
+   <= 1
+ c_u_LehrerUnterricht(Hin_37)_: x(45_Hin_Religion_37)
+   + x(4G_Hin_Religion_37) + x(45_Hin_Religion_36) + x(4G_Hin_Religion_36)
+   <= 1
+ c_u_LehrerUnterricht(Hin_39)_: x(45_Hin_Religion_39)
+   + x(4G_Hin_Religion_39) + x(45_Hin_Religion_38) + x(4G_Hin_Religion_38)
+   <= 1
+ c_u_LehrerUnterricht(Kna_1)_: x(45_Kna_Religion_1) + x(4G_Kna_Religion_1)
+   <= 1
+ c_u_LehrerUnterricht(Kna_3)_: x(45_Kna_Religion_3) + x(4G_Kna_Religion_3)
+   + x(45_Kna_Religion_2) + x(4G_Kna_Religion_2) <= 1
+ c_u_LehrerUnterricht(Kna_5)_: x(45_Kna_Religion_5) + x(4G_Kna_Religion_5)
+   + x(45_Kna_Religion_4) + x(4G_Kna_Religion_4) <= 1
+ c_u_LehrerUnterricht(Kna_10)_: x(45_Kna_Religion_10)
+   + x(4G_Kna_Religion_10) + x(45_Kna_Religion_9) + x(4G_Kna_Religion_9)
+   <= 1
+ c_u_LehrerUnterricht(Kna_12)_: x(45_Kna_Religion_12)
+   + x(4G_Kna_Religion_12) + x(45_Kna_Religion_11) + x(4G_Kna_Religion_11)
+   <= 1
+ c_u_LehrerUnterricht(Kna_14)_: x(45_Kna_Religion_14)
+   + x(4G_Kna_Religion_14) + x(45_Kna_Religion_13) + x(4G_Kna_Religion_13)
+   <= 1
+ c_u_LehrerUnterricht(Kna_19)_: x(45_Kna_Religion_19)
+   + x(4G_Kna_Religion_19) + x(45_Kna_Religion_18) + x(4G_Kna_Religion_18)
+   <= 1
+ c_u_LehrerUnterricht(Kna_21)_: x(45_Kna_Religion_21)
+   + x(4G_Kna_Religion_21) + x(45_Kna_Religion_20) + x(4G_Kna_Religion_20)
+   <= 1
+ c_u_LehrerUnterricht(Kna_23)_: x(45_Kna_Religion_23)
+   + x(4G_Kna_Religion_23) + x(45_Kna_Religion_22) + x(4G_Kna_Religion_22)
+   <= 1
+ c_u_LehrerUnterricht(Kna_28)_: x(45_Kna_Religion_28)
+   + x(4G_Kna_Religion_28) + x(45_Kna_Religion_27) + x(4G_Kna_Religion_27)
+   <= 1
+ c_u_LehrerUnterricht(Kna_30)_: x(45_Kna_Religion_30)
+   + x(4G_Kna_Religion_30) + x(45_Kna_Religion_29) + x(4G_Kna_Religion_29)
+   <= 1
+ c_u_LehrerUnterricht(Kna_32)_: x(45_Kna_Religion_32)
+   + x(4G_Kna_Religion_32) + x(45_Kna_Religion_31) + x(4G_Kna_Religion_31)
+   <= 1
+ c_u_LehrerUnterricht(Kna_37)_: x(45_Kna_Religion_37)
+   + x(4G_Kna_Religion_37) + x(45_Kna_Religion_36) + x(4G_Kna_Religion_36)
+   <= 1
+ c_u_LehrerUnterricht(Kna_39)_: x(45_Kna_Religion_39)
+   + x(4G_Kna_Religion_39) + x(45_Kna_Religion_38) + x(4G_Kna_Religion_38)
+   <= 1
+ c_e_Uebergreifend(Religion_45_1)_: x(45_Hin_Religion_1)
+   - x(4G_Hin_Religion_1) + x(45_Kna_Religion_1) - x(4G_Kna_Religion_1)
+   = 0
+ c_e_Uebergreifend(Religion_45_3)_: x(45_Hin_Religion_3)
+   - x(4G_Hin_Religion_3) + x(45_Kna_Religion_3) - x(4G_Kna_Religion_3)
+   = 0
+ c_e_Uebergreifend(Religion_45_5)_: x(45_Hin_Religion_5)
+   - x(4G_Hin_Religion_5) + x(45_Kna_Religion_5) - x(4G_Kna_Religion_5)
+   = 0
+ c_e_Uebergreifend(Religion_45_10)_: x(45_Hin_Religion_10)
+   - x(4G_Hin_Religion_10) + x(45_Kna_Religion_10) - x(4G_Kna_Religion_10)
+   = 0
+ c_e_Uebergreifend(Religion_45_12)_: x(45_Hin_Religion_12)
+   - x(4G_Hin_Religion_12) + x(45_Kna_Religion_12) - x(4G_Kna_Religion_12)
+   = 0
+ c_e_Uebergreifend(Religion_45_19)_: x(45_Hin_Religion_19)
+   - x(4G_Hin_Religion_19) + x(45_Kna_Religion_19) - x(4G_Kna_Religion_19)
+   = 0
+ c_e_Uebergreifend(Religion_45_23)_: x(45_Hin_Religion_23)
+   - x(4G_Hin_Religion_23) + x(45_Kna_Religion_23) - x(4G_Kna_Religion_23)
+   = 0
+ c_e_Uebergreifend(Religion_45_28)_: x(45_Hin_Religion_28)
+   - x(4G_Hin_Religion_28) + x(45_Kna_Religion_28) - x(4G_Kna_Religion_28)
+   = 0
+ c_e_Uebergreifend(Religion_4G_14)_: - x(45_Hin_Religion_14)
+   + x(4G_Hin_Religion_14) - x(45_Kna_Religion_14) + x(4G_Kna_Religion_14)
+   = 0
+ c_e_Uebergreifend(Religion_4G_21)_: - x(45_Hin_Religion_21)
+   + x(4G_Hin_Religion_21) - x(45_Kna_Religion_21) + x(4G_Kna_Religion_21)
+   = 0
+ c_e_Uebergreifend(Religion_4G_30)_: - x(45_Hin_Religion_30)
+   + x(4G_Hin_Religion_30) - x(45_Kna_Religion_30) + x(4G_Kna_Religion_30)
+   = 0
+ c_e_Uebergreifend(Religion_4G_39)_: - x(45_Hin_Religion_39)
+   + x(4G_Hin_Religion_39) - x(45_Kna_Religion_39) + x(4G_Kna_Religion_39)
+   = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_1_45)_: x(45_Hin_Religion_1)
+   - x(4G_Hin_Religion_1) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_3_4G)_:
+   - x(45_Hin_Religion_3) + x(4G_Hin_Religion_3) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_5_4G)_:
+   - x(45_Hin_Religion_5) + x(4G_Hin_Religion_5) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_12_4G)_:
+   - x(45_Hin_Religion_12) + x(4G_Hin_Religion_12) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_23_45)_:
+   x(45_Hin_Religion_23) - x(4G_Hin_Religion_23) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_28_45)_:
+   x(45_Hin_Religion_28) - x(4G_Hin_Religion_28) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_32_4G)_:
+   - x(45_Hin_Religion_32) + x(4G_Hin_Religion_32) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Hin_37_45)_:
+   x(45_Hin_Religion_37) - x(4G_Hin_Religion_37) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_10_4G)_:
+   - x(45_Kna_Religion_10) + x(4G_Kna_Religion_10) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_14_4G)_:
+   - x(45_Kna_Religion_14) + x(4G_Kna_Religion_14) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_19_45)_:
+   x(45_Kna_Religion_19) - x(4G_Kna_Religion_19) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_21_45)_:
+   x(45_Kna_Religion_21) - x(4G_Kna_Religion_21) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_30_45)_:
+   x(45_Kna_Religion_30) - x(4G_Kna_Religion_30) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_32_45)_:
+   x(45_Kna_Religion_32) - x(4G_Kna_Religion_32) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_37_45)_:
+   x(45_Kna_Religion_37) - x(4G_Kna_Religion_37) = 0
+ c_e_UebergreifendgleicherLehrer(Religion_Kna_39_45)_:
+   x(45_Kna_Religion_39) - x(4G_Kna_Religion_39) = 0
+ c_l_Lehrplanerfuellt(Religion_45)_: x(45_Hin_Religion_1)
+   + x(45_Hin_Religion_10) + x(45_Hin_Religion_12) + x(45_Hin_Religion_14)
+   + x(45_Hin_Religion_19) + x(45_Hin_Religion_21) + x(45_Hin_Religion_23)
+   + x(45_Hin_Religion_28) + x(45_Hin_Religion_3) + x(45_Hin_Religion_30)
+   + x(45_Hin_Religion_32) + x(45_Hin_Religion_37) + x(45_Hin_Religion_39)
+   + x(45_Hin_Religion_5) + x(45_Kna_Religion_1) + x(45_Kna_Religion_10)
+   + x(45_Kna_Religion_12) + x(45_Kna_Religion_14) + x(45_Kna_Religion_19)
+   + x(45_Kna_Religion_21) + x(45_Kna_Religion_23) + x(45_Kna_Religion_28)
+   + x(45_Kna_Religion_3) + x(45_Kna_Religion_30) + x(45_Kna_Religion_32)
+   + x(45_Kna_Religion_37) + x(45_Kna_Religion_39) + x(45_Kna_Religion_5)
+   >= 1
+Bounds
+Binaries
+ x(45_Hin_Religion_1) x(45_Hin_Religion_10) x(45_Hin_Religion_12)
+ x(45_Hin_Religion_14) x(45_Hin_Religion_19) x(45_Hin_Religion_21)
+ x(45_Hin_Religion_23) x(45_Hin_Religion_28) x(45_Hin_Religion_3)
+ x(45_Hin_Religion_30) x(45_Hin_Religion_32) x(45_Hin_Religion_37)
+ x(45_Hin_Religion_39) x(45_Hin_Religion_5) x(4G_Hin_Religion_1)
+ x(4G_Hin_Religion_10) x(4G_Hin_Religion_12) x(4G_Hin_Religion_14)
+ x(4G_Hin_Religion_19) x(4G_Hin_Religion_21) x(4G_Hin_Religion_23)
+ x(4G_Hin_Religion_28) x(4G_Hin_Religion_3) x(4G_Hin_Religion_30)
+ x(4G_Hin_Religion_32) x(4G_Hin_Religion_37) x(4G_Hin_Religion_39)
+ x(4G_Hin_Religion_5) x(45_Kna_Religion_1) x(45_Kna_Religion_10)
+ x(45_Kna_Religion_12) x(45_Kna_Religion_14) x(45_Kna_Religion_19)
+ x(45_Kna_Religion_21) x(45_Kna_Religion_23) x(45_Kna_Religion_28)
+ x(45_Kna_Religion_3) x(45_Kna_Religion_30) x(45_Kna_Religion_32)
+ x(45_Kna_Religion_37) x(45_Kna_Religion_39) x(45_Kna_Religion_5)
+ x(4G_Kna_Religion_1) x(4G_Kna_Religion_10) x(4G_Kna_Religion_12)
+ x(4G_Kna_Religion_14) x(4G_Kna_Religion_19) x(4G_Kna_Religion_21)
+ x(4G_Kna_Religion_23) x(4G_Kna_Religion_28) x(4G_Kna_Religion_3)
+ x(4G_Kna_Religion_30) x(4G_Kna_Religion_32) x(4G_Kna_Religion_37)
+ x(4G_Kna_Religion_39) x(4G_Kna_Religion_5) x(45_Hin_Religion_2)
+ x(4G_Hin_Religion_2) x(45_Hin_Religion_4) x(4G_Hin_Religion_4)
+ x(45_Hin_Religion_9) x(4G_Hin_Religion_9) x(45_Hin_Religion_11)
+ x(4G_Hin_Religion_11) x(45_Hin_Religion_13) x(4G_Hin_Religion_13)
+ x(45_Hin_Religion_18) x(4G_Hin_Religion_18) x(45_Hin_Religion_20)
+ x(4G_Hin_Religion_20) x(45_Hin_Religion_22) x(4G_Hin_Religion_22)
+ x(45_Hin_Religion_27) x(4G_Hin_Religion_27) x(45_Hin_Religion_29)
+ x(4G_Hin_Religion_29) x(45_Hin_Religion_31) x(4G_Hin_Religion_31)
+ x(45_Hin_Religion_36) x(4G_Hin_Religion_36) x(45_Hin_Religion_38)
+ x(4G_Hin_Religion_38) x(45_Kna_Religion_2) x(4G_Kna_Religion_2)
+ x(45_Kna_Religion_4) x(4G_Kna_Religion_4) x(45_Kna_Religion_9)
+ x(4G_Kna_Religion_9) x(45_Kna_Religion_11) x(4G_Kna_Religion_11)
+ x(45_Kna_Religion_13) x(4G_Kna_Religion_13) x(45_Kna_Religion_18)
+ x(4G_Kna_Religion_18) x(45_Kna_Religion_20) x(4G_Kna_Religion_20)
+ x(45_Kna_Religion_22) x(4G_Kna_Religion_22) x(45_Kna_Religion_27)
+ x(4G_Kna_Religion_27) x(45_Kna_Religion_29) x(4G_Kna_Religion_29)
+ x(45_Kna_Religion_31) x(4G_Kna_Religion_31) x(45_Kna_Religion_36)
+ x(4G_Kna_Religion_36) x(45_Kna_Religion_38) x(4G_Kna_Religion_38)
+End

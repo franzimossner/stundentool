@@ -9,7 +9,7 @@ import pyomo.environ as pyo
 import os
 
 # Aus schulmodell.py
-#from pyomo.environ import *
+from pyomo.environ import *
 import cProfile
 import time
 import datetime
@@ -66,7 +66,7 @@ def doeverything():
     pyutilib.subprocess.GlobalData.DEFINE_SIGNAL_HANDLERS_DEFAULT = False
     # opt = pyo.SolverFactory('glpk', executable='/usr/local/bin/glpsol')
     loguru_logger.info("initialize solver")
-    opt = pyo.SolverFactory("glpk")
+    opt = pyo.SolverFactory("gurobi")
     # instance = model.create_instance()
     loguru_logger.info("START: solve model")
     results = opt.solve(model, tee=True)

@@ -71,7 +71,7 @@ def teacher_detail(request, lehrer):
         for stunde in stunden:
             tagesplan = []
             for tag in tage:
-                tagesplan.append(lehrer.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).first())
+                tagesplan.append(lehrer.lehreinheit_set.filter(Zeitslot__Stunde=stunde, Zeitslot__Tag=tag, run=run).all())
             stundenplan.append((stunde, tagesplan))
         runToStundenplan.append((lehrer, stundenplan, run))
     return render(request, 'dataoutput/teacher_detail.html', {'runToStundenplan': runToStundenplan,

@@ -56,8 +56,13 @@
                 {% for stunde, tagesplan in stundenplan %}
                   <tr>
                     <th> {{ stunde.Stunde }} </th>
-                    {% for lehreinheit in tagesplan %}
-                      <td> {{ lehreinheit.Schulfach.Name }}  {% if lehreinheit.Klasse != None %} ({% endif %} {{ lehreinheit.Klasse.Name }} {% if lehreinheit.Klasse != None %} )  {% endif %} </td>
+                    {% for lehreinheiten in tagesplan %}
+                      <td>
+                      {% for lehreinheit in lehreinheiten %}
+                        {{ lehreinheit.Schulfach.Name }}  {% if lehreinheit.Klasse != None %} ({% endif %} {{ lehreinheit.Klasse.Name }} {% if lehreinheit.Klasse != None %} )  {% endif %}
+                        {% if not forloop.last %} <br /> {% endif %}
+                      {% endfor %}
+                      </td>
                     {% endfor %}
                   </tr>
                 {% endfor %}

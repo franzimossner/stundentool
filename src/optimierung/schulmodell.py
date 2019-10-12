@@ -146,6 +146,7 @@ def createModel():
         # return fachdauer
 
     def Tandemnummer(fach, klasse):
+        ''' Sollte eigentlich die Zahl der Tandemlehrer pro Stunde zurück geben'''
         # gibt für die Klasse die Zahl der benötigten Tandemlehrer aus pro Woche
         try:
             tandemnummer = Lehrfaecher.objects.get(
@@ -629,7 +630,7 @@ def createModel():
 
     # Räume müssen verfügbar sein
     """Stimmt mit Model überein"""
-    """Leere Constraint für Küche, stunde 11/17 , vermutlich ist dort ein Raum verfügbar, aber die Varaiblen sind alle nicht in der Variablenmenge?"""
+    """Unzulässigkeit bei Werkraum 1 und Stunde 22, passiert vermutlich wenn eine Doppelstunde in der einen Stunde keinen Raum hat"""
 
     def RaumRule(model, r, z):
         RaumNoetig = sum(
@@ -638,6 +639,8 @@ def createModel():
             for l in model.Lehrer
             for k in model.Klassen
             for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
+            # Experiment, um Doppelstundenverfügbarkeit zu testen
+            if RaumVerfuegbar(r,t) > 0
             if (k, l, f, t) in model.Variablenmenge
         )
         constraint = RaumNoetig <= RaumVerfuegbar(r, z)
@@ -706,18 +709,23 @@ def createModel():
             if len(Uebergreifend(f, k)) == 1
             if (k, l, f, t) in model.Variablenmenge
         )
+        if l == 'Hin' and z == 1:
+            print(ohneCCS)
         mitCCS = sum(
             sum(
                 model.x[c, l, f, t]
                 for c in Uebergreifend(f, k)
                 if (c, l, f, z) in model.Variablenmenge
             )
-            / len(Uebergreifend(f, k))
+            / (2 * len(Uebergreifend(f, k)))
             for k in model.Klassen
             for f in Unterricht(l)
             for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
             if len(Uebergreifend(f, k)) > 1
         )
+        if l == 'Hin' and z == 1:
+            print(mitCCS)
+        #constraint = ohneCCS + mitCCS <= 1
         constraint = ohneCCS + mitCCS <= 1
         return constraint_or_feasible(constraint)
 
@@ -821,22 +829,38 @@ def createModel():
 
     # Tandemlehrer muss anwesend sein wenn gefordert
     """Stimmt mit Model überein"""
+    ''' Hier liegt ein Fehler, weil Tandem1 nicht richtig berechnet wird, es sind zu viele. Tandemnummer muss die Zahl der Tandemlehrer gleichzeitig sein, nicht gesamt in der Woche?'''
 
-    def TandemRule(model, k, z):
-        Tandem1 = sum(
-            model.x[k, l, "Tandem", z]
-            for l in model.Lehrer
-            if (k, l, "Tandem", z) in model.Variablenmenge
-        )
-        Tandem2 = sum(
-            Tandemnummer(f, k) * model.x[k, l, f, t]
-            for f in model.Faecher
-            for l in model.Lehrer
-            for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
-            if (k, l, f, t) in model.Variablenmenge
-        )
-        constraint = Tandem1 == Tandem2
+    '''Muss umstrukturiert werden. Zähle für jede klasse und jedes Fach wie viele Tandems pro Woche benötigt und die müssen es dann auch sein
+    D.h. Tandem1 bleibt gleich aber Zeitpunkt läuft  auch
+    Tandem2 zeitpunkt läuft und lehrer laufen
+    '''
+    def TandemRule(model, k, f):
+        # TandemA schaut für die Klasse alle Tandems an die in der Woche existieren und summiert
+        TandemA = sum(model.x[k,l, 'Tandem', z] for l in model.Lehrer for z in model.Zeitslots if (k,l,'Tandem',z) in model.Variablenmenge)
+
+        # TandemB schaut für die klasse und das Fach nach wie viele Tandems benötigt werden und summiert
+        # reicht hier auch einfach nur die Tandemnummer hinzuschreiben? Denn so viele wie es sein sollen, sind es dann??
+        TandemB = Tandemnummer(f,k)
+        #TandemB = sum(Tandemnummer(f,k) * model.x[k,l,f,z] for l in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
+        constraint = TandemA == TandemB
         return constraint_or_feasible(constraint)
+
+    # def TandemRule(model, k, z):
+    #     Tandem1 = sum(
+    #         model.x[k, l, 'Tandem', z]
+    #         for l in model.Lehrer
+    #         if (k, l, 'Tandem', z) in model.Variablenmenge
+    #     )
+    #     Tandem2 = sum(
+    #         Tandemnummer(f, k) * model.x[k, l, f, t]
+    #         for f in model.Faecher
+    #         for l in model.Lehrer
+    #         for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
+    #         if (k, l, f, t) in model.Variablenmenge
+    #     )
+    #     constraint = Tandem1 == Tandem2
+    #     return constraint_or_feasible(constraint)
 
     # erstelle Constraint
     model.Tandembenoetigt = Constraint(model.Klassen, model.Zeitslots, rule=TandemRule)
