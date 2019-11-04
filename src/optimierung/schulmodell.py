@@ -436,15 +436,6 @@ def createModel():
     model.pds = Var(model.Klassen, model.Zeitslots, model.Faecher, domain=Boolean)
 
     # kreiere Variablenmenge von Variablen, die überhaupt den Wert 1 annehmen könnten
-
-    # Fehlersuche:
-    # Klassenmenge, Lehrermenge, zahlslots sind korrekt importiert
-    # 135468 Variablen geprüft
-    # 75691 aufgenommen
-    # 11 Minuten gesamtlaufzeit mit Optimierung
-
-    # Vermutung: Zu wenige Variablen werden aufgenommen in die Variablenmenge
-
     # Geschwindigkeit liegt an den Datenbankzugriffen
     def Variablenmenge(model):
         # start = time.time()
@@ -620,9 +611,11 @@ def createModel():
                     for z in range(
                         max(1, zeitslot + 1 - Fachdauer(fach, klasse)), zeitslot + 1
                     )
+                    if (klasse, l, fach, z) in model.Variablenmenge
                 )
                 >= 1
             )
+        print(constraint)
         return constraint_or_feasible(constraint)
 
     model.vorgabencheck = Constraint(model.Vorgaben, rule=VorgabeRule)
@@ -630,7 +623,6 @@ def createModel():
 
     # Räume müssen verfügbar sein
     """Stimmt mit Model überein"""
-    """Unzulässigkeit bei Werkraum 1 und Stunde 22, passiert vermutlich wenn eine Doppelstunde in der einen Stunde keinen Raum hat"""
 
     def RaumRule(model, r, z):
         RaumNoetig = sum(
@@ -662,17 +654,18 @@ def createModel():
     # auch mit andersrum überprüfen pyomo.core.base.constraint.indexedConstraint oder ähnlich
     # oder auch nach Constraint (ohne alles)
     """Stimmt mit Model überein"""
+    ''' Wird im Ergebnis nicht eingehalten '''
 
     def NureinUnterrichtRule(model, k, z):
         # faecher = Lehrfaecher.objects.filter(...)
         # erstelle die SumExpression
         maxUnterricht = sum(
-            model.x[k, l, f, t] / f.klassengruppen
+            model.x[k, l, f.schulfach.Name, t] / f.klassengruppen
             for f in faecherFuerKlasse[k]
-            if f.schulklasse.Name != "Tandem"
+            if f.schulfach.Name != "Tandem"
             for l in model.Lehrer
             for t in range(max(1, z + 1 - f.blockstunden), z + 1)
-            if (k, l, f, t) in model.Variablenmenge
+            if (k, l, f.schulfach.Name, t) in model.Variablenmenge
         )
         # stelle constraint auf
         constraint = maxUnterricht <= 1
@@ -709,8 +702,6 @@ def createModel():
             if len(Uebergreifend(f, k)) == 1
             if (k, l, f, t) in model.Variablenmenge
         )
-        if l == 'Hin' and z == 1:
-            print(ohneCCS)
         mitCCS = sum(
             sum(
                 model.x[c, l, f, t]
@@ -723,9 +714,6 @@ def createModel():
             for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
             if len(Uebergreifend(f, k)) > 1
         )
-        if l == 'Hin' and z == 1:
-            print(mitCCS)
-        #constraint = ohneCCS + mitCCS <= 1
         constraint = ohneCCS + mitCCS <= 1
         return constraint_or_feasible(constraint)
 
