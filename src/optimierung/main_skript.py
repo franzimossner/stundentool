@@ -74,10 +74,9 @@ def doeverything():
     results.write()
     loguru_logger.info(f"SOLVER STATUS: {str(results.solver.status)}")
 
-    # brauche ich das für irgendwas?
-    # solutions.load_from(results
-    #loguru_logger.info("Write model file")
-    #model.write("model.lp", io_options={"symbolic_solver_labels": True})
+
+    loguru_logger.info("Write model file")
+    model.write("model.lp", io_options={"symbolic_solver_labels": True})
 
     print("optimierung done")
 

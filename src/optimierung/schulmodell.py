@@ -589,7 +589,6 @@ def createModel():
 
     # Vorgaben, sowohl mit als auch ohne Lehrer angegeben (If Clause)
     """Stimmt mit Model überein"""
-    """Ohne Fehlermeldung einlesbar"""
 
     def VorgabeRule(model, klasse, fach, lehrer, zeitslot):
         if lehrer != 0:
@@ -615,7 +614,6 @@ def createModel():
                 )
                 >= 1
             )
-        print(constraint)
         return constraint_or_feasible(constraint)
 
     model.vorgabencheck = Constraint(model.Vorgaben, rule=VorgabeRule)
@@ -662,7 +660,7 @@ def createModel():
         maxUnterricht = sum(
             model.x[k, l, f.schulfach.Name, t] / f.klassengruppen
             for f in faecherFuerKlasse[k]
-            if f.schulfach.Name != "Tandem"
+            if f.schulfach.Name != 'Tandem'
             for l in model.Lehrer
             for t in range(max(1, z + 1 - f.blockstunden), z + 1)
             if (k, l, f.schulfach.Name, t) in model.Variablenmenge
@@ -817,41 +815,28 @@ def createModel():
 
     # Tandemlehrer muss anwesend sein wenn gefordert
     """Stimmt mit Model überein"""
-    ''' Hier liegt ein Fehler, weil Tandem1 nicht richtig berechnet wird, es sind zu viele. Tandemnummer muss die Zahl der Tandemlehrer gleichzeitig sein, nicht gesamt in der Woche?'''
-
-    '''Muss umstrukturiert werden. Zähle für jede klasse und jedes Fach wie viele Tandems pro Woche benötigt und die müssen es dann auch sein
-    D.h. Tandem1 bleibt gleich aber Zeitpunkt läuft  auch
-    Tandem2 zeitpunkt läuft und lehrer laufen
+    ''' Für eine Klasse und ein Fach, finde die wochenstunden
+    Dann summiere Tandemvariablen über diese Wochenstunden, das muss dann Tandemnummer sein
     '''
     def TandemRule(model, k, f):
-        # TandemA schaut für die Klasse alle Tandems an die in der Woche existieren und summiert
-        TandemA = sum(model.x[k,l, 'Tandem', z] for l in model.Lehrer for z in model.Zeitslots if (k,l,'Tandem',z) in model.Variablenmenge)
+        # Tandem0: summiert alle Wochenstunden für das Fach in der Klasse - die tandemstunden darin
+        Tandem0 = sum(sum(model.x[k,l,f,z] for l in model.Lehrer if (k,l,f,z) in model.Variablenmenge) - sum(model.x[k,j,'Tandem',z] for j in model.Lehrer if (k,j,'Tandem',z) in model.Variablenmenge) for z in model.Zeitslots)
+        #Tandem0 = sum(model.x[k,l,f,z] - model.x[k,j,'Tandem', z] for l in model.Lehrer for j in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge if (k,l,'Tandem',z) in model.Variablenmenge )
+        # Diese differenz müsste Lehrplanstunden - Tandemstunden sein
+        Tandem1 = Lehrplanstunden(f,k) - Tandemnummer(f,k)
+        constraint = Tandem0 == Tandem1
 
+        #TandemA = sum(model.x[k,l,'Tandem', z] for l in model.Lehrer for z in model.Zeitslots if (k,l,'Tandem',z) in model.Variablenmenge)
         # TandemB schaut für die klasse und das Fach nach wie viele Tandems benötigt werden und summiert
         # reicht hier auch einfach nur die Tandemnummer hinzuschreiben? Denn so viele wie es sein sollen, sind es dann??
-        TandemB = Tandemnummer(f,k)
+        #TandemB = Tandemnummer(f,k)
         #TandemB = sum(Tandemnummer(f,k) * model.x[k,l,f,z] for l in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
-        constraint = TandemA == TandemB
+        #constraint = TandemA == TandemB
+        #print(constraint)
         return constraint_or_feasible(constraint)
 
-    # def TandemRule(model, k, z):
-    #     Tandem1 = sum(
-    #         model.x[k, l, 'Tandem', z]
-    #         for l in model.Lehrer
-    #         if (k, l, 'Tandem', z) in model.Variablenmenge
-    #     )
-    #     Tandem2 = sum(
-    #         Tandemnummer(f, k) * model.x[k, l, f, t]
-    #         for f in model.Faecher
-    #         for l in model.Lehrer
-    #         for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)
-    #         if (k, l, f, t) in model.Variablenmenge
-    #     )
-    #     constraint = Tandem1 == Tandem2
-    #     return constraint_or_feasible(constraint)
-
     # erstelle Constraint
-    model.Tandembenoetigt = Constraint(model.Klassen, model.Zeitslots, rule=TandemRule)
+    model.Tandembenoetigt = Constraint(model.Klassen, model.Faecher, rule=TandemRule)
     print("TandemRule gelesen")
 
     """Constraints für auxiliary variables
