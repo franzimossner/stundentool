@@ -426,6 +426,10 @@ def createModel():
         model.Klassen, model.Lehrer, model.Faecher, model.Zeitslots, domain=Boolean
     )
 
+    # Hilfsvariable für Tandemkonstrukte
+    # die Varaible ist 1, wenn zu dem Zeitpunkt in dem Fach bei der Klasse ein Tandem aktiv ist
+    model.t = Var(model.Klassen, model.Faecher, model.Zeitslots, domain=Boolean)
+
     # Hilfsvariable für Lehrerzahl
     model.y = Var(model.Klassen, model.Lehrer, domain=Boolean)
     # Hilfsvariable für wechselzähler
@@ -539,7 +543,7 @@ def createModel():
         print("Partner in Klasse berechnet")
         # Belohne, wenn es weniger Lehrerwechsel im Tagesablauf gibt
         wechsel = model.lehrerwechselGewicht * sum(
-            model.w[k, l, z] * 0.5
+            model.w[k, l, z] #* 0.5
             for k in model.Klassen
             for l in model.Lehrer
             for z in model.Zeitslots
@@ -818,33 +822,54 @@ def createModel():
     ''' Für eine Klasse und ein Fach, finde die wochenstunden
     Dann summiere Tandemvariablen über diese Wochenstunden, das muss dann Tandemnummer sein
     '''
+    def TandemRule2(model, k, f):
+        TandemAktiv = sum(model.t[k,f,z] for z in model.Zeitslots if f in Klassenfaecher(k) if z in Klassenzeiten(k))
+        TandemNoetig = Tandemnummer(f,k)
+
+        constraint = TandemAktiv == TandemNoetig
+        return constraint_or_feasible(constraint)
+
+    def TandemRule1(model, k, z):
+        # nachgebaut aus dem xpress Modell
+        # Stellt das sicher, dass auch die zeiten gematcht werden?
+        TandemDa = sum(model.x[k,l,'Tandem',z] for l in model.Lehrer if (k,l,'Tandem',z) in model.Variablenmenge)
+        TandemGebraucht = sum(model.x[k,l,f,t] * Tandemnummer(f,k) for f in model.Faecher for l in model.Lehrer for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1) if (k,l,f,t) in model.Variablenmenge)
+        constraint = TandemDa == TandemGebraucht
+        return constraint_or_feasible(constraint)
+
     def TandemRule(model, k, f):
-        # Tandem0: summiert alle Wochenstunden für das Fach in der Klasse - die tandemstunden darin
         Tandem0 = sum(sum(model.x[k,l,f,z] for l in model.Lehrer if (k,l,f,z) in model.Variablenmenge) - sum(model.x[k,j,'Tandem',z] for j in model.Lehrer if (k,j,'Tandem',z) in model.Variablenmenge) for z in model.Zeitslots)
-        #Tandem0 = sum(model.x[k,l,f,z] - model.x[k,j,'Tandem', z] for l in model.Lehrer for j in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge if (k,l,'Tandem',z) in model.Variablenmenge )
         # Diese differenz müsste Lehrplanstunden - Tandemstunden sein
         Tandem1 = Lehrplanstunden(f,k) - Tandemnummer(f,k)
         constraint = Tandem0 == Tandem1
-
-        #TandemA = sum(model.x[k,l,'Tandem', z] for l in model.Lehrer for z in model.Zeitslots if (k,l,'Tandem',z) in model.Variablenmenge)
-        # TandemB schaut für die klasse und das Fach nach wie viele Tandems benötigt werden und summiert
-        # reicht hier auch einfach nur die Tandemnummer hinzuschreiben? Denn so viele wie es sein sollen, sind es dann??
-        #TandemB = Tandemnummer(f,k)
-        #TandemB = sum(Tandemnummer(f,k) * model.x[k,l,f,z] for l in model.Lehrer for z in model.Zeitslots if (k,l,f,z) in model.Variablenmenge)
-        #constraint = TandemA == TandemB
-        #print(constraint)
         return constraint_or_feasible(constraint)
 
     # erstelle Constraint
-    model.Tandembenoetigt = Constraint(model.Klassen, model.Faecher, rule=TandemRule)
+    model.Tandembenoetigt = Constraint(model.Klassen, model.Faecher, rule=TandemRule2)
     print("TandemRule gelesen")
 
     """Constraints für auxiliary variables
     """
 
+    '''Auxiliary für Tandem '''
+
+    def auxiliaryTandem1(model, k, f, z):
+        constraint = model.t[k,f,z] <= sum(model.x[k,l,f,z] for l in model.Lehrer if (k,l,f,z) in model.Variablenmenge)
+        return constraint_or_feasible(constraint)
+
+    model.TandemAux1 = Constraint(model.Klassen, model.Faecher, model.Zeitslots, rule=auxiliaryTandem1)
+
+    def auxiliaryTandem2(model, k, f, z):
+        constraint = model.t[k,f,z] <= sum(model.x[k,l,'Tandem',z] for l in model.Lehrer if (k,l,'Tandem',z) in model.Variablenmenge)
+        return constraint_or_feasible(constraint)
+
+    model.TandemAux2 = Constraint(model.Klassen, model.Faecher, model.Zeitslots, rule=auxiliaryTandem2)
+
+    print('Auxiliary Tandem eingelesen')
+
+
     # Restriktion für Variable y:
     """Wie im Model"""
-    """ ToDo: Funktion für intelligente Arbeitszeit schreiben"""
 
     def auxiliaryYRule(model, k, l):
         Lehrerfaecher = Unterricht(l)
