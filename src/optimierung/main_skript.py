@@ -70,7 +70,7 @@ def doeverything():
     # instance = model.create_instance()
     loguru_logger.info("START: solve model")
     # solve the model with a mip gap of 2%
-    results = opt.solve(model, options=dict(mipgap=0.02), tee=True)
+    results = opt.solve(model, options=dict(mipgap=0.04), tee=True)
     loguru_logger.info("END: solve model")
     results.write()
     loguru_logger.info(f"SOLVER STATUS: {str(results.solver.status)}")
