@@ -39,7 +39,7 @@ def parameters(request):
             Parameters.lehrerwechsel = form.cleaned_data['lehrerwechsel']
             Parameters.sportunterricht = form.cleaned_data['sportunterricht']
             Parameters.lehrerminimum = form.cleaned_data['lehrerminimum']
-            Parameters.solver = form.cleaned_data['solver']
+            #Parameters.solver = form.cleaned_data['solver']
             ''' parameter verarbeiten
             '''
             form.save()

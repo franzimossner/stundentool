@@ -436,8 +436,7 @@ def createModel():
     model.w = Var(model.Klassen, model.Lehrer, model.Zeitslots, domain=Boolean)
     # Hilfsvariable für sportunterricht
     model.p = Var(model.Klassen, model.Zeitslots, domain=Boolean)
-    # Hilfsvariable für parallele und geteilte Fächer
-    model.pds = Var(model.Klassen, model.Zeitslots, model.Faecher, domain=Boolean)
+
 
     # kreiere Variablenmenge von Variablen, die überhaupt den Wert 1 annehmen könnten
     # Geschwindigkeit liegt an den Datenbankzugriffen
@@ -641,7 +640,7 @@ def createModel():
         return constraint_or_feasible(constraint)
 
     # erstelle Constraints
-    model.Raumverfuegbarkeit = Constraint(model.Raeume, model.Zeitslots, rule=RaumRule)
+    #model.Raumverfuegbarkeit = Constraint(model.Raeume, model.Zeitslots, rule=RaumRule)
     print("RaumRule gelesen")
 
     faecherFuerKlasse = {}
@@ -710,7 +709,8 @@ def createModel():
                 for c in Uebergreifend(f, k)
                 if (c, l, f, z) in model.Variablenmenge
             )
-            / (2 * len(Uebergreifend(f, k)))
+            /(len(Uebergreifend(f, k))**2)
+            #/ (2 * len(Uebergreifend(f, k)))
             for k in model.Klassen
             for f in Unterricht(l)
             for t in range(max(1, z + 1 - Fachdauer(f, k)), z + 1)

@@ -12,7 +12,7 @@ class Parameters(models.Model):
     lehrerminimum = models.IntegerField()
 
 
-    solver = models.CharField(choices=[("Xpress",'Xpress'), ("Pyomo",'Pyomo')], max_length=20)
+    #solver = models.CharField(choices=[("Xpress",'Xpress'), ("Pyomo",'Pyomo')], max_length=20)
 
     def __str__(self):
-        return "{0}, {1}, {2}, {3}, {4}, {5}, {6}".format(self.lehrerinKlasse, self.tandeminKlasse, self.partnerinKlasse, self.lehrerwechsel, self.sportunterricht, self.lehrerminimum, self.solver)
+        return "{0}, {1}, {2}, {3}, {4}, {5}".format(self.lehrerinKlasse, self.tandeminKlasse, self.partnerinKlasse, self.lehrerwechsel, self.sportunterricht, self.lehrerminimum)

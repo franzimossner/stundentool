@@ -80,3 +80,41 @@ class writingTimetables(object):
                             Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
                             le = Lehreinheit.objects.create(Schulfach= Fach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
                             le.save()
+
+            #Tandem irgendwie korrekt anzeigen:
+            # for row in resultfile:
+            #     fach = row[2]
+            #     if fach == 'Tandem':
+            #         # finde bereits exisitierende nicht Tandemeinheit und verlängere um Fachdauer -1 Stunden für Tandem
+            #         lehrer = row[1]
+            #         slot = row[3]
+            #         tag, stundenindex = writingTimetables.convert_to_slot(slot)
+            #         klasse = row[0]
+            #
+            #         Tandemfach = Schulfach.objects.get(Name=fach)
+            #         Zeitslot = Slot.objects.get(Tag__Tag=tag, Stunde__Index=stundenindex)
+            #         Klasse = Schulklasse.objects.get(Name=klasse)
+            #         Lehrperson = Lehrer.objects.get(Kurzname=lehrer)
+            #
+            #         # Alle Lehreinheiten, die dort starten
+            #         partnerfaecher = Lehreinheit.objects.filter(Klasse= Klasse, Zeitslot= Zeitslot, run=sp)
+            #
+            #         for partnereinheit in partnerfaecher:
+            #             if partnereinheit.Schulfach.Name == 'Tandem':
+            #                 continue
+            #             Fach = partnereinheit.Schulfach
+            #             fachdauer = Lehrfaecher.objects.get(schulklasse=Klasse, schulfach=Fach).blockstunden
+            #
+            #             for i in range(2, fachdauer+1):
+            #                 # für jede stunde der fachdauer kreiere eine LehrEinheit
+            #                 tag_nr = Tag.objects.get(Tag=tag).Index
+            #                 if stundenindex -1+i <= 9 and tag_nr <= 5:
+            #                     if tag_nr == 5 and stundenindex -1+i <= 4:
+            #                         Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
+            #                         le = Lehreinheit.objects.create(Schulfach= Tandemfach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
+            #                         le.save()
+            #                     elif tag_nr != 5:
+            #                         Zeitslot = Slot.objects.get(Tag__Index=tag_nr, Stunde__Index=stundenindex -1 +i)
+            #                         le = Lehreinheit.objects.create(Schulfach= Tandemfach, Klasse= Klasse, Lehrer= Lehrperson, Zeitslot= Zeitslot, run=sp)
+            #                         le.save()
+            #             break

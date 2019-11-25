@@ -40,7 +40,7 @@ def output_classes(request):
 @login_required
 def class_detail(request, klasse):
     klasse = get_object_or_404(Schulklasse, Name=klasse)
-    runs = OptimierungsErgebnis.objects.all()
+    runs = OptimierungsErgebnis.objects.order_by('-Zeit')
     tage = Tag.objects.order_by('Index')
     stunden = Stunde.objects.order_by('Index')
     runToStundenplan = []
